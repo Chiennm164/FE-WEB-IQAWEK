@@ -1,0 +1,67 @@
+---
+# Tìm kiếm sản phẩm phía trình duyệt (thay chức năng tìm kiếm PHP của CMS cũ)
+pagination:
+  data: site.langs
+  size: 1
+  alias: lang
+permalink: "/{{ lang }}/search/"
+eleventyComputed:
+  title: "{{ site[lang].search.title }}"
+---
+{% extends "layouts/base.njk" %}
+{% import "partials/ui.njk" as ui %}
+{% block main %}
+{%- set t = site[lang] -%}
+{%- set rootCat = lang | sectionRoot("products") -%}
+{%- set langProducts = collections.product | byLang(lang) -%}
+<div class="n-banner">
+<img src="{{ rootCat.banner }}" alt="{{ t.search.title }}">
+<div class="word">
+<div class="wrap">
+<h1>{{ t.search.title }}</h1>
+<h2 id="search-term"></h2>
+</div>
+</div>
+</div>
+<section class="n-path">
+<div class="wrap"><a href="/{{ lang }}/"><i class="icon iconfont icon-fangzi"></i></a>
+<i class="icon iconfont icon-xiangyoujiantou"></i> <a href="/{{ lang }}/search/" title="{{ t.search.title }}">{{ t.search.title }}</a>
+</div>
+</section>
+<section class="wrap n-products">
+{{ ui.productsSidebar(lang, rootCat.id, t, langProducts | pickByIds(hot[lang])) }}
+<div class="products-right">
+<ul class="products-list" id="search-list">
+{%- for product in langProducts | latest(1000) %}
+<li data-q="{{ (product.data.title + ' ' + (product.data.model or '')) | lower }}">
+<a title="{{ product.data.title }}" href="{{ product.url }}">
+<div class="image"><img src="{{ product.data.thumb }}" alt="{{ product.data.title }}" loading="lazy"></div>
+<div class="word">
+<div class="title">{{ product.data.title }}</div>
+<div class="more">{{ t.product.listMore }}</div>
+</div>
+</a>
+</li>
+{%- endfor %}
+</ul>
+<div class="n-page font18" id="search-empty" style="display:none">{{ t.search.noResults }}</div>
+</div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+$(function(){
+{{ ui.hotSwiperScript() }}
+var q = (new URLSearchParams(location.search).get('q') || '').trim().toLowerCase();
+$('#search-term').text(q);
+$('input[name="q"]').val(q);
+var shown = 0;
+$('#search-list li').each(function(){
+var ok = !q || $(this).data('q').indexOf(q) !== -1;
+$(this).toggle(ok);
+if (ok) shown++;
+});
+$('#search-empty').toggle(shown === 0);
+})
+</script>
+{% endblock %}

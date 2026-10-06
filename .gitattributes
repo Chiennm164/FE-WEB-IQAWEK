@@ -1,0 +1,10 @@
+# Chuẩn hoá xuống dòng cho file văn bản; ảnh và font giữ nguyên dạng nhị phân
+* text=auto
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.eot  binary
+*.ttf  binary
+*.woff binary
+*.woff2 binary

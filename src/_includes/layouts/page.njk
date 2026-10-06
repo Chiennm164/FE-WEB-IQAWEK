@@ -1,0 +1,9 @@
+{% extends "layouts/base.njk" %}
+{% import "partials/ui.njk" as ui %}
+{% block main %}
+{%- if not ownBanner %}
+{{ ui.banner(categoryId) }}
+{{ ui.path(categoryId, lang) }}
+{%- endif %}
+{{ content | safe }}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layouts/base.njk" %}
+{% import "partials/ui.njk" as ui %}
+{% block title %}{{ title }}-{{ (categoryId | category).name }}-{% endblock %}
+{% block main %}
+{%- set t = site[lang] -%}
+{%- set langNews = collections.news | byLang(lang) -%}
+{%- set adjacent = langNews | prevNext(id) -%}
+{{ ui.banner(categoryId) }}
+{{ ui.path(categoryId, lang) }}
+<section class="wrap n-news">
+{{ ui.newsSidebar(lang, categoryId, t, langNews | latest(5)) }}
+<div class="news-right wow fadeInUp" data-wow-delay="0.15s">
+<div class="news-detail">
+<div class="title">{{ title }}</div>
+<div class="date">
+{{ t.news.dateLabel }}{{ published }}
+</div>
+<div class="content">{{ content | safe }}</div>
+<div class="page">
+<ul>
+{%- if adjacent.prev %}
+<li class="previous"><a title="{{ adjacent.prev.data.title }}" href="{{ adjacent.prev.url }}">{{ t.news.prev }}{{ adjacent.prev.data.title }}</a></li>
+{%- endif %}
+{%- if adjacent.next %}
+<li class="next"><a title="{{ adjacent.next.data.title }}" href="{{ adjacent.next.url }}">{{ t.news.next }}{{ adjacent.next.data.title }}</a></li>
+{%- endif %}
+</ul>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+---
+# Sinh dist/_redirects (cú pháp Netlify): chuyển hướng 301 từ URL cũ index.php?… sang URL mới
+permalink: /_redirects
+eleventyExcludeFromCollections: true
+---
+{%- for old, target in redirects %}
+{%- set line = old | redirectRule(target) %}
+{%- if line %}
+{{ line }}
+{%- endif %}
+{%- endfor %}

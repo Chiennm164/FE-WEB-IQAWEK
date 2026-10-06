@@ -1,0 +1,150 @@
+{#- Khối giao diện dùng chung, markup giữ nguyên từ site cũ.
+    Macro được import không thấy dữ liệu trang nên mọi thứ cần dùng (lang, t, id danh mục…) đều truyền qua tham số. -#}
+
+{% macro banner(categoryId) %}
+{%- set cat = categoryId | category -%}
+{%- set bannerCat = categoryId | catBanner -%}
+<div class="n-banner">
+<img src="{{ bannerCat.banner }}" alt="{{ cat.name }}">
+<div class="word">
+<div class="wrap">
+<h1>{{ cat.name }}</h1>
+<h2>{{ cat.subtitle or bannerCat.subtitle }}</h2>
+</div>
+</div>
+</div>
+{% endmacro %}
+
+{% macro path(categoryId, lang) %}
+<section class="n-path">
+<div class="wrap"><a href="/{{ lang }}/"><i class="icon iconfont icon-fangzi"></i></a>
+{%- for cat in categoryId | catPath %}
+<i class="icon iconfont icon-xiangyoujiantou"></i> <a href="{{ cat.url }}" title="{{ cat.name }}">{{ cat.name }}</a>
+{%- endfor %}
+</div>
+</section>
+{% endmacro %}
+
+{% macro productsSidebar(lang, currentCatId, t, hotProducts) %}
+{%- set rootCat = lang | sectionRoot("products") -%}
+{%- set activeCatIds = currentCatId | catPathIds -%}
+<div class="products-left wow fadeIn" data-wow-delay="0.15s">
+<div class="products-type">
+<div class="title">{{ rootCat.name }}</div>
+<ul>
+{%- for cat in rootCat.id | subCats %}
+{%- set children = cat.id | subCats %}
+<li {% if cat.id in activeCatIds %}class="active"{% endif %}>
+<a href="{{ cat.url }}" title="{{ cat.name }}">
+{{ cat.name }}<i class="rt icon iconfont {{ 'icon-xiajiantou' if children.length else 'icon-arrowRight' }}"></i>
+</a>
+{%- if children.length %}
+<ul>
+{%- for child in children %}
+<li {% if child.id in activeCatIds %}class="active"{% endif %}>
+<a href="{{ child.url }}" title="{{ child.name }}">• {{ child.name }}</a>
+</li>
+{%- endfor %}
+</ul>
+{%- endif %}
+</li>
+{%- endfor %}
+</ul>
+</div>
+<div class="products-lastest">
+<div class="title">{{ t.product.hot }}</div>
+<div class="list swiper-container">
+<ul class="swiper-wrapper">
+{%- for product in hotProducts %}
+<li class="swiper-slide">
+<a title="{{ product.data.title }}" href="{{ product.url }}">
+<div class="image"><img src="{{ product.data.thumb }}" alt="{{ product.data.title }}"></div>
+<div class="word">{{ product.data.title }}</div>
+</a>
+</li>
+{%- endfor %}
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</div>
+{% endmacro %}
+
+{% macro newsSidebar(lang, currentCatId, t, latestNews) %}
+{%- set rootCat = lang | sectionRoot("news") -%}
+<div class="news-left wow fadeIn" data-wow-delay="0.15s">
+<div class="news-type">
+<div class="title">{{ rootCat.name }}</div>
+<ul>
+{%- for cat in rootCat.id | subCats %}
+<li {% if cat.id == currentCatId %}class="active"{% endif %}><a href="{{ cat.url }}" title="{{ cat.name }}">{{ cat.name }}<i class="rt icon iconfont icon-arrowRight"></i></a></li>
+{%- endfor %}
+</ul>
+</div>
+<div class="news-lastest">
+<div class="title">{{ t.news.latest }}</div>
+<ul>
+{%- for article in latestNews %}
+<li>
+<a title="{{ article.data.title }}" href="{{ article.url }}">
+<div class="text">{{ article.data.title }}</div>
+<div class="date">{{ t.news.dateLabel }}{{ article.data.published | string | truncate(10, true, '') }}</div>
+</a>
+</li>
+{%- endfor %}
+</ul>
+</div>
+</div>
+{% endmacro %}
+
+{% macro pager(listPage) %}
+<div class="n-page font18 wow fadeInUp" data-wow-delay="0.15s">
+{%- if listPage.page > 1 -%}
+<a class="btn btn-default first" title="" href="{{ listPage.urls[0] }}"></a><a class="btn btn-default prev" title="&lt;&lt;" href="{{ listPage.urls[listPage.page - 2] }}">&lt;&lt;</a>
+{% endif -%}
+{%- for url in listPage.urls -%}
+{%- if loop.index == listPage.page -%}<span class="btn btn-default active">{{ loop.index }}</span>
+{%- else -%}<a class="btn btn-default" title="{{ loop.index }}" href="{{ url }}">{{ loop.index }}</a>{%- endif -%}
+{%- endfor -%}
+{%- if listPage.page < listPage.total %}
+<a class="btn btn-default next" title="&gt;&gt;" href="{{ listPage.urls[listPage.page] }}">&gt;&gt;</a><a class="btn btn-default last" title="" href="{{ listPage.urls[listPage.total - 1] }}"></a>
+{%- endif -%}
+</div>
+{% endmacro %}
+
+{#- JS khởi tạo slider "sản phẩm hot" ở sidebar (trang danh sách, chi tiết sản phẩm, tìm kiếm) -#}
+{% macro hotSwiperScript() %}
+var PSwiper = new Swiper('.products-lastest .swiper-container',{
+slidesPerView: 1,
+slidesPerColumn: 3,
+slidesPerColumnFill: 'row',
+autoplay: true,
+spaceBetween: 10,
+pagination: {
+clickable: true,
+el: '.products-lastest .swiper-pagination'
+},
+breakpoints: {
+992: {
+slidesPerView: 1,
+slidesPerColumn: 3,
+spaceBetween: 10
+},
+750: {
+slidesPerView: 3,
+slidesPerColumn: 2,
+spaceBetween: 10
+},
+320: {
+slidesPerView: 2,
+slidesPerColumn: 2,
+spaceBetween: 10
+}
+},
+on: {
+resize: function(){
+PSwiper.updateSize();
+}
+}
+});
+{% endmacro %}

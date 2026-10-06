@@ -1,0 +1,15 @@
+{
+  "name": "kewaqi-site",
+  "private": true,
+  "type": "module",
+  "description": "Website tĩnh kewaqi.com — giữ giao diện cũ, dựng bằng Eleventy",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "check": "node tools/check-links.mjs",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

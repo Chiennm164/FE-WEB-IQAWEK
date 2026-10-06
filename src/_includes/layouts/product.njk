@@ -1,0 +1,157 @@
+{% extends "layouts/base.njk" %}
+{% import "partials/ui.njk" as ui %}
+{% block title %}{{ title }}-{{ (categoryId | category).name }}-{% endblock %}
+{% block main %}
+{%- set t = site[lang] -%}
+{%- set cat = categoryId | category -%}
+{%- set langProducts = collections.product | byLang(lang) -%}
+{{ ui.banner(categoryId) }}
+{{ ui.path(categoryId, lang) }}
+<section class="wrap n-products">
+{{ ui.productsSidebar(lang, categoryId, t, langProducts | pickByIds(hot[lang])) }}
+<div class="products-right">
+<div class="products-detail">
+<div class="box1 wow fadeInUp" data-wow-delay="0.15s">
+<div class="left">
+<div class="bigImg"><img src="{{ images[0] if images else thumb }}"></div>
+<div class="smImg">
+<div class="swiper-button-prev"></div>
+<div class="swiper-container">
+<ul class="swiper-wrapper">
+{%- for image in images %}
+<li class="swiper-slide"><img src="{{ image }}"/></li>
+{%- endfor %}
+</ul>
+</div>
+<div class="swiper-button-next"></div>
+</div>
+</div>
+<div class="right">
+<div class="title">{{ title }}</div>
+<div class="typename">{{ t.product.categoryLabel }}<a href="{{ cat.url }}">{{ cat.name }}</a></div>
+<div class="summary">
+<div class="t">{{ t.product.summary }}</div>
+<div class="c">{{ summary | safe }}</div>
+</div>
+<div class="button">
+<div class="t">{{ t.product.interested }}</div>
+<div class="c">
+<ul>
+<li><a href="#liuyan">{{ t.product.inquiry }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
+<li><a href="{{ (lang | sectionRoot('contact')).url }}">{{ t.product.contact }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
+<li><a href="{{ cat.url }}">{{ t.product.backList }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="box4 wow fadeInUp" data-wow-delay="0.3s">
+<div class="title">{{ t.product.detail }}</div>
+<div class="content">{{ content | safe }}</div>
+</div>
+<div class="box2 wow fadeInUp" data-wow-delay="0.45s">
+<div class="title">{{ t.product.related }}</div>
+<div class="content swiper-container">
+<ul class="swiper-wrapper">
+{%- for product in langProducts | latest(12) %}
+<li class="swiper-slide">
+<a title="{{ product.data.title }}" href="{{ product.url }}">
+<div class="image"><img src="{{ product.data.thumb }}" alt="{{ product.data.title }}"></div>
+<div class="name">{{ product.data.title }}</div>
+<div class="more">
+<span>{{ t.product.relatedMore }} <i class="icon iconfont icon-xiangyoujiantou"></i></span>
+</div>
+</a>
+</li>
+{%- endfor %}
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+<div class="box3 wow fadeInUp" data-wow-delay="0.6s" id="liuyan">
+<div class="title">{{ t.product.inquiryTitle }}</div>
+<div class="content">
+<form name="messformsave" id="messformsave" method="post" class="form-horizontal admin-form" action="" data-form="1">
+<input type="hidden" name="sourcetitle" value="{{ title }}"/>
+<ul>
+<li>
+<input type="text" class="form-control" name="addname" id="addname" value="" minlength="2" maxlength="60" required placeholder="{{ t.form.namePlaceholder }}" title="{{ t.form.namePlaceholder }}"/>
+</li>
+<li>
+<input type="email" name="email" id="email" class="form-control" value="" required placeholder="{{ t.form.emailPlaceholder }}" title="{{ t.form.emailPlaceholder }}" />
+</li>
+<li class="wid-100">
+<textarea name="content" class="form-control" style="width:100%;height:250px" id="content" minlength="10" maxlength="5000" required title="{{ t.form.messagePlaceholder }}" placeholder="{{ t.form.messagePlaceholder }}"></textarea>
+</li>
+<li class="wid-100">
+<input type="submit" class="btn btn-success btn-lg" value="{{ t.form.submit }}"/>
+</li>
+</ul>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+$(function(){
+{{ ui.hotSwiperScript() }}
+var Bswiper = new Swiper('.smImg .swiper-container', {
+slidesPerView : 4,
+spaceBetween : 10,
+centeredSlides : true,
+centeredSlidesBounds: true,
+normalizeSlideIndex: false,
+slideToClickedSlide: true,
+navigation: {
+nextEl: '.smImg .swiper-button-next',
+prevEl: '.smImg .swiper-button-prev'
+},
+on: {
+init:function(swiper){
+var Img = $('.smImg li').eq(0).find('img').attr('src');
+$('.bigImg img').attr('src', Img);
+},
+slideChange: function(){
+var index = this.activeIndex;
+var Img = $('.smImg li').eq(index).find('img').attr('src');
+$('.bigImg img').attr('src', Img);
+},
+resize: function(){
+Bswiper.updateSize();
+}
+}
+});
+var RSwiper = new Swiper('.products-detail .box2 .swiper-container',{
+slidesPerView: 4,
+slidesPerGroup: 4,
+spaceBetween: 10,
+pagination: {
+clickable: true,
+el: '.products-detail .box2 .swiper-pagination'
+},
+breakpoints: {
+992: {
+slidesPerView: 4,
+slidesPerGroup: 4
+},
+750: {
+slidesPerView: 3,
+slidesPerGroup: 3
+},
+320: {
+slidesPerView: 2,
+slidesPerGroup: 2
+}
+},
+on: {
+resize: function(){
+RSwiper.updateSize();
+}
+}
+});
+})
+</script>
+{% endblock %}

@@ -1,0 +1,205 @@
+{#- Khung chung của mọi trang: <head>, header, menu mobile, footer, script. Markup giữ nguyên từ template "netskin" của site cũ. -#}
+{%- set t = site[lang] -%}
+{%- set otherLang = "en" if lang == "cn" else "cn" -%}
+{%- set currentCatId = categoryId or (listPage.cat.id if listPage else null) -%}
+{%- set currentSection = (currentCatId | catPath)[0] if currentCatId else null -%}
+{%- set currentCat = currentCatId | category if currentCatId else null -%}
+{#- Nút đổi ngôn ngữ: đang ở chính trang danh mục thì sang danh mục tương ứng, còn lại về trang chủ ngôn ngữ kia -#}
+{%- if currentCat and currentCat.translationId and page.url == currentCat.url -%}
+  {%- set altLangUrl = (currentCat.translationId | category).url -%}
+{%- else -%}
+  {%- set altLangUrl = "/" + otherLang + "/" -%}
+{%- endif -%}
+<!doctype html>
+<html lang="{{ t.meta.htmlLang }}">
+<head>
+<meta charset="utf-8">
+{#- renderer: buộc trình duyệt hai nhân (360, QQ…) dùng nhân webkit #}
+<meta name="renderer" content="webkit">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<link rel="icon" type="image/png" href="{{ site.favicon }}"/>
+<title>{% block title %}{% if title %}{{ title }}-{% endif %}{% endblock %}{{ t.meta.siteTitle }}</title>
+<meta name="keywords" content="{{ t.meta.keywords }}" />
+<meta name="description" content="{{ (description or t.meta.description) | truncate(300, true, '') }}" />
+<link rel="alternate" hreflang="{{ site[otherLang].meta.htmlLang }}" href="{{ altLangUrl }}">
+<link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-common.css">
+{#- Trang chủ dùng index.css thay main.css; trang liên hệ dùng iconfont-contact thay iconfont-pages -#}
+{%- set isHome = layout == "home.njk" -%}
+{%- set hasPageIconfont = "iconfont-contact" in ((css or []) | join(",")) -%}
+{%- if not isHome and not hasPageIconfont %}
+<link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-pages.css">
+{%- endif %}
+<link href="/assets/css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/swiper.min.css" media="screen" charset="utf-8">
+<link href="/assets/css/reset.css" rel="stylesheet">
+{%- if not isHome %}
+<link href="/assets/css/main.css" rel="stylesheet">
+{%- endif %}
+{%- for href in css %}
+<link href="{{ href }}" rel="stylesheet">
+{%- endfor %}
+<script type="text/javascript" src="/assets/js/wow.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/swiper.min.js"></script>
+</head>
+<body>
+<header>
+<div class="wrap">
+<a href="javascript:;" class="menu-trigger">
+<span></span>
+<span></span>
+<span></span>
+</a>
+<a href="/{{ lang }}/" class="logo"><img src="/assets/images/logo.png"></a>
+<div class="header-right white">
+<div class="header-menu">
+<ul>
+<li class="">
+<a href="/{{ lang }}/" title="{{ t.header.home }}">{{ t.header.home }}</a>
+</li>
+{%- for top in lang | topCats %}
+<li class="{{ 'current' if currentSection and currentSection.id == top.id }}">
+<a href="{{ top.url }}" title="{{ top.name }}">{{ top.name }}</a>
+{%- set children = top.id | subCats %}
+{%- if children.length %}
+<ul>
+{%- for child in children %}
+<li>
+<a href="{{ child.url }}" title="{{ child.name }}">{{ child.name }}</a>
+</li>
+{%- endfor %}
+</ul>
+{%- endif %}
+</li>
+{%- endfor %}
+</ul>
+</div>
+<div class="header-tools">
+<div class="header-lan"><a href="{{ altLangUrl }}"><i class="icon iconfont {{ t.header.langIcon }}"></i></a></div>
+<div class="header-search">
+<a href="javascript:;"><i class="icon iconfont icon-sousuo_o"></i></a>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="clear"></section>
+<section class="search-box">
+<a href="javascript:;" class="close"><i class="icon iconfont icon-guanbi"></i></a>
+<form name="infosearch" method="get" action="/{{ lang }}/search/">
+<input name="q" type="text" placeholder="{{ t.header.searchPlaceholder }}" autocomplete="off" />
+<button type="submit"><i class="icon iconfont icon-sousuo_o"></i></button>
+</form>
+</section>
+<section class="clear"></section>
+<section class="overlay"></section>
+<section class="subnav">
+<h2><i class="icon iconfont icon-fenlei1"></i> {{ t.header.menu }}</h2>
+<div class="menu-box">
+<ul>
+{%- for top in lang | topCats %}
+{%- set children = top.id | subCats %}
+<li class="{{ 'current' if currentSection and currentSection.id == top.id }}">
+{%- if children.length %}
+<a href="javascript:;" title="{{ top.name }}" class="nav-a">{{ top.name }} <i class="right icon iconfont icon-zengjia"></i></a>
+<ul>
+{%- for child in children %}
+<li>
+<a href="{{ child.url }}" title="{{ child.name }}">{{ child.name }}</a>
+</li>
+{%- endfor %}
+</ul>
+{%- else %}
+<a href="{{ top.url }}" title="{{ top.name }}">{{ top.name }}</a>
+{%- endif %}
+</li>
+{%- endfor %}
+</ul>
+</div>
+<h2><i class="icon iconfont icon-sousuo_o"></i> {{ t.header.search }}</h2>
+<div class="zoom-box">
+<form name="infosearch" method="get" action="/{{ lang }}/search/">
+<input name="q" type="text" placeholder="{{ t.header.searchShort }}" autocomplete="off" />
+<button type="submit"><i class="icon iconfont icon-sousuo_o"></i></button>
+</form>
+</div>
+<div class="lan-box">
+<h2><i class="icon iconfont icon-wangluo"></i> {{ t.header.language }} <i class="icon iconfont icon-xiajiantou"></i></h2>
+<ul>
+<li><a href="/cn/"><i class="icon iconfont icon-dian"></i> 简体中文版</a></li>
+<li><a href="/en/"><i class="icon iconfont icon-dian"></i> English</a></li>
+</ul>
+</div>
+</section>
+<section class="clear"></section>
+{% block main %}{{ content | safe }}{% endblock %}
+<section class="clear"></section>
+<footer class="wow fadeInUp" data-wow-delay="0.15s">
+<div class="mapBg"><img src="/assets/images/footer-map.png"></div>
+<div class="qrcodeBox">
+<div class="div1"><img src="/assets/images/logo.png"></div>
+<div class="div2">{{ t.meta.company }}</div>
+<div class="div3"><img src="/assets/images/qrcode.jpg"></div>
+</div>
+<div class="menuBox">
+<div class="l"><img src="/assets/images/footer-left.png"></div>
+<div class="c wrap">
+<div class="navBox">
+<div class="linkBox">
+<h2>{{ t.footer.links }}</h2>
+<ul>
+{%- for top in lang | topCats %}
+<li>
+<a href="{{ top.url }}" title="{{ top.name }}"><i class="icon iconfont icon-arrowRight"></i>{{ top.name }}</a>
+</li>
+{%- endfor %}
+</ul>
+</div>
+<div class="contactBox">
+<h2>{{ t.footer.contact }}</h2>
+<ul>
+<ul>{{ t.footer.contactHtml | safe }}</ul>
+</ul>
+</div>
+<div class="shareBox">
+<h2>{{ t.footer.share }}</h2>
+<ul>
+{%- for link in t.footer.social %}
+<li>
+<a href="{{ link.url }}"><i class="icon iconfont {{ link.icon }}"></i><span>{{ link.label }}</span></a>
+</li>
+{%- endfor %}
+</ul>
+</div>
+</div>
+<div class="copyBox">
+<div class="left">{{ t.footer.copyrightLeft | safe }}</div>
+{%- if t.footer.copyrightRight %}
+<div class="right">{{ t.footer.copyrightRight | safe }}</div>
+{%- endif %}
+</div>
+</div>
+<div class="r"><img src="/assets/images/footer-right.png"></div>
+</div>
+</footer>
+<script type="text/javascript" src="/assets/js/main.js"></script>
+{%- for src in js %}
+<script type="text/javascript" src="{{ src }}"></script>
+{%- endfor %}
+<script>
+if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+new WOW().init();
+};
+</script>
+{%- if inlineScript %}
+<script>
+{{ inlineScript | safe }}
+</script>
+{%- endif %}
+{% block scripts %}{% endblock %}
+<script>
+window.SITE_FORM = {{ { endpoint: site.formEndpoint, mailto: site.contactEmail, thanks: t.form.thanks, mail: t.form.mailtoNotice, required: t.form.required } | dump | safe }};
+</script>
+<script type="text/javascript" src="/assets/js/forms.js"></script>
+</body>
+</html>

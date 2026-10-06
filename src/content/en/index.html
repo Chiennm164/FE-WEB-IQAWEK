@@ -1,0 +1,440 @@
+---
+layout: home.njk
+css:
+  - /assets/css/index.css
+inlineScript: |
+  $(function(){
+  var Bswiper = new Swiper('.in-banner .swiper-container', {
+  slidesPerView : 1,
+  autoplay: true,
+  nested: true,
+  resistanceRatio: 0,
+  navigation: {
+  nextEl: '.in-banner .swiper-button-next',
+  prevEl: '.in-banner .swiper-button-prev'
+  },
+  pagination: {
+  clickable: true,
+  el: '.in-banner .swiper-pagination'
+  },
+  on: {
+  resize: function(){
+  Bswiper.updateSize();
+  }
+  }
+  });
+  var TSwiper = new Swiper('.in-type .swiper-container',{
+  slidesPerView: 2,
+  spaceBetween: 48,
+  autoHeight: true,
+  pagination: {
+  clickable: true,
+  el: '.in-type .swiper-pagination'
+  },
+  breakpoints: {
+  1280: {
+  slidesPerView: 2,
+  spaceBetween: 48
+  },
+  992: {
+  slidesPerView: 2,
+  spaceBetween: 24
+  },
+  750: {
+  slidesPerView: 2,
+  spaceBetween: 12
+  },
+  320: {
+  slidesPerView: 1,
+  spaceBetween: 0
+  }
+  },
+  on: {
+  resize: function(){
+  TSwiper.updateSize();
+  }
+  }
+  });
+  var NSwiper = new Swiper('.in-news .swiper-container',{
+  slidesPerView: 2,
+  spaceBetween: 60,
+  autoHeight: true,
+  pagination: {
+  clickable: true,
+  el: '.in-news .swiper-pagination'
+  },
+  breakpoints: {
+  1280: {
+  slidesPerView: 2,
+  spaceBetween: 60
+  },
+  992: {
+  slidesPerView: 2,
+  spaceBetween: 24
+  },
+  750: {
+  slidesPerView: 2,
+  spaceBetween: 12
+  },
+  320: {
+  slidesPerView: 1,
+  spaceBetween: 0
+  }
+  },
+  on: {
+  resize: function(){
+  NSwiper.updateSize();
+  }
+  }
+  });
+  })
+---
+<section class="in-banner">
+<div class="swiper-container">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a href="/en/products/" title="banner1">
+<img src="/assets/media/home/banner-4.jpg" alt="banner1">
+</a>
+</li>
+<li class="swiper-slide">
+<a href="/en/products/" title="banner2">
+<img src="/assets/media/home/banner-5.jpg" alt="banner2">
+</a>
+</li>
+<li class="swiper-slide">
+<a href="/en/products/" title="banner3">
+<img src="/assets/media/home/banner-6.jpg" alt="banner3">
+</a>
+</li>
+
+</ul>
+<div class="swiper-button-prev swiper-button-white"></div>
+<div class="swiper-button-next swiper-button-white"></div>
+<div class="swiper-pagination"></div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-type">
+<div class="wrap">
+<div class="title wow fadeInDown" data-wow-delay="0.15s">
+<div class="line"></div>
+<div class="in-title">FEATURED TOOL GUIDES</div>
+<div class="line"></div>
+</div>
+<div class="list swiper-container wow fadeInUp" data-wow-delay="0.3s">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a title="Lawn mower/Brush cutter " href="/en/products/lawn-mower-brush-cutter/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">MORE PRODUCTS <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Lawn mower/Brush cutter </div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-6.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Hedge machine/Pruning machine" href="/en/products/hedge-machine-pruning-machine/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">MORE PRODUCTS <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Hedge machine/Pruning machine</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-2.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Eath boing machin/Ground dill " href="/en/products/eath-boing-machin-ground-dill/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">MORE PRODUCTS <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Eath boing machin/Ground dill </div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-1.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Mini-tiller/Water pump" href="/en/products/mini-tiller-water-pump/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">MORE PRODUCTS <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Mini-tiller/Water pump</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-3.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Chain saw" href="/en/products/chain-saw/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">MORE PRODUCTS <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Chain saw</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-4.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Blower " href="/en/products/blower/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">MORE PRODUCTS <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Blower </div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-5.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-products">
+<div class="title">
+<div class="wrap wow bounceIn" data-wow-delay="0.15s">
+<div class="line"></div>
+<div class="in-title white">Hot products</div>
+<div class="line"></div>
+</div>
+</div>
+<div class="wrap list">
+<ul>
+<li class="wow fadeIn" data-wow-delay="0.15s">
+<a title="143R-II" href="/en/product/143r-ii/">
+<div class="image"><img src="/assets/media/home/product-1.jpg" alt="143R-II"></div>
+<div class="word">
+二冲程割草机<br/>143R-II<br/>Engine displacement 41.5cc<br/>Engine power 1.47kw/7500rpm</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.3s">
+<a title="226K Two hand grass cutter" href="/en/product/226k-two-hand-grass-cutter/">
+<div class="image"><img src="/assets/media/home/product-2.jpg" alt="226K Two hand grass cutter"></div>
+<div class="word">
+226K Two hand grass cutter</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.45s">
+<a title="541RS" href="/en/product/541rs/">
+<div class="image"><img src="/assets/media/home/product-3.jpg" alt="541RS"></div>
+<div class="word">
+541RS</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.6s">
+<a title="G26LS Two hand grass cutter" href="/en/product/g26ls-two-hand-grass-cutter/">
+<div class="image"><img src="/assets/media/home/product-4.jpg" alt="G26LS Two hand grass cutter"></div>
+<div class="word">
+G26LS Two hand grass cutter</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.75s">
+<a title="S500" href="/en/product/s500/">
+<div class="image"><img src="/assets/media/home/product-5.jpg" alt="S500"></div>
+<div class="word">
+S500</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.9s">
+<a title="G45 Knapsack float mower" href="/en/product/g45-knapsack-float-mower/">
+<div class="image"><img src="/assets/media/home/product-6.jpg" alt="G45 Knapsack float mower"></div>
+<div class="word">
+G45 Knapsack float mower</div>
+</a>
+</li>
+
+</ul>
+</div>
+<div class="wrap more wow bounceIn" data-wow-delay="0.15s"><a href="/en/products/">view more products</a></div>
+</section>
+<section class="clear"></section>
+<section class="in-about">
+<div class="wrap">
+<div class="div1 wow fadeInLeft" data-wow-delay="0.15s">RANGE TO COVER ALL OF YOUR GARDEN TOOL NEEDS.</div>
+<div class="div2 wow fadeInRight" data-wow-delay="0.3s">about KEWAQI</div>
+<div class="div3 wow fadeInUp" data-wow-delay="0.45s">
+<ul>
+<li>
+<h1>LAND AREA</h1>
+<h2>2000</h2>
+<h3>square meters</h3>
+</li>
+<li>
+<h1>PRODUCTION EFFICIENCY</h1>
+<h2>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+</h2>
+<h3>ENHANCING QUALITY</h3>
+</li>
+<li>
+<h1><i class="icon iconfont icon-gouxuan"></i>99%</h1>
+<h2>CUSTOMER PRAISE</h2>
+<h4>We look forward to build good partnersip</h4>
+</li>
+</ul>
+</div>
+<div class="div4 wow fadeInDown" data-wow-delay="0.6s">
+<p>TAIZHOU KEWAQI TOOLS CO.,LTD. was established in December 2014. Our company is located &nbsp;in Luqiao pengjie Town industrial area，a coastal city -- Taizhou City, Zhejiang Province, with convenient transportation. We specialize in producing Garden machinery, agricultural machinery, small gasoline engine, lawn mower, brush cutter, hedge trimmer, digging machines and other products. The company owns a number of capable management team and production teams.</p>
+</div>
+<div class="div5 wow fadeIn" data-wow-delay="0.75s">
+<ul>
+<li><a title="Company Profile" href="/en/about-kewaqi/#a18">Company Profile</a></li>  
+<li><a title="Production eauipment" href="/en/about-kewaqi/#a20">Production eauipment</a></li>  
+
+</ul>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="wrap in-advantage">
+<div class="in-title wow fadeIn" data-wow-delay="0.15s">Why do you choose Us?</div>
+<div class="list">
+<ul>
+<li class="wow fadeInUp" data-wow-delay="0.3s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-1.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>We are the professional factory and specialized in Garden machinery, agricultural machinery.</h1>
+<h2>We specialize in producing Garden machinery, agricultural machinery, small gasoline engine, lawn mower, brush cutter, hedge trimmer, digging machines and other products.</h2>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.45s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-2.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>manufacture of garden machinery product safety and environmental protection.</h1>
+<h2>We always take the "manufacture of garden machinery product safety and environmental protection, to provide customers with green power, did the industry leader" for business purposes.</h2>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.6s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-3.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>We do great job with our products.</h1>
+<h2>We will take the good reputation and high quality products to become your ideal partner.</h2>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.75s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-4.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>Our factory is in good cooperation with all our current clients.</h1>
+<h2>Our quality of life, constant innovation and enterprising ,to make customer satisfaction, shareholder confidence, make employees happy as enterprise's ultimate goal.</h2>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-workshop wow fadeIn" data-wow-delay="0.15s">
+<div class="list">
+<ul>
+<li><img src="/assets/media/home/workshop-1.jpg" alt="workshop"></li>
+<li><img src="/assets/media/home/workshop-2.jpg" alt="Dynamometer"></li>
+<li><img src="/assets/media/home/workshop-3.jpg" alt="Engine commissioning platform"></li>
+<li><img src="/assets/media/home/workshop-4.jpg" alt="Engine tooling"></li>
+<li><img src="/assets/media/home/workshop-5.jpg" alt="Engine cold grinding table"></li>
+<li><img src="/assets/media/home/workshop-6.jpg" alt="Cylinder block tester"></li>
+<li><img src="/assets/media/home/workshop-7.jpg" alt="Cylinder block injector"></li>
+<li><img src="/assets/media/home/workshop-8.jpg" alt="Automatic piston ring assembling machine"></li>
+<li><img src="/assets/media/home/workshop-9.jpg" alt="Aluminum tube shock absorber package"></li>
+<li><img src="/assets/media/home/workshop-10.jpg" alt="Durability test bench"></li>
+
+</ul>
+</div>
+<div class="title">
+<div class="box wow bounceIn" data-wow-delay="0.3s">
+<div class="t">
+<div class="bg">F</div>
+<div class="in-title">Factory Tour</div>
+</div>
+<div class="c">All kewaqi staff sincerely look forward to doing cooperation with all the friends in this line, thank you for your dedicated support! we will be a good reputation and high quality products to become your ideal partner.</div>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-news">
+<div class="wrap">
+<div class="in-title white wow fadeInDown" data-wow-delay="0.15s">Upcoming Exhibition</div>
+<div class="list swiper-container wow fadeInUp" data-wow-delay="0.15s">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a title="Getting Ready for Spring Yard Work: Safety Tips  to Remember" href="/en/article/getting-ready-for-spring-yard-work-safety-tips-to-remember/">
+<div class="date">Date:2022.08.15</div>
+<div class="text">Getting Ready for Spring Yard Work: Safety Tips  to Remember</div>
+<div class="more">View Detail <i class="icon iconfont icon-jiantou_xiangyou_o"></i></div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="125th Canton Fair | Grateful Greeting, Promising  Future" href="/en/article/125th-canton-fair-grateful-greeting-promising-future/">
+<div class="date">Date:2022.08.15</div>
+<div class="text">125th Canton Fair | Grateful Greeting, Promising  Future</div>
+<div class="more">View Detail <i class="icon iconfont icon-jiantou_xiangyou_o"></i></div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="125th Canton Fair | Grateful Greeting, Promising  Future" href="/en/article/125th-canton-fair-grateful-greeting-promising-future-9/">
+<div class="date">Date:2022.08.15</div>
+<div class="text">125th Canton Fair | Grateful Greeting, Promising  Future</div>
+<div class="more">View Detail <i class="icon iconfont icon-jiantou_xiangyou_o"></i></div>
+</a>
+</li>
+
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>

@@ -1,0 +1,72 @@
+---
+# Trang danh sách của từng danh mục sản phẩm / tin, đã chia trang (collection "categoryPages" trong eleventy.config.js)
+pagination:
+  data: collections.categoryPages
+  size: 1
+  alias: listPage
+  addAllPagesToCollections: false
+permalink: "{{ listPage.url }}"
+eleventyComputed:
+  lang: "{{ listPage.cat.lang }}"
+  title: "{{ listPage.cat.name }}"
+---
+{% extends "layouts/base.njk" %}
+{% import "partials/ui.njk" as ui %}
+{% block main %}
+{%- set t = site[lang] -%}
+{{ ui.banner(listPage.cat.id) }}
+{{ ui.path(listPage.cat.id, lang) }}
+{%- if listPage.cat.type == "products" %}
+<section class="wrap n-products">
+{{ ui.productsSidebar(lang, listPage.cat.id, t, collections.product | byLang(lang) | pickByIds(hot[lang])) }}
+<div class="products-right">
+<ul class="products-list">
+{%- for product in listPage.items %}
+<li class="wow fadeInUp" data-wow-delay="{{ 0.3 + (loop.index0 % 4) * 0.15 }}s">
+<a title="{{ product.data.title }}" href="{{ product.url }}">
+<div class="image"><img src="{{ product.data.thumb }}" alt="{{ product.data.title }}"></div>
+<div class="word">
+<div class="title">{{ product.data.title }}</div>
+<div class="more">{{ t.product.listMore }}</div>
+</div>
+</a>
+</li>
+{%- endfor %}
+</ul>
+{{ ui.pager(listPage) }}
+</div>
+</section>
+{%- else %}
+<section class="wrap n-news">
+{{ ui.newsSidebar(lang, listPage.cat.id, t, collections.news | byLang(lang) | latest(5)) }}
+<div class="news-right">
+<ul class="news-list">
+{%- for article in listPage.items %}
+<li class="wow fadeInUp" data-wow-delay="{{ 0.3 + (loop.index0 % 4) * 0.15 }}s">
+<a title="{{ article.data.title }}" href="{{ article.url }}">
+<div class="image"><img src="{{ article.data.thumb }}" alt="{{ article.data.title }}"></div>
+<div class="word">
+<div class="box">
+<div class="title">{{ article.data.title }}</div>
+<div class="content">{{ article.data.excerpt }}</div>
+<div class="more">{{ t.news.more }} <i class="icon iconfont icon-arrowRight"></i></div>
+</div>
+</div>
+</a>
+</li>
+{%- endfor %}
+</ul>
+{{ ui.pager(listPage) }}
+</div>
+</section>
+{%- endif %}
+{% endblock %}
+{% block scripts %}
+{%- if listPage.cat.type == "products" %}
+<script>
+$(function(){
+{{ ui.hotSwiperScript() }}
+})
+</script>
+{%- endif %}
+{% endblock %}
