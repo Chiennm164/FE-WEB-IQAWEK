@@ -1,0 +1,419 @@
+---
+layout: home.njk
+css:
+  - /assets/css/index.css
+inlineScript: |
+  $(function(){
+  var Bswiper = new Swiper('.in-banner .swiper-container', {
+  slidesPerView : 1,
+  autoplay: true,
+  nested: true,
+  resistanceRatio: 0,
+  navigation: {
+  nextEl: '.in-banner .swiper-button-next',
+  prevEl: '.in-banner .swiper-button-prev'
+  },
+  pagination: {
+  clickable: true,
+  el: '.in-banner .swiper-pagination'
+  },
+  on: {
+  resize: function(){
+  Bswiper.updateSize();
+  }
+  }
+  });
+  var TSwiper = new Swiper('.in-type .swiper-container',{
+  slidesPerView: 2,
+  spaceBetween: 48,
+  autoHeight: true,
+  pagination: {
+  clickable: true,
+  el: '.in-type .swiper-pagination'
+  },
+  breakpoints: {
+  1280: {
+  slidesPerView: 2,
+  spaceBetween: 48
+  },
+  992: {
+  slidesPerView: 2,
+  spaceBetween: 24
+  },
+  750: {
+  slidesPerView: 2,
+  spaceBetween: 12
+  },
+  320: {
+  slidesPerView: 1,
+  spaceBetween: 0
+  }
+  },
+  on: {
+  resize: function(){
+  TSwiper.updateSize();
+  }
+  }
+  });
+  var NSwiper = new Swiper('.in-news .swiper-container',{
+  slidesPerView: 2,
+  spaceBetween: 60,
+  autoHeight: true,
+  pagination: {
+  clickable: true,
+  el: '.in-news .swiper-pagination'
+  },
+  breakpoints: {
+  1280: {
+  slidesPerView: 2,
+  spaceBetween: 60
+  },
+  992: {
+  slidesPerView: 2,
+  spaceBetween: 24
+  },
+  750: {
+  slidesPerView: 2,
+  spaceBetween: 12
+  },
+  320: {
+  slidesPerView: 1,
+  spaceBetween: 0
+  }
+  },
+  on: {
+  resize: function(){
+  NSwiper.updateSize();
+  }
+  }
+  });
+  })
+---
+<section class="in-banner">
+<div class="swiper-container">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a href="/vi/products/" title="banner1">
+<img src="/assets/media/home/banner-4.jpg" alt="banner1">
+</a>
+</li>
+<li class="swiper-slide">
+<a href="/vi/products/" title="banner2">
+<img src="/assets/media/home/banner-5.jpg" alt="banner2">
+</a>
+</li>
+<li class="swiper-slide">
+<a href="/vi/products/" title="banner3">
+<img src="/assets/media/home/banner-6.jpg" alt="banner3">
+</a>
+</li>
+
+</ul>
+<div class="swiper-button-prev swiper-button-white"></div>
+<div class="swiper-button-next swiper-button-white"></div>
+<div class="swiper-pagination"></div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-type">
+<div class="wrap">
+<div class="title wow fadeInDown" data-wow-delay="0.15s">
+<div class="line"></div>
+<div class="in-title">Danh mục sản phẩm</div>
+<div class="line"></div>
+</div>
+<div class="list swiper-container wow fadeInUp" data-wow-delay="0.3s">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a title="Máy cắt cỏ / Máy cắt bụi cây" href="/vi/products/lawn-mower-brush-cutter/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy cắt cỏ / Máy cắt bụi cây</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-1.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy tỉa hàng rào / Máy cắt cành" href="/vi/products/hedge-machine-pruning-machine/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy tỉa hàng rào / Máy cắt cành</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-2.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy đào đất / Máy khoan đất" href="/vi/products/eath-boing-machin-ground-dill/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy đào đất / Máy khoan đất</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-1.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy xới mini / Máy bơm nước" href="/vi/products/mini-tiller-water-pump/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy xới mini / Máy bơm nước</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-3.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy cưa xích" href="/vi/products/chain-saw/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy cưa xích</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-4.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy thổi lá" href="/vi/products/blower/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg"></div>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy thổi lá</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-5.png"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-products">
+<div class="title">
+<div class="wrap wow bounceIn" data-wow-delay="0.15s">
+<div class="line"></div>
+<div class="in-title white">Sản phẩm nổi bật</div>
+<div class="line"></div>
+</div>
+</div>
+<div class="wrap list">
+<ul>
+<li class="wow fadeIn" data-wow-delay="0.15s">
+<a title="143R-II" href="/vi/product/143r-ii/">
+<div class="image"><img src="/assets/media/home/product-1.jpg" alt="143R-II"></div>
+<div class="word">
+</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.3s">
+<a title="226K Máy cắt cỏ tay cầm đôi" href="/vi/product/226k/">
+<div class="image"><img src="/assets/media/home/product-2.jpg" alt="226K Máy cắt cỏ tay cầm đôi"></div>
+<div class="word">
+</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.45s">
+<a title="541RS" href="/vi/product/541rs/">
+<div class="image"><img src="/assets/media/home/product-3.jpg" alt="541RS"></div>
+<div class="word">
+</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.6s">
+<a title="G26LS Máy cắt cỏ tay cầm đôi" href="/vi/product/g26ls/">
+<div class="image"><img src="/assets/media/home/product-4.jpg" alt="G26LS Máy cắt cỏ tay cầm đôi"></div>
+<div class="word">
+</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.75s">
+<a title="S500" href="/vi/product/s500/">
+<div class="image"><img src="/assets/media/home/product-5.jpg" alt="S500"></div>
+<div class="word">
+</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.9s">
+<a title="G45 Máy cắt cỏ đeo lưng (chế hòa khí phao)" href="/vi/product/g45/">
+<div class="image"><img src="/assets/media/home/product-6.jpg" alt="G45 Máy cắt cỏ đeo lưng (chế hòa khí phao)"></div>
+<div class="word">
+</div>
+</a>
+</li>
+
+</ul>
+</div>
+<div class="wrap more wow bounceIn" data-wow-delay="0.15s"><a href="/vi/products/">Xem thêm sản phẩm</a></div>
+</section>
+<section class="clear"></section>
+<section class="in-about">
+<div class="wrap">
+<div class="div1 wow fadeInLeft" data-wow-delay="0.15s">Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành</div>
+<div class="div2 wow fadeInRight" data-wow-delay="0.3s">Về Kewaqi</div>
+<div class="div3 wow fadeInUp" data-wow-delay="0.45s">
+<ul>
+<li>
+<h1>Diện tích nhà xưởng</h1>
+<h2>2000</h2>
+<h3>mét vuông</h3>
+</li>
+<li>
+<h1>Hiệu suất sản xuất</h1>
+<h2>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+</h2>
+<h3>Không ngừng nâng cao chất lượng</h3>
+</li>
+<li>
+<h1><i class="icon iconfont icon-gouxuan"></i>99%</h1>
+<h2>Mức độ hài lòng của khách hàng</h2>
+<h4>Chúng tôi mong muốn xây dựng quan hệ hợp tác tốt đẹp với bạn bè khắp nơi</h4>
+</li>
+</ul>
+</div>
+<div class="div4 wow fadeInDown" data-wow-delay="0.6s">
+<p>Công ty TNHH Dụng cụ Kewaqi Thai Châu được thành lập vào tháng 12 năm 2014, toạ lạc tại thôn Đường Phổ, trấn Bồng Nhai, quận Lộ Kiều, thành phố Thai Châu – một thành phố ven biển có giao thông thuận tiện và vị trí địa lý thuận lợi. Sản phẩm chính gồm: máy làm vườn, máy nông nghiệp, động cơ xăng cỡ nhỏ, máy cắt cỏ, máy cắt bụi cây, máy tỉa hàng rào, máy đào hố và nhiều dòng sản phẩm khác. Công ty hiện có đội ngũ quản lý tinh gọn cùng lực lượng sản xuất và dịch vụ giàu kinh nghiệm. Chúng tôi luôn lấy “sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành” làm tôn chỉ kinh doanh, kiên trì triết lý: chất lượng là trên hết, uy tín là trọng tâm, quản lý là nền tảng, phục vụ bằng sự chân thành. Chúng tôi coi chất lượng là sinh mệnh, không ngừng đổi mới và tiến bộ, với mục tiêu cuối cùng là làm khách hàng hài lòng, cổ đông yên tâm và nhân viên vui vẻ. Toàn thể nhân viên Kewaqi chân thành mong nhận được sự ủng hộ và hợp tác nhiệt tình của bạn bè khắp nơi; chúng tôi sẽ trở thành đối tác lý tưởng của bạn bằng uy tín vững vàng và sản phẩm chất lượng cao.</p>
+</div>
+<div class="div5 wow fadeIn" data-wow-delay="0.75s">
+<ul>
+<li><a title="Giới thiệu công ty" href="/vi/about-kewaqi/#a23">Giới thiệu công ty</a></li>  
+<li><a title="Môi trường doanh nghiệp" href="/vi/about-kewaqi/#a24">Môi trường doanh nghiệp</a></li>  
+
+</ul>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="wrap in-advantage">
+<div class="in-title wow fadeIn" data-wow-delay="0.15s">Vì sao chọn chúng tôi?</div>
+<div class="list">
+<ul>
+<li class="wow fadeInUp" data-wow-delay="0.3s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-1.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>Chúng tôi chuyên sản xuất máy làm vườn và máy nông nghiệp</h1>
+<h2>Chúng tôi chuyên sản xuất máy làm vườn, máy nông nghiệp, động cơ xăng cỡ nhỏ, máy cắt cỏ, máy cắt bụi cây, máy tỉa hàng rào, máy đào và các sản phẩm khác.</h2>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.45s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-2.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>Máy làm vườn của chúng tôi an toàn và thân thiện môi trường</h1>
+<h2>Chúng tôi luôn lấy “sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành” làm tôn chỉ kinh doanh.</h2>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.6s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-3.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>Chúng tôi coi chất lượng là sinh mệnh</h1>
+<h2>Chúng tôi sẽ trở thành đối tác lý tưởng của bạn bằng uy tín vững vàng và sản phẩm chất lượng cao.</h2>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.75s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-4.png"></div>
+</div>
+</div>
+<div class="text">
+<h1>Nhà máy của chúng tôi duy trì quan hệ hợp tác tốt đẹp với tất cả khách hàng hiện tại</h1>
+<h2>Chúng tôi coi chất lượng là sinh mệnh, không ngừng đổi mới và tiến bộ, lấy sự hài lòng của khách hàng, niềm tin của cổ đông và hạnh phúc của nhân viên làm mục tiêu cuối cùng.</h2>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-workshop wow fadeIn" data-wow-delay="0.15s">
+<div class="list">
+<ul>
+<li><img src="/assets/media/home/workshop-1.jpg" alt="workshop"></li>
+<li><img src="/assets/media/home/workshop-2.jpg" alt="Dynamometer"></li>
+<li><img src="/assets/media/home/workshop-3.jpg" alt="Engine commissioning platform"></li>
+<li><img src="/assets/media/home/workshop-4.jpg" alt="Engine tooling"></li>
+<li><img src="/assets/media/home/workshop-5.jpg" alt="Engine cold grinding table"></li>
+<li><img src="/assets/media/home/workshop-6.jpg" alt="Cylinder block tester"></li>
+<li><img src="/assets/media/home/workshop-7.jpg" alt="Cylinder block injector"></li>
+<li><img src="/assets/media/home/workshop-8.jpg" alt="Automatic piston ring assembling machine"></li>
+<li><img src="/assets/media/home/workshop-9.jpg" alt="Aluminum tube shock absorber package"></li>
+<li><img src="/assets/media/home/workshop-10.jpg" alt="Durability test bench"></li>
+
+</ul>
+</div>
+<div class="title">
+<div class="box wow bounceIn" data-wow-delay="0.3s">
+<div class="t">
+<div class="bg">F</div>
+<div class="in-title">Môi trường công ty</div>
+</div>
+<div class="c">Toàn thể nhân viên Kewaqi chân thành mong được hợp tác với mọi bạn bè trong ngành, cảm ơn sự ủng hộ hết mình của bạn! Chúng tôi sẽ trở thành đối tác lý tưởng của bạn bằng uy tín vững vàng và sản phẩm chất lượng cao.</div>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-news">
+<div class="wrap">
+<div class="in-title white wow fadeInDown" data-wow-delay="0.15s">Triển lãm</div>
+<div class="list swiper-container wow fadeInUp" data-wow-delay="0.15s">
+<ul class="swiper-wrapper">
+
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>

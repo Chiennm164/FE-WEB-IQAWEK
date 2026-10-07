@@ -1,6 +1,6 @@
 {#- Khung chung của mọi trang: <head>, header, menu mobile, footer, script. Markup giữ nguyên từ template "netskin" của site cũ. -#}
 {%- set t = site[lang] -%}
-{%- set otherLang = "en" if lang == "cn" else "cn" -%}
+{%- set otherLang = "en" if lang == "vi" else "vi" -%}
 {%- set currentCatId = categoryId or (listPage.cat.id if listPage else null) -%}
 {%- set currentSection = (currentCatId | catPath)[0] if currentCatId else null -%}
 {%- set currentCat = currentCatId | category if currentCatId else null -%}
@@ -75,7 +75,7 @@
 </ul>
 </div>
 <div class="header-tools">
-<div class="header-lan"><a href="{{ altLangUrl }}"><i class="icon iconfont {{ t.header.langIcon }}"></i></a></div>
+<div class="header-lan"><a href="{{ altLangUrl }}"><span class="lang-switch">{{ t.header.langSwitch }}</span></a></div>
 <div class="header-search">
 <a href="javascript:;"><i class="icon iconfont icon-sousuo_o"></i></a>
 </div>
@@ -126,7 +126,7 @@
 <div class="lan-box">
 <h2><i class="icon iconfont icon-wangluo"></i> {{ t.header.language }} <i class="icon iconfont icon-xiajiantou"></i></h2>
 <ul>
-<li><a href="/cn/"><i class="icon iconfont icon-dian"></i> 简体中文版</a></li>
+<li><a href="/vi/"><i class="icon iconfont icon-dian"></i> Tiếng Việt</a></li>
 <li><a href="/en/"><i class="icon iconfont icon-dian"></i> English</a></li>
 </ul>
 </div>

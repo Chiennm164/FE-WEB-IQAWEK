@@ -1,0 +1,161 @@
+---
+title: "Về Kewaqi"
+categoryId: 22
+css:
+  - /assets/css/lightGallery.css
+js:
+  - "/assets/js/lightGallery.min.js"
+inlineScript: |
+  $("#auto-loop").lightGallery({
+  loop:true,
+  auto:true,
+  pause:4000
+  });
+  $(function(){
+  var ESwiper = new Swiper('.box2 .swiper-container',{
+  slidesPerView: 3,
+  slidesPerGroup: 3,
+  spaceBetween: 20,
+  autoplay: true,
+  autoHeight: true,
+  pagination: {
+  clickable: true,
+  el: '.box2 .swiper-pagination'
+  },
+  breakpoints: {
+  992: {
+  slidesPerView: 3,
+  slidesPerGroup: 3,
+  spaceBetween: 20
+  },
+  320: {
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  spaceBetween: 10
+  }
+  },
+  on: {
+  resize: function(){
+  ESwiper.updateSize();
+  }
+  }
+  });
+  if (location.hash) scrollTo(location.hash,300);
+  })
+---
+<section class="wrap n-about">
+<div class="box1 wow fadeInUp" data-wow-delay="0.15s" id="a23">
+<div class="left"><dl><dt>Giới thiệu Kewaqi</dt><dd><p>Công ty TNHH Dụng cụ Kewaqi Thai Châu được thành lập vào tháng 12 năm 2014, toạ lạc tại thôn Đường Phổ, trấn Bồng Nhai, quận Lộ Kiều, thành phố Thai Châu – một thành phố ven biển có giao thông thuận tiện và vị trí địa lý thuận lợi. Sản phẩm chính gồm: máy làm vườn, máy nông nghiệp, động cơ xăng cỡ nhỏ, máy cắt cỏ, máy cắt bụi cây, máy tỉa hàng rào, máy đào hố và nhiều dòng sản phẩm khác.</p></dd><dd><p>Công ty hiện có đội ngũ quản lý tinh gọn cùng lực lượng sản xuất và dịch vụ giàu kinh nghiệm. Chúng tôi luôn lấy “sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành” làm tôn chỉ kinh doanh, kiên trì triết lý: chất lượng là trên hết, uy tín là trọng tâm, quản lý là nền tảng, phục vụ bằng sự chân thành.</p></dd><dd><p>Chúng tôi coi chất lượng là sinh mệnh, không ngừng đổi mới và tiến bộ, với mục tiêu cuối cùng là làm khách hàng hài lòng, cổ đông yên tâm và nhân viên vui vẻ. Toàn thể nhân viên Kewaqi chân thành mong nhận được sự ủng hộ và hợp tác nhiệt tình của bạn bè khắp nơi; chúng tôi sẽ trở thành đối tác lý tưởng của bạn bằng uy tín vững vàng và sản phẩm chất lượng cao.</p></dd><dt>Kewaqi không ngừng đổi mới</dt><dd><p>Công ty luôn cải tiến liên tục; năng lực đổi mới riêng biệt thể hiện qua số lượng lớn đơn đăng ký sáng chế mỗi năm. Kewaqi ra mắt sản phẩm mới hằng năm, và trong tương lai, chúng tôi sẽ tiếp tục mang đến cho bạn những bất ngờ từ sự đổi mới của mình.</p><br/><p>Mạnh mẽ hơn, linh hoạt hơn, chính xác hơn.</p></dd></dl></div><div class="right"><ul><li><img src="/assets/images/about-intro-1.jpg"/></li><li><img src="/assets/images/about-intro-2.jpg"/></li></ul></div>
+</div>
+<div class="box2 wow fadeInUp" data-wow-delay="0.3s" id="a24">
+<div class="title">Môi trường công ty</div>
+<div class="content swiper-container">
+<ul class="swiper-wrapper" id="auto-loop">
+<li class="swiper-slide" data-src="/assets/media/about/workshop-1.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-1-thumb.jpg" alt="workshop">
+<p>workshop</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-2.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-2-thumb.jpg" alt="Dynamometer">
+<p>Dynamometer</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-3.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-3-thumb.jpg" alt="Engine commissioning platform">
+<p>Engine commissioning platform</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-4.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-4-thumb.jpg" alt="Engine tooling">
+<p>Engine tooling</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-5.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-5-thumb.jpg" alt="Engine cold grinding table">
+<p>Engine cold grinding table</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-6.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-6-thumb.jpg" alt="Cylinder block tester">
+<p>Cylinder block tester</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-7.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-7-thumb.jpg" alt="Cylinder block injector">
+<p>Cylinder block injector</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-8.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-8-thumb.jpg" alt="Automatic piston ring assembling machine">
+<p>Automatic piston ring assembling machine</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-9.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-9-thumb.jpg" alt="Aluminum tube shock absorber package">
+<p>Aluminum tube shock absorber package</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-10.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-10-thumb.jpg" alt="Durability test bench">
+<p>Durability test bench</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-11.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-11-thumb.jpg" alt="Deflection instrument">
+<p>Deflection instrument</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-12.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-12-thumb.jpg" alt="Air tightness tester">
+<p>Air tightness tester</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-13.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-13-thumb.jpg" alt="Air tightness tester">
+<p>Air tightness tester</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-14.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-14-thumb.jpg" alt="Air tightness tester">
+<p>Air tightness tester</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-15.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-15-thumb.jpg" alt="Air tightness tester">
+<p>Air tightness tester</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-16.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-16-thumb.jpg" alt="Hardness tester">
+<p>Hardness tester</p>
+</a>
+</li>
+<li class="swiper-slide" data-src="/assets/media/about/workshop-17.jpg">
+<a href="javascript:;">
+<img src="/assets/media/about/workshop-17-thumb.jpg" alt="Bearing oil seal press fitting machine">
+<p>Bearing oil seal press fitting machine</p>
+</a>
+</li>
+
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>

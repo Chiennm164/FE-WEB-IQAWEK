@@ -1,6 +1,6 @@
 # Kewaqi — website doanh nghiệp tĩnh (dự án mẫu)
 
-Website song ngữ **Trung / Anh** của một công ty sản xuất dụng cụ làm vườn, chuyển từ CMS PHP (ESPCMS) sang **site tĩnh** dựng bằng [Eleventy](https://www.11ty.dev/).
+Website song ngữ **Việt / Anh** của một công ty sản xuất dụng cụ làm vườn, chuyển từ CMS PHP (ESPCMS) sang **site tĩnh** dựng bằng [Eleventy](https://www.11ty.dev/). Bản tiếng Trung của site gốc đã được thay bằng bản tiếng Việt.
 Giao diện gốc được giữ nguyên; nội dung (sản phẩm, tin tức, danh mục, chữ giao diện) được tách thành dữ liệu, ghép với template khi build.
 
 Dùng làm dự án mẫu cho: site giới thiệu doanh nghiệp đa ngôn ngữ, chuyển đổi site CMS cũ sang site tĩnh mà không đổi giao diện.
@@ -28,6 +28,7 @@ Dùng làm dự án mẫu cho: site giới thiệu doanh nghiệp đa ngôn ng�
 | Dữ liệu | **JSON** (`src/_data/`) + **YAML front matter** | Danh mục, chữ giao diện, thông tin từng sản phẩm / tin |
 | Nội dung | HTML | Phần mô tả, bảng thông số — giữ từ CMS cũ |
 | Giao diện | jQuery 1.11.1, Swiper 5.2.1, WOW.js 0.1.6, Animate.css, lightGallery 1.6.4 | Giữ nguyên từ template "netskin" của site cũ |
+| Font | **Be Vietnam Pro** (chữ thường), **Barlow Condensed** (tiêu đề, số) — tự host trong `assets/fonts/`, giấy phép SIL OFL | Thay font cũ (Tw Cen MT, DIN Condensed) vì không có dấu tiếng Việt. Khai báo `@font-face` ở đầu `reset.css` dưới tên cũ `Fontstyle1/2/3` |
 
 Host **không cần** Node, PHP hay cơ sở dữ liệu — chỉ phục vụ file tĩnh trong `dist/`.
 
@@ -45,9 +46,9 @@ npm start        # chạy thử tại http://localhost:8080 — tự build lại
 | `npm run check` | Kiểm tra link / ảnh nội bộ hỏng trong `dist/` (chạy sau `build`) |
 | `npm run clean` | Xoá `dist/` |
 
-Trang để thử: `/` (tự chuyển sang `/cn/`), `/en/`, `/cn/products/`, `/cn/product/c558/`, `/en/about-kewaqi/`, `/cn/contact-us/`, `/cn/search/?q=g26`.
+Trang để thử: `/` (tự chuyển sang `/vi/`), `/en/`, `/vi/products/`, `/vi/product/c558/`, `/en/about-kewaqi/`, `/vi/contact-us/`, `/vi/search/?q=g26`.
 
-> Không mở trực tiếp file `dist/*.html` trong trình duyệt: site dùng đường dẫn tuyệt đối (`/assets/…`, `/cn/…`) nên phải xem qua server.
+> Không mở trực tiếp file `dist/*.html` trong trình duyệt: site dùng đường dẫn tuyệt đối (`/assets/…`, `/vi/…`) nên phải xem qua server.
 
 ## 3. Cấu trúc thư mục
 
@@ -58,8 +59,8 @@ Trang để thử: `/` (tự chuyển sang `/cn/`), `/en/`, `/cn/products/`, `/c
 │   └── check-links.mjs           # kiểm tra link / ảnh hỏng trong dist/
 └── src/                          # toàn bộ mã nguồn (Eleventy đọc từ đây)
     ├── _data/                    # dữ liệu dùng chung, mọi template đều đọc được
-    │   ├── site.json             #   cấu hình chung + chữ giao diện cn/en
-    │   ├── categories.json       #   cây danh mục: menu, banner, URL, cặp dịch cn↔en
+    │   ├── site.json             #   cấu hình chung + chữ giao diện vi/en
+    │   ├── categories.json       #   cây danh mục: menu, banner, URL, cặp dịch vi↔en
     │   ├── hot.json              #   id sản phẩm "hot" ở sidebar
     │   └── redirects.json        #   URL cũ (index.php?…) → URL mới
     ├── _includes/
@@ -73,8 +74,8 @@ Trang để thử: `/` (tự chuyển sang `/cn/`), `/en/`, `/cn/products/`, `/c
     │       └── ui.njk            # macro: banner, breadcrumb, sidebar, phân trang
     ├── content/                  # nội dung — mỗi file là một trang
     │   ├── content.11tydata.js   #   tính URL từ vị trí file
-    │   └── cn/ · en/             #   một thư mục cho mỗi ngôn ngữ
-    │       ├── cn.json · en.json #     gán ngôn ngữ cho mọi file bên trong
+    │   └── vi/ · en/             #   một thư mục cho mỗi ngôn ngữ
+    │       ├── vi.json · en.json #     gán ngôn ngữ cho mọi file bên trong
     │       ├── index.html        #     trang chủ
     │       ├── products/         #     sản phẩm (products.json: layout + tag)
     │       ├── news/             #     tin tức (news.json)
@@ -86,7 +87,7 @@ Trang để thử: `/` (tự chuyển sang `/cn/`), `/en/`, `/cn/products/`, `/c
     │   └── _redirects.njk        #   chuyển hướng 301 từ URL cũ (định dạng Netlify)
     └── assets/                   # chép nguyên sang dist/assets/
         ├── css/                  #   animate, swiper, reset, main (trang con), index (trang chủ), lightGallery
-        ├── js/                   #   jquery, swiper, wow, lightGallery, main, forms, mapcn / mapen (bản đồ)
+        ├── js/                   #   jquery, swiper, wow, lightGallery, main, forms, mapen (bản đồ, dùng cho cả hai ngôn ngữ)
         ├── fonts/                #   font chữ giao diện + font icon của lightGallery
         ├── iconfont/             #   iconfont-common (mọi trang), -pages (trang con), -contact (trang liên hệ)
         ├── images/               #   ảnh giao diện: logo, nền, icon, footer
@@ -110,12 +111,12 @@ Không cần khai báo `lang`, `layout`, `permalink` trong từng file nội dun
 
 | File | Layout | URL |
 |---|---|---|
-| `content/cn/index.html` | `home.njk` (khai báo trong file) | `/cn/` |
-| `content/cn/products/c558.html` | `product.njk` | `/cn/product/c558/` |
+| `content/vi/index.html` | `home.njk` (khai báo trong file) | `/vi/` |
+| `content/vi/products/c558.html` | `product.njk` | `/vi/product/c558/` |
 | `content/en/news/<slug>.html` | `news.njk` | `/en/article/<slug>/` |
-| `content/cn/pages/service.html` | `page.njk` | `/cn/service/` |
+| `content/vi/pages/service.html` | `page.njk` | `/vi/service/` |
 
-- Ngôn ngữ: từ `cn.json` / `en.json`. Layout: từ `products.json`, `news.json`, `pages.json` trong từng thư mục; hai file đầu còn gắn tag `product` / `news` để tạo collection.
+- Ngôn ngữ: từ `vi.json` / `en.json`. Layout: từ `products.json`, `news.json`, `pages.json` trong từng thư mục; hai file đầu còn gắn tag `product` / `news` để tạo collection.
 - URL: tính trong `content/content.11tydata.js` theo tên file.
 - File nội dung `.html` là **HTML thuần** (cấu hình `htmlTemplateEngine: false`) — không dùng được cú pháp Nunjucks `{{ }}` / `{% %}` bên trong.
 
@@ -124,7 +125,7 @@ Không cần khai báo `lang`, `layout`, `permalink` trong từng file nội dun
 | Template | Sinh ra | Nguồn dữ liệu |
 |---|---|---|
 | `lists.njk` | Trang danh mục, mỗi danh mục kiểu `products` / `news` một trang (kèm danh mục con cháu). Chia trang: 12 sản phẩm / 10 tin mỗi trang; trang 2 trở đi ở `<url danh mục>page/2/` | collection `categoryPages` trong `eleventy.config.js` |
-| `search.njk` | `/cn/search/`, `/en/search/` — liệt kê mọi sản phẩm, lọc phía trình duyệt theo `?q=` (khớp tên + mã, không phân biệt hoa thường) | collection `product` |
+| `search.njk` | `/vi/search/`, `/en/search/` — liệt kê mọi sản phẩm, lọc phía trình duyệt theo `?q=` (khớp tên + mã, không phân biệt hoa thường) | collection `product` |
 | `index.njk` | `/` — chuyển tới `/<defaultLang>/` | `site.json` |
 | `_redirects.njk` | `dist/_redirects` | `redirects.json` |
 
@@ -142,9 +143,9 @@ Sau mỗi thay đổi: xem lại bằng `npm start`, rồi `npm run build` + `np
 
 ### 5.1 Sản phẩm
 
-Mỗi sản phẩm là một file; bản Trung và bản Anh là **hai file riêng** (hai `id` khác nhau).
+Mỗi sản phẩm là một file; bản Việt và bản Anh là **hai file riêng** (hai `id` khác nhau).
 
-1. Tạo `src/content/<cn|en>/products/<slug>.html` — `<slug>` thành URL: `/<lang>/product/<slug>/`.
+1. Tạo `src/content/<vi|en>/products/<slug>.html` — `<slug>` thành URL: `/<lang>/product/<slug>/`.
 2. Đặt ảnh vào `src/assets/media/products/<slug tiếng Anh>/` (`thumb.jpg`, `1.jpg`, `2.jpg`, `detail-1.jpg`…). Hai bản ngôn ngữ dùng chung thư mục ảnh.
 3. Viết front matter + nội dung:
 
@@ -159,18 +160,18 @@ images:                       # gallery ở trang chi tiết (trống thì dùng
   - /assets/media/products/c558/1.jpg
   - /assets/media/products/c558/2.png
 description: "…"              # thẻ meta description (cắt còn 300 ký tự)
-summary: |                    # HTML phần "简述 / Short Description"
+summary: |                    # HTML phần "Mô tả ngắn / Short Description"
   <p>…</p>
 ---
-<p>HTML phần "产品详情 / Products Detail"…</p>
+<p>HTML phần "Chi tiết sản phẩm / Products Detail"…</p>
 <img src="/assets/media/products/c558/detail-1.jpg">
 ```
 
-Sản phẩm mới tự xuất hiện ở: trang danh mục của nó và mọi danh mục cha, trang tìm kiếm, "相关产品 / Related Products" (12 sản phẩm id lớn nhất). **Không** tự xuất hiện ở trang chủ (xem 5.5) và sidebar "sản phẩm hot" (xem 5.6).
+Sản phẩm mới tự xuất hiện ở: trang danh mục của nó và mọi danh mục cha, trang tìm kiếm, "Sản phẩm liên quan / Related Products" (12 sản phẩm id lớn nhất). **Không** tự xuất hiện ở trang chủ (xem 5.5) và sidebar "sản phẩm hot" (xem 5.6).
 
 ### 5.2 Tin tức
 
-1. Tạo `src/content/<cn|en>/news/<slug>.html` → URL `/<lang>/article/<slug>/`.
+1. Tạo `src/content/<vi|en>/news/<slug>.html` → URL `/<lang>/article/<slug>/`.
 2. Ảnh vào `src/assets/media/news/<slug>/`.
 
 ```yaml
@@ -186,7 +187,7 @@ description: "…"              # meta description
 <p>Nội dung bài…</p>
 ```
 
-Có thể dùng ảnh đại diện mặc định `news/default-thumb-cn.png` / `news/default-thumb-en.jpg`.
+Có thể dùng ảnh đại diện mặc định `news/default-thumb-vi.png` / `news/default-thumb-en.jpg`.
 
 ### 5.3 Danh mục
 
@@ -195,7 +196,7 @@ Danh mục nằm trong `src/_data/categories.json`. Mỗi danh mục cần **m�
 | Trường | Ý nghĩa |
 |---|---|
 | `id` | Số duy nhất (dùng chung không gian với id danh mục ngôn ngữ kia) |
-| `lang` | `cn` / `en` |
+| `lang` | `vi` / `en` |
 | `type` | `products`, `news`, `about`, `service`, `contact` |
 | `parentId` | id danh mục cha; `null` = danh mục gốc (hiện trên menu chính) |
 | `order` | Thứ tự trong menu / sidebar (nhỏ đứng trước) |
@@ -244,7 +245,7 @@ inlineScript: |               # (tuỳ chọn) JS chạy sau các script trên (
 `src/_data/hot.json` — danh sách `id` theo từng ngôn ngữ, giữ đúng thứ tự hiển thị:
 
 ```json
-{ "cn": [57, 58, 59, 61, 67, 70], "en": [105, 106, 107, 109, 115, 118] }
+{ "vi": [57, 58, 59, 61, 67, 70], "en": [105, 106, 107, 109, 115, 118] }
 ```
 
 ### 5.7 Chữ giao diện và thông tin công ty — `src/_data/site.json`
@@ -255,12 +256,12 @@ inlineScript: |               # (tuỳ chọn) JS chạy sau các script trên (
 | `formEndpoint`, `contactEmail` | Nơi nhận form (mục 5.9) |
 | `favicon` | Icon trình duyệt |
 | `url` | Tên miền chính thức (dự phòng, template chưa dùng) |
-| `cn` / `en` | Chữ giao diện theo nhóm (bên dưới) |
+| `vi` / `en` | Chữ giao diện theo nhóm (bên dưới) |
 
 | Nhóm | Gồm |
 |---|---|
 | `meta` | `htmlLang`, `siteTitle` (đuôi thẻ `<title>`), `keywords`, `description` (mặc định), `company` |
-| `header` | `home`, `menu`, `search`, `searchPlaceholder`, `searchShort`, `language`, `langIcon` (icon nút đổi ngôn ngữ) |
+| `header` | `home`, `menu`, `search`, `searchPlaceholder`, `searchShort`, `language`, `langSwitch` (chữ trên nút đổi ngôn ngữ, vd. `EN`) |
 | `product` | `hot`, `categoryLabel`, `summary`, `interested`, `inquiry`, `contact`, `backList`, `detail`, `related`, `relatedMore`, `listMore`, `inquiryTitle` |
 | `news` | `latest`, `dateLabel`, `prev`, `next`, `more` |
 | `search` | `title`, `noResults` |
@@ -276,7 +277,7 @@ Chữ thường, tiếng Anh, nối bằng `-`, không dùng mã hash / thời g
 | Loại | Vị trí |
 |---|---|
 | Sản phẩm | `media/products/<slug tiếng Anh>/`: `thumb.jpg` (640×640), `1.jpg`, `2.png`… (gallery), `detail-1.jpg`… (ảnh trong phần chi tiết) |
-| Tin tức | `media/news/<slug>/1.jpg`…; ảnh đại diện mặc định `media/news/default-thumb-{cn,en}.*` |
+| Tin tức | `media/news/<slug>/1.jpg`…; ảnh đại diện mặc định `media/news/default-thumb-{vi,en}.*` |
 | Trang chủ | `media/home/<khối>-<n>`: `banner`, `category`, `product`, `workshop` |
 | Giới thiệu | `media/about/workshop-<n>.jpg` + `workshop-<n>-thumb.jpg` |
 | Khác | `media/contact/contact-banner.jpg`, `media/categories/<slug>-banner.jpg`, `media/brand/favicon.png` |
@@ -296,7 +297,7 @@ Site tĩnh không có máy chủ xử lý form. Mọi `<form data-form>` đượ
 `src/_data/redirects.json` ánh xạ URL của CMS cũ sang URL mới; khi build sinh `dist/_redirects` theo cú pháp Netlify:
 
 ```
-/index.php  did=154  /cn/product/c558/  301!
+/index.php  did=154  /vi/product/c558/  301!
 ```
 
 Host khác Netlify cần chuyển các quy tắc này sang cấu hình của host đó (Nginx, Apache…).
@@ -375,4 +376,5 @@ npm run check    # phải in "Khong co lien ket hong."
 - **Tìm kiếm** chỉ lọc tên và mã sản phẩm, chạy trên trình duyệt.
 - **Bản đồ trang liên hệ** dùng khoá API AMap của site cũ (`content/*/pages/contact-us.html`) — cần thay khoá riêng.
 - **Thư viện giao diện cũ** (jQuery 1.11.1) giữ nguyên để không đổi giao diện.
-- **Dữ liệu** lấy từ site gốc ngày 06/10/2026: thiếu bản tiếng Trung của sản phẩm "7503 单刃绿篱机"; 4 mục không có nội dung chi tiết (S262 cả hai ngôn ngữ, 2 tin tiếng Anh) — giống site gốc.
+- **Dữ liệu** lấy từ site gốc ngày 06/10/2026: 4 mục không có nội dung chi tiết (S262 cả hai ngôn ngữ, 2 tin tiếng Anh) — giống site gốc. Bản tiếng Việt dịch từ bản tiếng Trung (riêng 7503 dịch từ bản tiếng Anh); thuật ngữ kỹ thuật nên được người am hiểu rà lại. Bản tiếng Anh còn sót ít chữ Trung từ site gốc (alt ảnh, meta description, vài ô bảng).
+- **Ảnh có chữ Trung**: logo (giữ vì là nhận diện thương hiệu) và `media/home/banner-1..3.jpg` (không còn dùng — trang chủ tiếng Việt tạm dùng banner tiếng Anh `banner-4..6`).

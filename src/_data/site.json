@@ -1,73 +1,92 @@
 {
   "url": "https://www.kewaqi.com",
-  "defaultLang": "cn",
-  "langs": ["cn", "en"],
+  "defaultLang": "vi",
+  "langs": [
+    "vi",
+    "en"
+  ],
   "formEndpoint": "",
   "contactEmail": "kewaqizjp@163.com",
   "favicon": "/assets/media/brand/favicon.png",
-  "cn": {
+  "vi": {
     "meta": {
-      "htmlLang": "zh-CN",
-      "siteTitle": "台州科瓦崎工具有限公司|台州园林工具生产厂家|台州割草机|台州割灌机厂家|台州绿篱机厂家|台州微耕机厂家",
-      "keywords": "台州科瓦崎工具有限公司|台州园林工具生产厂家|台州割草机|台州割灌机厂家|台州绿篱机厂家|台州微耕机厂家",
-      "description": "台州科瓦崎工具有限公司|台州园林工具生产厂家|台州割草机|台州割灌机厂家|台州绿篱机厂家|台州微耕机厂家",
-      "company": "台州科瓦崎工具有限公司"
+      "htmlLang": "vi",
+      "siteTitle": "Công ty TNHH Dụng cụ Kewaqi Thai Châu | Nhà sản xuất máy làm vườn | Máy cắt cỏ, máy tỉa hàng rào, máy xới mini, máy cưa xích",
+      "keywords": "Kewaqi, máy cắt cỏ, máy cắt bụi cây, máy tỉa hàng rào, máy xới mini, máy khoan đất, máy cưa xích, máy thổi lá, máy làm vườn",
+      "description": "Công ty TNHH Dụng cụ Kewaqi Thai Châu | Nhà sản xuất máy làm vườn | Máy cắt cỏ, máy tỉa hàng rào, máy xới mini, máy cưa xích",
+      "company": "Công ty TNHH Dụng cụ Kewaqi Thai Châu"
     },
     "header": {
-      "langIcon": "icon-fuhao-yingwen",
-      "home": "网站首页",
-      "menu": "网站导航",
-      "search": "站内搜索",
-      "searchPlaceholder": "请输入关键字",
-      "searchShort": "关键字",
-      "language": "选择语言"
+      "langSwitch": "EN",
+      "home": "Trang chủ",
+      "menu": "Danh mục",
+      "search": "Tìm kiếm",
+      "searchPlaceholder": "Nhập từ khoá",
+      "searchShort": "Từ khoá",
+      "language": "Ngôn ngữ"
     },
     "product": {
-      "hot": "热门产品",
-      "categoryLabel": "所属分类：",
-      "summary": "简述：",
-      "interested": "如果您对我们的产品感兴趣，您可以：",
-      "inquiry": "产品留言",
-      "contact": "联系我们",
-      "backList": "返回列表",
-      "detail": "产品详情",
-      "related": "相关产品",
-      "relatedMore": "查看详情",
-      "listMore": "查看详情",
-      "inquiryTitle": "产品留言"
+      "hot": "Sản phẩm nổi bật",
+      "categoryLabel": "Danh mục:",
+      "summary": "Mô tả ngắn:",
+      "interested": "Nếu bạn quan tâm đến sản phẩm của chúng tôi, bạn có thể:",
+      "inquiry": "Gửi yêu cầu",
+      "contact": "Liên hệ",
+      "backList": "Quay lại danh sách",
+      "detail": "Chi tiết sản phẩm",
+      "related": "Sản phẩm liên quan",
+      "relatedMore": "Xem chi tiết",
+      "listMore": "Xem chi tiết",
+      "inquiryTitle": "Yêu cầu báo giá sản phẩm"
     },
     "news": {
-      "more": "查看详情",
-      "latest": "最新消息",
-      "dateLabel": "日期：",
-      "prev": "上一篇：",
-      "next": "下一篇："
+      "more": "Xem chi tiết",
+      "latest": "Tin mới nhất",
+      "dateLabel": "Ngày:",
+      "prev": "Bài trước:",
+      "next": "Bài sau:"
     },
     "form": {
-      "namePlaceholder": "请输入您的姓名，长度：2-50个字符",
-      "emailPlaceholder": "请输入E-mail",
-      "messagePlaceholder": "请详细填写留言内容",
-      "submit": "确认提交",
-      "thanks": "提交成功，我们会尽快与您联系！",
-      "mailtoNotice": "将打开您的邮件程序发送留言。",
-      "required": "请填写必填项。"
+      "namePlaceholder": "Nhập họ tên của bạn (2–50 ký tự)",
+      "emailPlaceholder": "Nhập địa chỉ email",
+      "messagePlaceholder": "Nhập nội dung lời nhắn",
+      "submit": "Gửi",
+      "thanks": "Gửi thành công, chúng tôi sẽ liên hệ với bạn sớm nhất!",
+      "mailtoNotice": "Ứng dụng email của bạn sẽ được mở để gửi lời nhắn.",
+      "required": "Vui lòng điền đầy đủ các mục bắt buộc."
     },
     "search": {
-      "title": "搜索结果",
-      "noResults": "没有找到相关产品"
+      "title": "Kết quả tìm kiếm",
+      "noResults": "Không tìm thấy sản phẩm phù hợp"
     },
     "footer": {
-      "links": "网站导航",
-      "contact": "联系我们",
-      "share": "社交分享",
-      "contactHtml": "<li>公司地址：浙江省台州市路桥区蓬街镇塘浦村</li><li>公司电话：0576-89282087 &nbsp; &nbsp;张总：15977338811 &nbsp;18267662288</li><li>公司传真：0576-89282088</li><li>公司网址：www.kewaqi.com</li><li>公司邮箱：kewaqizjp@163.com</li>",
+      "links": "Liên kết",
+      "contact": "Liên hệ",
+      "share": "Mạng xã hội",
+      "contactHtml": "<li>Địa chỉ: Thôn Đường Phổ, trấn Bồng Nhai, quận Lộ Kiều, thành phố Thai Châu, tỉnh Chiết Giang, Trung Quốc</li><li>Điện thoại: +86-576-89282087 &nbsp;Ông Trương: +86-15977338811 &nbsp;18267662288</li><li>Fax: +86-576-89282088</li><li>Website: www.kewaqi.com</li><li>Email: kewaqizjp@163.com</li>",
       "social": [
-        { "icon": "icon-QQ", "label": "腾讯QQ", "url": "#" },
-        { "icon": "icon-tengxunweibo", "label": "腾讯微博", "url": "#" },
-        { "icon": "icon-xinlang", "label": "新浪微博", "url": "#" },
-        { "icon": "icon-weixin", "label": "微信朋友圈", "url": "#" }
+        {
+          "icon": "icon-facebook",
+          "label": "Facebook",
+          "url": "#"
+        },
+        {
+          "icon": "icon-youtube",
+          "label": "Youtube",
+          "url": "#"
+        },
+        {
+          "icon": "icon-linkedin",
+          "label": "LinkedIn",
+          "url": "#"
+        },
+        {
+          "icon": "icon-whatsapp",
+          "label": "+86-15977338811  18267662288",
+          "url": "#"
+        }
       ],
-      "copyrightLeft": "版权所有©2026 台州科瓦崎工具有限公司www.kewaqi.com保留所有权利，网站所使用的图片资料及部分文字资料由第三方提供，如有侵权，请联系我们删除，谢谢！--<a href=\"https://beian.miit.gov.cn/\" target=\"_blank\">浙ICP备15047000号-1 </a>",
+      "copyrightLeft": "Bản quyền © 2026 Công ty TNHH Dụng cụ Kewaqi Thai Châu. Bảo lưu mọi quyền.",
       "copyrightRight": ""
     }
   },
@@ -80,7 +99,7 @@
       "company": "TAIZHOU KEWAQI TOOLS CO.,LTD."
     },
     "header": {
-      "langIcon": "icon-fuhao-zhongwen",
+      "langSwitch": "VI",
       "home": "Home",
       "menu": "MENU",
       "search": "SEARCH",
@@ -128,10 +147,26 @@
       "share": "Social Link",
       "contactHtml": "<li>Add: Pu Bei Village, Pengjie Town, Taizhou City, Zhejiang Province, China</li><li>Tel: +86-576-89282087 &nbsp;Mr.zhang: +86-15977338811 &nbsp;18267662288</li><li>Fax: +86-576-89282088</li><li>Website: www.kewaqi.com</li><li>E-mail: kewaqizjp@163.com</li>",
       "social": [
-        { "icon": "icon-facebook", "label": "Facebook", "url": "#" },
-        { "icon": "icon-youtube", "label": "Youtube", "url": "#" },
-        { "icon": "icon-linkedin", "label": "LinkedIn", "url": "#" },
-        { "icon": "icon-whatsapp", "label": "+86-15977338811  18267662288", "url": "#" }
+        {
+          "icon": "icon-facebook",
+          "label": "Facebook",
+          "url": "#"
+        },
+        {
+          "icon": "icon-youtube",
+          "label": "Youtube",
+          "url": "#"
+        },
+        {
+          "icon": "icon-linkedin",
+          "label": "LinkedIn",
+          "url": "#"
+        },
+        {
+          "icon": "icon-whatsapp",
+          "label": "+86-15977338811  18267662288",
+          "url": "#"
+        }
       ],
       "copyrightLeft": "Copyright © 2022 TAIZHOU KEWAQI TOOLS CO.,LTD.  All Rights Reserved.",
       "copyrightRight": "support by:<a href=\"https://www.tz128.com/\" target=\"_blank\">tz128.com</a>"

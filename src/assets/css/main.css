@@ -124,7 +124,7 @@
 }
 .n-page .prev,
 .n-page .next{
-	font-family: '宋体';
+	font-family: 'Fontstyle1', Arial, sans-serif;
 }
 .n-page .active{
 	background: #e4572d;
@@ -617,7 +617,7 @@
 .n-products .products-detail .box1 .right .summary h4,
 .n-products .products-detail .box1 .right .summary h5,
 .n-products .products-detail .box1 .right .summary h6{
-	font-family: 'Fontstyle1', 'Noto Sans SC', Arial, "Microsoft YaHei", sans-serif !important;
+	font-family: 'Fontstyle1', Arial, sans-serif !important;
 }
 .n-products .products-detail .box1 .right .summary table{
     width: 100% !important;
@@ -710,7 +710,7 @@
 .n-products .products-detail .box4 .content h4,
 .n-products .products-detail .box4 .content h5,
 .n-products .products-detail .box4 .content h6{
-	font-family: 'Fontstyle1', 'Noto Sans SC', Arial, "Microsoft YaHei", sans-serif !important;
+	font-family: 'Fontstyle1', Arial, sans-serif !important;
 }
 .n-products .products-detail .box4 .content table{
     width: 100% !important;
@@ -1221,7 +1221,7 @@
 	border-bottom: 1px #eee solid;
 	border-top:1px #eee solid;
 	margin: 10px 0;
-	font-family: 'Fontstyle1', 'Noto Sans SC', Arial, "Microsoft YaHei", sans-serif !important;
+	font-family: 'Fontstyle1', Arial, sans-serif !important;
 }
 .n-news .news-detail .content th,
 .n-news .news-detail .content td,
@@ -1234,7 +1234,7 @@
 .n-news .news-detail .content h4,
 .n-news .news-detail .content h5,
 .n-news .news-detail .content h6{
-	font-family: 'Fontstyle1', 'Noto Sans SC', Arial, "Microsoft YaHei", sans-serif !important;
+	font-family: 'Fontstyle1', Arial, sans-serif !important;
 }
 .n-news .news-detail .content img{
 	max-width: 100%;
