@@ -1,0 +1,10 @@
+// Cấu hình deploy lên Cloudflare Workers (site tĩnh). Cloudflare chạy `npm run build` rồi `npx wrangler deploy`.
+// "name" phải trùng tên Worker trên dashboard; "assets.directory" là thư mục Eleventy build ra (eleventy.config.js → dir.output).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fe-web-iqawek",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}

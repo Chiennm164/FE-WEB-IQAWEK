@@ -56,6 +56,7 @@ Trang để thử: `/` (tự chuyển sang `/vi/`), `/vi/products/`, `/vi/produc
 ```
 ├── eleventy.config.js            # cấu hình build, filter danh mục + SEO, collection chia trang
 ├── package.json                  # lệnh npm + phiên bản Eleventy
+├── wrangler.jsonc                # cấu hình deploy Cloudflare Workers (tên Worker, thư mục dist/)
 ├── tools/
 │   ├── check-links.mjs           # kiểm tra link / ảnh hỏng trong dist/
 │   └── optimize-images.mjs       # nén ảnh trong src/assets/ (npm run images)
@@ -91,7 +92,7 @@ Trang để thử: `/` (tự chuyển sang `/vi/`), `/vi/products/`, `/vi/produc
     │   ├── index.njk             #   "/" → chuyển tới ngôn ngữ mặc định
     │   ├── sitemap.njk           #   /sitemap.xml cho Google / Bing
     │   ├── robots.njk            #   /robots.txt (trỏ tới sitemap)
-    │   └── _redirects.njk        #   chuyển hướng 301 từ URL cũ (định dạng Netlify)
+    │   └── _redirects.njk        #   chuyển hướng 301 từ URL cũ (định dạng Cloudflare)
     └── assets/                   # chép nguyên sang dist/assets/
         ├── css/                  #   animate, swiper, reset, main (trang con), index (trang chủ), support (trang Hỗ trợ), lightGallery
         ├── js/                   #   jquery, swiper, wow, lightGallery, main, forms, support (trang Hỗ trợ)
@@ -133,7 +134,7 @@ Không cần khai báo `lang`, `layout`, `permalink` trong từng file nội dun
 |---|---|---|
 | `lists.njk` | Trang danh mục, mỗi danh mục kiểu `products` / `news` một trang (kèm danh mục con cháu). Chia trang: 12 sản phẩm / 4 tin (lưới 2×2) mỗi trang; trang 2 trở đi ở `<url danh mục>page/2/`. Danh mục chưa có sản phẩm / bài viết hiện câu thông báo (`product.empty` / `news.empty` trong `site.json`), gắn `noindex` và không vào sitemap | collection `categoryPages` trong `eleventy.config.js` |
 | `search.njk` | `/vi/search/` — liệt kê mọi sản phẩm, lọc phía trình duyệt theo `?q=` (khớp tên + mã, không phân biệt hoa thường). Gắn `noindex` | collection `product` |
-| `index.njk` | `/` — chuyển tới `/<defaultLang>/` bằng meta refresh (dự phòng; trên Netlify dòng đầu `_redirects` chuyển 301 trước) | `site.json` |
+| `index.njk` | `/` — chuyển tới `/<defaultLang>/` bằng meta refresh (dự phòng; trên Cloudflare dòng đầu `_redirects` chuyển 301 trước) | `site.json` |
 | `sitemap.njk` | `/sitemap.xml` — mọi trang HTML trừ trang có `noindex`; tin tức kèm `<lastmod>` lấy từ `published` | `collections.all` |
 | `robots.njk` | `/robots.txt` — cho phép mọi bot, trỏ tới sitemap | `site.json` |
 | `_redirects.njk` | `dist/_redirects`: `/` → `/<defaultLang>/` rồi các quy tắc trong `redirects.json` | `redirects.json` |
@@ -324,17 +325,19 @@ Form báo giá ở trang sản phẩm (`#inquiry`) gửi các trường `product
 
 ### 5.10 Chuyển hướng URL cũ
 
-`src/_data/redirects.json` ánh xạ URL cũ sang URL mới — URL của CMS cũ và URL đã đổi tên (vd. slug viết sai `eath-boing-machin-ground-dill` → `earth-auger-ground-drill`); khi build sinh `dist/_redirects` theo cú pháp Netlify:
+`src/_data/redirects.json` ánh xạ URL cũ sang URL mới — URL của CMS cũ và URL đã đổi tên (vd. slug viết sai `eath-boing-machin-ground-dill` → `earth-auger-ground-drill`); khi build sinh `dist/_redirects` theo cú pháp Cloudflare Workers / Pages:
 
 ```
-/  /vi/  301!
-/vi/products/eath-boing-machin-ground-dill/  /vi/products/earth-auger-ground-drill/  301!
-/index.php  did=154  /vi/product/c558/  301!
+/  /vi/  301
+/vi/products/eath-boing-machin-ground-dill/  /vi/products/earth-auger-ground-drill/  301
+/en/*  /vi/  301
 ```
+
+Cloudflare không so khớp query string trong `_redirects`, nên URL dạng `/index.php?ac=Article&at=Read&did=154` của CMS cũ không được đưa vào file (vẫn giữ trong `redirects.json`). Chúng chỉ có ích khi site chạy trên tên miền cũ; khi đó cần thêm code Worker để chuyển hướng.
 
 **Đổi slug của trang đã đưa lên mạng thì luôn thêm một dòng URL cũ → URL mới** vào `redirects.json`, để không mất thứ hạng và link từ nơi khác.
 
-Host khác Netlify cần chuyển các quy tắc này sang cấu hình của host đó (Nginx, Apache…).
+Host khác (Nginx, Apache…) cần chuyển các quy tắc này sang cấu hình của host đó.
 
 ## 6. Tham khảo template
 
@@ -372,7 +375,7 @@ Host khác Netlify cần chuyển các quy tắc này sang cấu hình của hos
 | `pickByIds` | `items \| pickByIds(hot[lang])` | chọn theo danh sách id, giữ thứ tự |
 | `latest` | `items \| latest(12)` | n mục id lớn nhất |
 | `prevNext` | `items \| prevNext(id)` | `{ prev, next }` theo id |
-| `redirectRule` | dùng trong `_redirects.njk` | một dòng quy tắc Netlify |
+| `redirectRule` | dùng trong `_redirects.njk` | một dòng quy tắc Cloudflare (bỏ URL có query string) |
 | `absUrl` | `page.url \| absUrl` | URL đầy đủ theo `site.url` (nhận cả mảng) |
 | `metaDescription` | `description \| metaDescription` | văn bản thuần, cắt ở ranh giới từ ≤ 160 ký tự |
 | `firstImage` | `content \| firstImage` | `src` của ảnh đầu tiên trong đoạn HTML |
@@ -398,11 +401,13 @@ npm run build    # tạo dist/
 npm run check    # phải in "Khong co lien ket hong."
 ```
 
-Đưa **toàn bộ thư mục `dist/`** lên bất kỳ host tĩnh nào (Netlify, Cloudflare Pages, Vercel, hosting có FTP…):
+Site đang deploy lên **Cloudflare Workers** (Worker `fe-web-iqawek`, build tự động từ GitHub): Cloudflare chạy `npm run build` rồi `npx wrangler deploy`. Cấu hình ở `wrangler.jsonc`: `name` phải trùng tên Worker trên dashboard, `assets.directory` là `./dist` (không có file này Wrangler tự đoán thư mục `_site` mặc định của Eleventy và báo lỗi thư mục không tồn tại). Thử trước trên máy: `npx wrangler dev` (chạy như trên Cloudflare, kể cả `_redirects`).
+
+Cũng có thể đưa **toàn bộ thư mục `dist/`** lên host tĩnh khác (Vercel, hosting có FTP…):
 
 - Site phải chạy ở **gốc tên miền** (`https://ten-mien/`), không đặt trong thư mục con — mọi đường dẫn đều tuyệt đối.
-- Host tự build (Netlify…): lệnh build `npm run build`, thư mục xuất bản `dist`, Node ≥ 18.
-- `dist/_redirects` chỉ Netlify hiểu (mục 5.10).
+- Host tự build: lệnh build `npm run build`, thư mục xuất bản `dist`, Node ≥ 18.
+- `dist/_redirects` dùng cú pháp Cloudflare (Netlify cũng đọc được); host khác phải cấu hình lại (mục 5.10).
 - Tên miền phải khớp `site.url` (`https://www.kewaqi.com`); bản không `www` và `http://` nên chuyển 301 về đúng địa chỉ này (cấu hình ở host).
 
 Sau khi site chạy trên tên miền thật:

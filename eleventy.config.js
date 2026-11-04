@@ -138,14 +138,15 @@ export default function (eleventyConfig) {
     });
   });
 
-  // Một dòng của dist/_redirects (cú pháp Netlify), vd.
-  // "/index.php?ac=Article&at=Read&did=154" -> "/index.php  did=154  /vi/product/c558/  301!"
+  // Một dòng của dist/_redirects (cú pháp Cloudflare Workers / Pages), vd.
+  // "/vi/products/eath-boing-machin-ground-dill/" -> "/vi/products/eath-boing-machin-ground-dill/  /vi/products/earth-auger-ground-drill/  301"
   eleventyConfig.addFilter("redirectRule", (oldUrl, target) => {
-    const [path, query] = oldUrl.split("?");
+    // _redirects của Cloudflare không so khớp query string: bỏ qua URL dạng /index.php?ac=…&did=… của CMS cũ
+    // (vẫn giữ trong redirects.json; chỉ cần khi site chạy trên tên miền cũ — lúc đó phải xử lý bằng code Worker)
+    if (oldUrl.includes("?")) return "";
     // Bỏ "/" (đã có quy tắc riêng ở đầu routes/_redirects.njk) và quy tắc trỏ về chính nó
-    if (path === "/" || path === target) return "";
-    const param = (query || "").match(/\b(did|tid)=\d+/);
-    return param ? `${path}  ${param[0]}  ${target}  301!` : `${path}  ${target}  301!`;
+    if (oldUrl === "/" || oldUrl === target) return "";
+    return `${oldUrl}  ${target}  301`;
   });
 
   // Mỗi phần tử là một trang danh sách (routes/lists.njk): danh mục + các mục hiển thị trên trang đó
