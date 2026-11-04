@@ -1,28 +1,5 @@
+// Header cố định khi cuộn, menu ☰ trên điện thoại, hộp tìm kiếm; scrollToTarget() dùng cho link neo (#a23…) ở trang Giới thiệu
 var scrollTop = 0;
-var isTrue = true;
-var w = $(document).width();
-
-function isMobile() {
-    var userAgentInfo = navigator.userAgent;
-    var mobileAgents = [ "Android", "iPhone", "SymbianOS", "Windows Phone", "iPad","iPod"];
-    var mobile_flag = false;
-    //根据userAgent判断是否是手机
-    for (var v = 0; v < mobileAgents.length; v++) {
-        if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
-            mobile_flag = true;
-            break;
-        }
-    }
-    var screen_width = window.screen.width;
-    var screen_height = window.screen.height;   
-
-    //根据屏幕分辨率判断是否是手机
-    if(screen_width < 500 && screen_height < 800){
-        mobile_flag = true;
-    }
-
-    return mobile_flag;
-}
 
 function stopScroll(){
     scrollTop = document.scrollingElement.scrollTop;
@@ -113,44 +90,10 @@ function HF(){
             }
         }
     });
-
-    $('.subnav .lan-box h2').click(function(){
-        var that = $(this);
-        var i = that.find('i.icon-xiajiantou');
-        if(flag){
-            flag = false;
-            if(i.hasClass('active')){
-                i.removeClass('active');
-                that.siblings('ul').slideUp();
-                flag = true;
-            }else{
-                i.addClass('active');
-                that.siblings('ul').slideDown();
-                flag = true;
-            }
-        }
-    });
 }
 
-function Hover(obj, calssName) {
-    obj.hover(function(){
-        $(this).addClass(calssName);
-    },function(){
-        $(this).removeClass(calssName);
-    })
-}
-
-function GetQueryString(name){
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if(r!=null)return  unescape(r[2]); return null;
-}
-
-function stopScrolling(event) {
-    event.preventDefault();
-}
-
-function scrollTo(element,speed) {
+// Cuộn mượt tới phần tử (đặt tên khác window.scrollTo để không đè hàm có sẵn của trình duyệt mà jQuery dùng)
+function scrollToTarget(element,speed) {
     if(!speed){
       speed = 300;
     }

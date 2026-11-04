@@ -1,21 +1,19 @@
 {% extends "layouts/base.njk" %}
 {% import "partials/ui.njk" as ui %}
-{% block title %}{{ title }}-{{ (categoryId | category).name }}-{% endblock %}
 {% block main %}
 {%- set t = site[lang] -%}
 {%- set langNews = collections.news | byLang(lang) -%}
 {%- set adjacent = langNews | prevNext(id) -%}
-{{ ui.banner(categoryId) }}
+{#- H1 của trang là tiêu đề bài, nên tên danh mục trên banner không dùng thẻ heading -#}
+{{ ui.banner(categoryId, false) }}
 {{ ui.path(categoryId, lang) }}
 <section class="wrap n-news">
-{{ ui.newsSidebar(lang, categoryId, t, langNews | latest(5)) }}
-<div class="news-right wow fadeInUp" data-wow-delay="0.15s">
-<div class="news-detail">
-<div class="title">{{ title }}</div>
+<div class="news-detail wow fadeInUp" data-wow-delay="0.15s">
+<h1 class="title">{{ title }}</h1>
 <div class="date">
-{{ t.news.dateLabel }}{{ published }}
+{{ t.news.dateLabel }} <time datetime="{{ published | isoDate }}">{{ published }}</time>
 </div>
-<div class="content">{{ content | safe }}</div>
+<div class="content">{{ content | lazyImages | safe }}</div>
 <div class="page">
 <ul>
 {%- if adjacent.prev %}
@@ -25,7 +23,6 @@
 <li class="next"><a title="{{ adjacent.next.data.title }}" href="{{ adjacent.next.url }}">{{ t.news.next }}{{ adjacent.next.data.title }}</a></li>
 {%- endif %}
 </ul>
-</div>
 </div>
 </div>
 </section>

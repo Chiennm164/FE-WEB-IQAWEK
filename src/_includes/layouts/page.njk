@@ -4,6 +4,9 @@
 {%- if not ownBanner %}
 {{ ui.banner(categoryId) }}
 {{ ui.path(categoryId, lang) }}
+{%- else %}
+{#- Trang tự có banner (liên hệ) không có H1 hiển thị: thêm H1 ẩn cho Google và trình đọc màn hình -#}
+<h1 class="visually-hidden">{{ title }}</h1>
 {%- endif %}
 {{ content | safe }}
 {% endblock %}

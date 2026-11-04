@@ -1,0 +1,90 @@
+{#- Trang Hỗ trợ: câu hỏi thường gặp.
+    Banner dùng markup + CSS của banner chung (ui.banner, main.css): ảnh, tên trang (H1), dòng mô tả lấy từ danh mục trong categories.json;
+    thêm dòng giới thiệu, đoạn mô tả và 3 điểm nổi bật từ support.json (sp.hero). Breadcrumb dùng chung.
+    Phần dưới theo bố cục template Q&A (danh sách câu hỏi + cột chủ đề / liên hệ), nội dung lấy từ _data/support.json.
+    Kiểu riêng nằm trong assets/css/support.css (mọi class có tiền tố sp-), tương tác trong assets/js/support.js. -#}
+{% extends "layouts/base.njk" %}
+{% import "partials/ui.njk" as ui %}
+{% block main %}
+{%- set sp = support[lang] -%}
+{%- set count = sp.items | length -%}
+{%- set cat = categoryId | category -%}
+{%- set bannerCat = categoryId | catBanner -%}
+<div class="n-banner sp-banner">
+<img src="{{ bannerCat.banner }}" alt="{{ cat.name }}" fetchpriority="high">
+<div class="word">
+<div class="wrap">
+<div class="sp-eyebrow">{{ sp.hero.eyebrow }}</div>
+<h1 class="h1">{{ cat.name }}</h1>
+<div class="h2">{{ cat.subtitle or bannerCat.subtitle }}</div>
+<p class="sp-intro">{{ sp.hero.text }}</p>
+<ul class="sp-points">
+{%- for point in sp.hero.points %}
+<li>{{ point }}</li>
+{%- endfor %}
+</ul>
+</div>
+</div>
+</div>
+{{ ui.path(categoryId, lang) }}
+<div class="n-support">
+<div class="wrap sp-layout">
+<section class="sp-main" aria-labelledby="sp-faq-title">
+<div class="sp-heading">
+<div class="sp-kicker">{{ sp.heading.kicker }}</div>
+<h2 id="sp-faq-title">{{ sp.heading.title }}</h2>
+<p>{{ sp.heading.text }}</p>
+</div>
+<form class="sp-search" id="sp-search" role="search">
+<input id="sp-search-input" type="search" placeholder="{{ sp.search.placeholder }}" aria-label="{{ sp.search.label }}" autocomplete="off">
+<button type="submit">{{ sp.search.button }}</button>
+</form>
+<p class="sp-hint">{{ sp.search.hint | replace("{count}", count) }}</p>
+<div class="sp-list">
+{%- for item in sp.items %}
+<article class="sp-item" id="{{ item.id }}" data-topic="{{ item.topic }}">
+<h3><button class="sp-q" id="{{ item.id }}-q" type="button" aria-expanded="false" aria-controls="{{ item.id }}-a"><span class="sp-plus" aria-hidden="true">+</span><span class="sp-q-text">{{ item.question }}</span><span class="sp-chevron" aria-hidden="true">⌄</span></button></h3>
+<div class="sp-answer" id="{{ item.id }}-a" role="region" aria-labelledby="{{ item.id }}-q" hidden>
+<div class="sp-info">
+<button class="sp-info-toggle" type="button" aria-expanded="true" aria-controls="{{ item.id }}-info"><span class="sp-info-icon" aria-hidden="true">i</span><strong>{{ item.infoTitle }}</strong><span class="sp-info-chevron" aria-hidden="true">⌃</span></button>
+<ul class="sp-info-list" id="{{ item.id }}-info">
+{%- for line in item.info %}
+<li>{{ line }}</li>
+{%- endfor %}
+</ul>
+</div>
+<h4 class="sp-steps-title">{{ item.stepsTitle or sp.stepsTitle }}</h4>
+{%- for step in item.steps %}
+<div class="sp-step"><span class="sp-step-no" aria-hidden="true">{{ ("0" + loop.index) if loop.index < 10 else loop.index }}</span><div><h5>{{ step.title }}</h5><p>{{ step.text }}</p></div></div>
+{%- endfor %}
+{%- if item.safety !== false %}
+<div class="sp-safety"><strong>⚠ {{ sp.safety.title }}</strong><p>{{ sp.safety.text }}</p></div>
+{%- endif %}
+</div>
+</article>
+{%- endfor %}
+</div>
+<div class="sp-empty" id="sp-empty" hidden><strong>{{ sp.search.emptyTitle }}</strong>{{ sp.search.emptyText }}</div>
+</section>
+<aside class="sp-sidebar">
+<div class="sp-card">
+<h3>{{ sp.topics.title }}</h3>
+<p>{{ sp.topics.text }}</p>
+<ul class="sp-topics">
+<li><button type="button" class="on" data-topic="" aria-pressed="true">{{ sp.topics.all }}</button></li>
+{%- for topic in sp.topics.list %}
+<li><button type="button" data-topic="{{ topic.id }}" aria-pressed="false">{{ topic.name }}</button></li>
+{%- endfor %}
+</ul>
+</div>
+<div class="sp-card sp-contact">
+<h3>{{ sp.contact.title }}</h3>
+<p>{{ sp.contact.text }}</p>
+<a class="sp-btn" href="tel:{{ site.telephone | replace(' ', '') }}">{{ sp.contact.call }} {{ site.hotline }}</a>
+<button type="button" class="sp-btn sp-btn-line" data-open-zalo>{{ sp.contact.zalo }}</button>
+<a class="sp-mail" href="mailto:{{ site.contactEmail }}">{{ sp.contact.email }}: {{ site.contactEmail }}</a>
+</div>
+</aside>
+</div>
+</div>
+{% endblock %}

@@ -1,5 +1,8 @@
 ---
+# "/" chuyển tới ngôn ngữ mặc định. Trên Netlify, quy tắc 301 ở đầu dist/_redirects xử lý trước;
+# trang này chỉ là dự phòng cho host không đọc _redirects.
 permalink: /
+eleventyExcludeFromCollections: true
 ---
 <!doctype html>
 <html>
@@ -7,7 +10,7 @@ permalink: /
 <meta charset="utf-8">
 <title>{{ site[site.defaultLang].meta.siteTitle }}</title>
 <meta http-equiv="refresh" content="0; url=/{{ site.defaultLang }}/">
-<link rel="canonical" href="/{{ site.defaultLang }}/">
+<link rel="canonical" href="{{ site.url }}/{{ site.defaultLang }}/">
 </head>
 <body>
 <a href="/{{ site.defaultLang }}/">{{ site[site.defaultLang].meta.company }}</a>

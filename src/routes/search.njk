@@ -5,6 +5,9 @@ pagination:
   size: 1
   alias: lang
 permalink: "/{{ lang }}/search/"
+# Trang kết quả tìm kiếm không có nội dung riêng: không cho Google index, không đưa vào sitemap
+noindex: true
+eleventyExcludeFromCollections: true
 eleventyComputed:
   title: "{{ site[lang].search.title }}"
 ---
@@ -18,8 +21,8 @@ eleventyComputed:
 <img src="{{ rootCat.banner }}" alt="{{ t.search.title }}">
 <div class="word">
 <div class="wrap">
-<h1>{{ t.search.title }}</h1>
-<h2 id="search-term"></h2>
+<h1 class="h1">{{ t.search.title }}</h1>
+<div class="h2" id="search-term"></div>
 </div>
 </div>
 </div>
@@ -44,7 +47,7 @@ eleventyComputed:
 </li>
 {%- endfor %}
 </ul>
-<div class="n-page font18" id="search-empty" style="display:none">{{ t.search.noResults }}</div>
+<div class="n-page" id="search-empty" hidden>{{ t.search.noResults }}</div>
 </div>
 </section>
 {% endblock %}
@@ -61,7 +64,7 @@ var ok = !q || $(this).data('q').indexOf(q) !== -1;
 $(this).toggle(ok);
 if (ok) shown++;
 });
-$('#search-empty').toggle(shown === 0);
+$('#search-empty').prop('hidden', shown !== 0);
 })
 </script>
 {% endblock %}

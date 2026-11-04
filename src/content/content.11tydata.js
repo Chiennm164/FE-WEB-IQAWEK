@@ -8,7 +8,7 @@ const ROUTE = { products: "product", news: "article", pages: "" };
 export default {
   eleventyComputed: {
     permalink(data) {
-      const m = data.page.inputPath.match(/content\/(vi|en)\/(?:(products|news|pages)\/)?([^/]+)\.html$/);
+      const m = data.page.inputPath.match(/content\/(vi)\/(?:(products|news|pages)\/)?([^/]+)\.html$/);
       // File không theo mẫu trên thì giữ permalink tự khai báo
       if (!m) return data.permalink;
       const [, lang, folder, slug] = m;

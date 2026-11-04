@@ -1,3 +1,2 @@
 {% extends "layouts/base.njk" %}
-{#- Trang chủ: <title> chỉ gồm meta.siteTitle, không có tên trang phía trước -#}
-{% block title %}{% endblock %}
+{#- Trang chủ: base.njk nhận ra layout này (isHome) để dùng meta.siteTitle làm <title> và thêm JSON-LD công ty -#}

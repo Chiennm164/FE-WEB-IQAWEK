@@ -1,0 +1,85 @@
+{#- Thẻ SEO trong <head>. Được include từ base.njk nên thấy mọi biến base.njk đã tính:
+    t, isHome, currentCatId, pageTitle, fullTitle, metaDesc, shareImage. -#}
+{%- set canonicalUrl = page.url | absUrl %}
+{%- set shareImageUrl = shareImage | absUrl %}
+{%- set logoUrl = site.logo | absUrl %}
+{%- set orgId = site.url + "/#organization" %}
+{#- Trang danh mục chưa có sản phẩm / bài viết cũng noindex (và không vào sitemap.xml) #}
+{%- set isNoindex = noindex or (listPage and not listPage.items.length) %}
+{%- if isNoindex %}
+<meta name="robots" content="noindex, follow">
+{%- else %}
+<link rel="canonical" href="{{ canonicalUrl }}">
+{%- endif %}
+{#- Open Graph / Twitter Card: tiêu đề, mô tả, ảnh khi chia sẻ link lên Facebook, Zalo… #}
+<meta property="og:type" content="{{ 'article' if layout == 'news.njk' else 'website' }}">
+<meta property="og:site_name" content="{{ site.brand }}">
+<meta property="og:locale" content="{{ t.meta.ogLocale }}">
+<meta property="og:title" content="{{ fullTitle if isHome else pageTitle }}">
+<meta property="og:description" content="{{ metaDesc }}">
+<meta property="og:url" content="{{ canonicalUrl }}">
+<meta property="og:image" content="{{ shareImageUrl }}">
+<meta name="twitter:card" content="summary_large_image">
+{#- Dữ liệu có cấu trúc schema.org (JSON-LD): công ty + website ở trang chủ, breadcrumb ở trang con,
+    Product ở trang sản phẩm, NewsArticle ở trang tin, FAQPage ở trang Hỗ trợ #}
+{%- if isHome %}
+{{ {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": orgId,
+  "name": t.meta.company,
+  "alternateName": site.brand,
+  "url": site.url + "/" + lang + "/",
+  "logo": logoUrl,
+  "email": site.contactEmail,
+  "telephone": site.telephone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": t.meta.address.streetAddress,
+    "addressLocality": t.meta.address.addressLocality,
+    "addressRegion": t.meta.address.addressRegion,
+    "addressCountry": t.meta.address.addressCountry
+  },
+  "sameAs": t.footer.social | externalUrls
+} | jsonLd | safe }}
+{{ {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": site.brand,
+  "url": site.url + "/" + lang + "/",
+  "inLanguage": t.meta.htmlLang,
+  "publisher": { "@id": orgId }
+} | jsonLd | safe }}
+{%- elif currentCatId and not isNoindex %}
+{%- set crumbName = pageTitle if listPage else title %}
+{{ currentCatId | breadcrumbLd({ name: t.header.home, url: "/" + lang + "/" }, { name: crumbName, url: page.url }) | jsonLd | safe }}
+{%- endif %}
+{%- if layout == "product.njk" %}
+{%- set productImages = (images if images and images.length else [thumb]) | absUrl %}
+{{ {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": title,
+  "model": model,
+  "category": (currentCatId | catPath)[1].name,
+  "description": metaDesc,
+  "image": productImages,
+  "url": canonicalUrl,
+  "brand": { "@type": "Brand", "name": site.brand }
+} | jsonLd | safe }}
+{%- elif layout == "news.njk" and not noindex %}
+{{ {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": title,
+  "description": metaDesc,
+  "image": [shareImageUrl],
+  "datePublished": published | isoDate,
+  "inLanguage": t.meta.htmlLang,
+  "mainEntityOfPage": canonicalUrl,
+  "author": { "@type": "Organization", "name": t.meta.company, "url": site.url },
+  "publisher": { "@type": "Organization", "name": t.meta.company, "logo": { "@type": "ImageObject", "url": logoUrl } }
+} | jsonLd | safe }}
+{%- elif layout == "support.njk" %}
+{{ support[lang].items | faqLd | jsonLd | safe }}
+{%- endif %}

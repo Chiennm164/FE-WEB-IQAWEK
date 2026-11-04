@@ -1,11 +1,14 @@
 ---
-# Sinh dist/_redirects (cú pháp Netlify): chuyển hướng 301 từ URL cũ index.php?… sang URL mới
+# Sinh dist/_redirects (cú pháp Netlify): chuyển hướng 301 từ URL cũ sang URL mới
 permalink: /_redirects
 eleventyExcludeFromCollections: true
 ---
+/  /{{ site.defaultLang }}/  301!
 {%- for old, target in redirects %}
 {%- set line = old | redirectRule(target) %}
 {%- if line %}
 {{ line }}
 {%- endif %}
 {%- endfor %}
+{#- Bản tiếng Anh đã bỏ: URL /en/ nào chưa có quy tắc riêng ở trên thì về trang chủ tiếng Việt #}
+/en/*  /{{ site.defaultLang }}/  301!

@@ -1,0 +1,525 @@
+@charset "utf-8";
+/* Trang Hỗ trợ – câu hỏi thường gặp (layouts/support.njk). Banner và breadcrumb dùng CSS chung (main.css).
+   Phần câu hỏi theo bố cục template Q&A. Mọi class có tiền tố sp- và nằm trong .n-support nên không ảnh hưởng CSS chung;
+   chữ, màu, khoảng cách và bo góc dùng biến chung của site (:root ở đầu reset.css). */
+.n-support{
+	color: var(--c-ink);
+	line-height: 1.6;
+}
+/* CSS chung đặt h1–h6 font-weight 300, bỏ dấu đầu dòng và cố định cỡ chữ nút: đặt lại trong phạm vi trang */
+.n-support h2,
+.n-support h3,
+.n-support h4,
+.n-support h5{
+	font-weight: 700;
+	margin: 0;
+}
+.n-support button,
+.n-support input{
+	font: inherit;
+	color: inherit;
+}
+
+/* ---- Banner: kiểu banner chung (main.css .n-banner) + dòng giới thiệu, đoạn mô tả, 3 điểm nổi bật ----
+   Màn > 992px dựng y như banner chung (ảnh trong luồng, chữ phủ lên) nên cao đúng như các trang khác;
+   màn hẹp hơn xem @media (max-width: 992px) ở cuối file */
+.sp-banner .sp-eyebrow{
+	margin-bottom: 18px;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, .75);
+}
+.sp-banner .sp-intro{
+	max-width: 760px;
+	margin: 14px 0 0;
+	font-size: 16px;
+	line-height: 1.7;
+	color: rgba(255, 255, 255, .85);
+}
+.sp-banner .sp-points{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px 26px;
+	margin-top: 22px;
+	font-size: 14px;
+}
+.sp-banner .sp-points li{
+	display: flex;
+	align-items: center;
+}
+.sp-banner .sp-points li::before{
+	content: "✓";
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .2);
+	font-size: 12px;
+	font-weight: 800;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ---- Bố cục: danh sách câu hỏi + cột phải ---- */
+.sp-layout{
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 300px;
+	gap: 46px;
+	padding: var(--section-top) 0 var(--section-bottom);
+}
+.sp-heading{
+	margin-bottom: 24px;
+}
+.sp-kicker{
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: var(--c-primary);
+}
+.sp-heading h2{
+	margin: 6px 0 9px;
+	font-size: 30px;
+	line-height: 1.2;
+}
+.sp-heading p{
+	margin: 0;
+	font-size: 15px;
+	color: var(--c-text);
+}
+
+/* ---- Tìm kiếm ---- */
+.sp-search{
+	display: flex;
+	margin: 25px 0 12px;
+	border: 1px solid var(--c-line-strong);
+	border-radius: var(--radius-sm);
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, .05);
+	transition: box-shadow 200ms;
+}
+.sp-search:focus-within{
+	box-shadow: 0 0 0 2px rgba(228, 87, 45, .3);
+}
+.sp-search input{
+	flex: 1;
+	min-width: 0;
+	padding: 14px 16px;
+	border: 0;
+	outline: 0;
+	background: #fff;
+	font-size: 15px;
+}
+.sp-search button{
+	padding: 0 22px;
+	border: 0;
+	background: var(--c-primary);
+	color: #fff;
+	font-weight: 700;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background 200ms;
+}
+.sp-search button:hover{
+	background: var(--c-primary-dark);
+}
+.sp-hint{
+	margin: 0 0 20px;
+	font-size: 12px;
+	color: var(--c-muted);
+}
+
+/* ---- Câu hỏi (accordion) ---- */
+.sp-list{
+	border-top: 1px solid var(--c-line);
+}
+.sp-item{
+	border-bottom: 1px solid var(--c-line);
+}
+.sp-q{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 19px 8px;
+	border: 0;
+	background: #fff;
+	text-align: left;
+	cursor: pointer;
+}
+.sp-plus{
+	flex: 0 0 30px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid var(--c-line);
+	border-radius: 50%;
+	background: var(--c-soft);
+	color: var(--c-ink);
+	font-size: 22px;
+	line-height: 1;
+	display: grid;
+	place-items: center;
+	transition: background .2s, color .2s, transform .2s;
+}
+.sp-q[aria-expanded="true"] .sp-plus{
+	border-color: var(--c-primary);
+	background: var(--c-primary);
+	color: #fff;
+	transform: rotate(180deg);
+}
+.sp-q-text{
+	flex: 1;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.45;
+	transition: color .2s;
+}
+.sp-q:hover .sp-q-text,
+.sp-q[aria-expanded="true"] .sp-q-text{
+	color: var(--c-primary);
+}
+.sp-chevron{
+	font-size: 20px;
+	color: var(--c-muted);
+	transition: transform .2s;
+}
+.sp-q[aria-expanded="true"] .sp-chevron{
+	transform: rotate(180deg);
+}
+.sp-answer{
+	padding: 0 8px 24px 52px;
+	animation: sp-answer-in .24s ease-out;
+}
+@keyframes sp-answer-in{
+	from{ opacity: 0; transform: translateY(-5px); }
+	to{ opacity: 1; transform: none; }
+}
+
+/* Dấu hiệu / thông tin trước khi làm */
+.sp-info{
+	margin-bottom: 22px;
+	padding: 14px 16px;
+	border: 1px solid var(--c-line);
+	border-radius: var(--radius-sm);
+	background: var(--c-soft);
+}
+.sp-info-toggle{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	text-align: left;
+	cursor: pointer;
+}
+.sp-info-icon{
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: var(--c-primary-pale);
+	color: var(--c-primary);
+	font-size: 12px;
+	font-weight: 800;
+	display: grid;
+	place-items: center;
+}
+.sp-info-toggle strong{
+	flex: 1;
+	font-size: 14px;
+	font-weight: 700;
+}
+.sp-info-chevron{
+	color: var(--c-muted);
+}
+.sp-info-list{
+	margin: 10px 0 0;
+	padding-left: 20px;
+	font-size: 14px;
+	color: var(--c-text);
+}
+.sp-info-list li{
+	list-style: disc;
+	padding: 3px 0 3px 2px;
+}
+
+/* Các bước */
+.sp-steps-title{
+	margin: 0 0 14px;
+	font-size: 17px;
+	line-height: 1.3;
+}
+.sp-step{
+	display: grid;
+	grid-template-columns: 36px 1fr;
+	gap: 12px;
+	margin-bottom: 17px;
+	padding: 0 0 18px;
+	border-bottom: 1px solid var(--c-line);
+}
+.sp-step-no{
+	width: 32px;
+	height: 32px;
+	border-radius: var(--radius-sm);
+	background: var(--c-primary-pale);
+	color: var(--c-primary);
+	font-size: 12px;
+	font-weight: 800;
+	display: grid;
+	place-items: center;
+}
+.sp-step h5{
+	margin: 2px 0 5px;
+	font-size: 15px;
+	color: var(--c-primary);
+}
+.sp-step p{
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.75;
+	color: var(--c-text);
+}
+.sp-safety{
+	padding: 13px 15px;
+	border: 1px solid #f2dfc9;
+	border-radius: var(--radius-sm);
+	background: #fff8ef;
+}
+.sp-safety strong{
+	font-size: 13px;
+	font-weight: 700;
+	color: #95501d;
+}
+.sp-safety p{
+	margin: 5px 0 0;
+	font-size: 13px;
+	line-height: 1.75;
+	color: #6d553e;
+}
+.sp-empty{
+	padding: 30px 15px;
+	border-bottom: 1px solid var(--c-line);
+	text-align: center;
+	color: var(--c-text);
+}
+.sp-empty strong{
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 700;
+	color: var(--c-ink);
+}
+
+/* ---- Cột phải ---- */
+.sp-card{
+	margin-bottom: 18px;
+	padding: 22px;
+	border: 1px solid var(--c-line);
+	border-radius: var(--radius);
+	background: #fff;
+}
+.sp-card h3{
+	margin: 0 0 12px;
+	font-size: 17px;
+}
+.sp-card p{
+	margin: 0 0 15px;
+	font-size: 14px;
+	color: var(--c-text);
+}
+.sp-topics li{
+	border-top: 1px solid var(--c-line);
+}
+.sp-topics button{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+	border: 0;
+	background: none;
+	text-align: left;
+	font-size: 14px;
+	color: var(--c-text);
+	cursor: pointer;
+	transition: color .2s;
+}
+.sp-topics button::before{
+	content: "›";
+	margin-right: 8px;
+	font-size: 18px;
+	font-weight: 800;
+	line-height: 1;
+	color: var(--c-primary);
+}
+.sp-topics button:hover,
+.sp-topics button.on{
+	color: var(--c-primary);
+}
+.sp-topics button.on{
+	font-weight: 700;
+}
+.sp-contact{
+	border-color: #f6ddd2;
+	background: #fff7f3;
+}
+.n-support .sp-btn{
+	width: 100%;
+	display: block;
+	padding: 11px 12px;
+	border: 1px solid var(--c-primary);
+	border-radius: var(--radius-sm);
+	background: var(--c-primary);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	transition: background .2s, border-color .2s, color .2s;
+}
+.n-support .sp-btn + .sp-btn{
+	margin-top: 10px;
+}
+.n-support .sp-btn:hover{
+	border-color: var(--c-primary-dark);
+	background: var(--c-primary-dark);
+	color: #fff;
+}
+.n-support .sp-btn-line{
+	background: #fff;
+	color: var(--c-primary);
+}
+.n-support .sp-btn-line:hover{
+	border-color: var(--c-primary);
+	background: var(--c-primary);
+}
+.n-support .sp-mail{
+	display: block;
+	margin-top: 12px;
+	font-size: 13px;
+	text-align: center;
+	color: var(--c-text);
+	overflow-wrap: anywhere;
+}
+.n-support .sp-mail:hover{
+	color: var(--c-primary);
+}
+
+/* ---- Màn hình nhỏ: mốc chuẩn 1280 / 992 / 767 (xem đầu reset.css) ---- */
+@media (max-width: 992px){
+	/* Chữ nhiều hơn khung ảnh: ảnh thành nền phủ kín, banner cao theo chữ (tối thiểu bằng tỉ lệ ảnh 1920×700) */
+	.n-banner.sp-banner > img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		object-fit: cover;
+	}
+	.n-banner.sp-banner .word{
+		position: relative;
+		height: auto;
+		min-height: calc(100vw * 700 / 1920);
+		padding: 32px 0;
+	}
+	/* Bố cục: sidebar chuyển xuống dưới, 2 cột */
+	.sp-layout{
+		grid-template-columns: minmax(0, 1fr);
+		gap: 26px;
+	}
+	.sp-sidebar{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 14px;
+		align-items: start;
+	}
+	.sp-card{
+		margin: 0;
+	}
+}
+@media (max-width: 767px){
+	/* Banner chung ẩn dòng mô tả trên điện thoại; trang Hỗ trợ vẫn hiện đủ chữ, cỡ nhỏ lại */
+	.n-banner.sp-banner .word{
+		padding: 28px 0;
+	}
+	.sp-banner .sp-eyebrow{
+		margin-bottom: 10px;
+		font-size: 11px;
+		letter-spacing: 1.5px;
+	}
+	.n-banner.sp-banner .word .h2{
+		display: block;
+		margin-top: 8px;
+		font-size: 15px;
+		line-height: 22px;
+	}
+	.sp-banner .sp-intro{
+		margin-top: 8px;
+		font-size: 13px;
+		line-height: 1.6;
+	}
+	.sp-banner .sp-points{
+		gap: 8px 16px;
+		margin-top: 14px;
+		font-size: 12px;
+	}
+	.sp-banner .sp-points li::before{
+		width: 18px;
+		height: 18px;
+		margin-right: 6px;
+		font-size: 11px;
+	}
+	/* Bố cục điện thoại: sidebar 1 cột, chữ và khoảng cách nhỏ lại */
+	.sp-heading h2{
+		font-size: 26px;
+	}
+	.sp-heading p{
+		font-size: 14px;
+	}
+	.sp-search input{
+		padding: 12px;
+		font-size: 14px;
+	}
+	.sp-search button{
+		padding: 0 14px;
+		font-size: 13px;
+	}
+	.sp-q{
+		gap: 10px;
+		padding: 16px 2px;
+	}
+	.sp-q-text{
+		font-size: 15px;
+	}
+	.sp-plus{
+		flex-basis: 28px;
+		width: 28px;
+		height: 28px;
+	}
+	.sp-answer{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.sp-info{
+		padding: 12px;
+	}
+	.sp-step{
+		grid-template-columns: 30px 1fr;
+		gap: 10px;
+	}
+	.sp-step-no{
+		width: 28px;
+		height: 28px;
+	}
+	.sp-sidebar{
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+@media (prefers-reduced-motion: reduce){
+	.sp-answer{
+		animation: none;
+	}
+}

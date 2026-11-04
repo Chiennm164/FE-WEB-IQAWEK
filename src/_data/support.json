@@ -1,0 +1,325 @@
+{
+    "vi": {
+        "hero": {
+            "eyebrow": "KEWAQI · CUSTOMER SUPPORT",
+            "text": "Tổng hợp hướng dẫn xử lý sự cố, bảo dưỡng và lựa chọn dụng cụ làm vườn KEWAQI. Tìm câu hỏi bạn đang quan tâm hoặc mở từng mục để xem hướng dẫn chi tiết.",
+            "points": [
+                "Hướng dẫn dễ hiểu",
+                "Hỗ trợ kỹ thuật",
+                "Dành cho người dùng KEWAQI"
+            ]
+        },
+        "heading": {
+            "kicker": "Trung tâm hỗ trợ",
+            "title": "Câu hỏi thường gặp",
+            "text": "Chọn câu hỏi để xem dấu hiệu nhận biết và các bước kiểm tra, khắc phục."
+        },
+        "search": {
+            "label": "Tìm kiếm câu hỏi",
+            "placeholder": "Tìm câu hỏi, ví dụ: máy không nổ, bugi, lọc gió...",
+            "button": "Tìm kiếm",
+            "hint": "Có {count} câu hỏi · Nhấn vào câu hỏi để mở hoặc thu gọn câu trả lời.",
+            "emptyTitle": "Chưa tìm thấy câu hỏi phù hợp",
+            "emptyText": "Thử từ khóa ngắn hơn hoặc tìm theo tên bộ phận máy."
+        },
+        "stepsTitle": "Cách kiểm tra và khắc phục",
+        "safety": {
+            "title": "Lưu ý an toàn",
+            "text": "Tắt máy, chờ động cơ nguội và ngắt chụp bugi trước khi kiểm tra bộ phận cắt. Tránh nguồn lửa khi thao tác với nhiên liệu. Nếu không xác định được nguyên nhân, hãy nhờ kỹ thuật viên kiểm tra."
+        },
+        "topics": {
+            "title": "Chủ đề hỗ trợ",
+            "text": "Tra cứu nhanh các nội dung thường gặp khi sử dụng máy.",
+            "all": "Tất cả câu hỏi",
+            "list": [
+                {
+                    "id": "khoi-dong",
+                    "name": "Khởi động và nhiên liệu"
+                },
+                {
+                    "id": "bao-duong",
+                    "name": "Bảo dưỡng động cơ"
+                },
+                {
+                    "id": "dau-cat",
+                    "name": "Đầu cắt và truyền động"
+                },
+                {
+                    "id": "chon-may",
+                    "name": "Lựa chọn sản phẩm"
+                },
+                {
+                    "id": "bao-hanh",
+                    "name": "Bảo hành và phụ tùng"
+                }
+            ]
+        },
+        "contact": {
+            "title": "Cần hỗ trợ thêm?",
+            "text": "Chuẩn bị model máy và mô tả sự cố để được tư vấn chính xác hơn.",
+            "call": "Gọi",
+            "zalo": "Chat Zalo với Kewaqi",
+            "email": "Email"
+        },
+        "items": [
+            {
+                "id": "cau-hoi-1",
+                "topic": "khoi-dong",
+                "question": "Máy cắt cỏ không nổ hoặc rất khó khởi động thì phải làm sao?",
+                "infoTitle": "Dấu hiệu thường gặp",
+                "info": [
+                    "Giật dây khởi động nhiều lần nhưng động cơ hoàn toàn im lặng, không có tiếng nổ báo hiệu.",
+                    "Máy chỉ nổ khực lên được 1–2 giây rồi tắt khi mở le gió (air).",
+                    "Bơm núm mồi xăng (primer bulb) thấy cứng ngắc, xẹp lép không đàn hồi hoặc không thấy xăng đi qua ống dẫn.",
+                    "Giật nhiều lần khiến xăng sống tràn ra ngoài pô, bốc mùi nồng nặc — có thể động cơ đang bị ngộp xăng."
+                ],
+                "steps": [
+                    {
+                        "title": "Kiểm tra nhiên liệu",
+                        "text": "Nếu xăng đã để lâu, hãy thay bằng xăng mới. Với máy 2 thì, pha nhớt đúng tỷ lệ ghi trong sách hướng dẫn của model; không dùng một tỷ lệ chung cho tất cả máy. Kiểm tra ống dẫn và lọc xăng trong bình, vệ sinh hoặc thay nếu bị tắc/nứt."
+                    },
+                    {
+                        "title": "Kiểm tra bugi",
+                        "text": "Nếu bugi ướt xăng, có thể động cơ bị ngộp: tắt công tắc, làm theo quy trình xử lý ngộp xăng của nhà sản xuất và để máy ở nơi thông thoáng. Nếu bugi bám muội than, vệ sinh theo hướng dẫn hoặc thay bugi đúng chủng loại. Kiểm tra hệ thống đánh lửa khi cần; không thử tia lửa gần xăng hoặc hơi xăng."
+                    },
+                    {
+                        "title": "Kiểm tra bộ chế hòa khí",
+                        "text": "Kiểm tra đường dẫn xăng, lỗ cấp nhiên liệu và màng bơm của chế hòa khí. Nếu bị tắc hoặc màng cao su chai cứng, hãy vệ sinh bằng dung dịch phù hợp hoặc thay bộ sửa chữa đúng model. Nếu chưa có kinh nghiệm, nên nhờ kỹ thuật viên hỗ trợ."
+                    }
+                ]
+            },
+            {
+                "id": "cau-hoi-2",
+                "topic": "khoi-dong",
+                "question": "Máy đang chạy thì tự nhiên tắt máy, nguyên nhân do đâu?",
+                "infoTitle": "Dấu hiệu thường gặp",
+                "info": [
+                    "Máy nổ được lúc đầu nhưng tắt sau vài phút làm việc.",
+                    "Động cơ hụt hơi khi tăng ga hoặc chỉ chạy được ở chế độ ga thấp.",
+                    "Máy hoạt động trở lại sau khi để nguội một lúc."
+                ],
+                "steps": [
+                    {
+                        "title": "Kiểm tra nhiên liệu và thông hơi bình xăng",
+                        "text": "Thay nhiên liệu cũ, kiểm tra ống dẫn và lọc xăng. Nếu nghi lỗ thông hơi bình xăng bị tắc, hãy kiểm tra theo hướng dẫn của nhà sản xuất; không tiếp tục vận hành nếu có rò rỉ nhiên liệu."
+                    },
+                    {
+                        "title": "Kiểm tra lọc gió",
+                        "text": "Tắt máy và để nguội. Tháo lọc gió theo hướng dẫn, vệ sinh hoặc thay nếu bẩn, rách hay biến dạng. Không vận hành lâu khi thiếu lọc gió."
+                    },
+                    {
+                        "title": "Kiểm tra nhiệt độ và đánh lửa",
+                        "text": "Để máy nguội hoàn toàn, kiểm tra khe tản nhiệt và bugi. Nếu máy thường xuyên tắt khi nóng, cần kiểm tra hệ thống đánh lửa hoặc chế hòa khí tại cơ sở kỹ thuật."
+                    }
+                ]
+            },
+            {
+                "id": "cau-hoi-3",
+                "topic": "bao-duong",
+                "question": "Máy cắt cỏ bị yếu, hụt ga hoặc không lên đủ vòng tua phải làm sao?",
+                "infoTitle": "Dấu hiệu thường gặp",
+                "info": [
+                    "Động cơ phản hồi chậm khi bóp ga.",
+                    "Lưỡi cắt quay yếu dù đã tăng ga.",
+                    "Máy rung hoặc tiếng động cơ không đều khi cắt cỏ."
+                ],
+                "steps": [
+                    {
+                        "title": "Kiểm tra bộ phận cắt",
+                        "text": "Tắt máy, ngắt chụp bugi và chờ các bộ phận dừng hẳn. Kiểm tra đầu cắt, lưỡi cắt và trục xem có cỏ quấn, lắp sai hoặc bị hư hỏng không."
+                    },
+                    {
+                        "title": "Vệ sinh lọc gió và kiểm tra nhiên liệu",
+                        "text": "Lọc gió bẩn hoặc nhiên liệu không phù hợp có thể làm động cơ hụt công suất. Vệ sinh/thay lọc gió và dùng nhiên liệu theo hướng dẫn của model."
+                    },
+                    {
+                        "title": "Kiểm tra chế hòa khí",
+                        "text": "Nếu hiện tượng vẫn còn, kỹ thuật viên cần kiểm tra chế hòa khí, đường xăng và hệ thống đánh lửa. Không tự ý chỉnh vít hỗn hợp nếu không có thông số chuẩn."
+                    }
+                ]
+            },
+            {
+                "id": "cau-hoi-4",
+                "topic": "khoi-dong",
+                "question": "Máy cắt cỏ 2 thì cần pha xăng nhớt theo tỷ lệ nào?",
+                "infoTitle": "Trước khi pha nhiên liệu",
+                "info": [
+                    "Không chắc máy đang dùng động cơ 2 thì hay 4 thì.",
+                    "Không tìm thấy tỷ lệ pha trên nhãn hoặc sách hướng dẫn.",
+                    "Máy có khói bất thường, khó nổ hoặc bugi đóng muội sau khi thay hỗn hợp."
+                ],
+                "steps": [
+                    {
+                        "title": "Xác định đúng model",
+                        "text": "Kiểm tra tem máy, tài liệu hướng dẫn hoặc thông tin từ nhà phân phối để xác nhận loại động cơ và tỷ lệ pha được khuyến nghị."
+                    },
+                    {
+                        "title": "Dùng nhớt chuyên dụng phù hợp",
+                        "text": "Với máy 2 thì, sử dụng nhớt 2T phù hợp và đong theo tỷ lệ nhà sản xuất quy định. Không mặc định mọi model đều dùng 25:1 hoặc 40:1."
+                    },
+                    {
+                        "title": "Pha lượng vừa đủ",
+                        "text": "Pha trong bình chứa sạch, được thiết kế cho nhiên liệu; trộn kỹ và ghi ngày pha. Không đổ hỗn hợp xăng- nhớt vào bình nhớt riêng của máy 4 thì."
+                    }
+                ],
+                "stepsTitle": "Cách pha nhiên liệu đúng"
+            },
+            {
+                "id": "cau-hoi-5",
+                "topic": "dau-cat",
+                "question": "Máy cắt cỏ rung mạnh hoặc phát ra tiếng kêu bất thường thì xử lý thế nào?",
+                "infoTitle": "Dấu hiệu cần chú ý",
+                "info": [
+                    "Máy rung tăng đột ngột sau khi thay lưỡi hoặc đầu cắt.",
+                    "Có tiếng va đập, lạch cạch hoặc tiếng kim loại bất thường.",
+                    "Trục, đầu cắt hoặc tay cầm rung mạnh hơn bình thường."
+                ],
+                "steps": [
+                    {
+                        "title": "Dừng máy ngay",
+                        "text": "Tắt máy, ngắt chụp bugi và chờ bộ phận cắt dừng hẳn trước khi kiểm tra. Không tiếp tục sử dụng nếu lưỡi bị nứt, cong hoặc thiếu chi tiết."
+                    },
+                    {
+                        "title": "Kiểm tra lắp đặt",
+                        "text": "Kiểm tra đầu cắt/lưỡi cắt, tấm chắn và các đai ốc theo hướng dẫn. Dùng đúng phụ kiện và dụng cụ được khuyến nghị."
+                    },
+                    {
+                        "title": "Kiểm tra trục và bộ truyền động",
+                        "text": "Nếu vẫn rung hoặc có tiếng kêu, có thể bạc đạn, trục hoặc hộp số gặp vấn đề. Hãy mang máy đến kỹ thuật viên, không tháo cụm truyền động khi chưa có kinh nghiệm."
+                    }
+                ]
+            },
+            {
+                "id": "cau-hoi-6",
+                "topic": "bao-duong",
+                "question": "Khi nào cần vệ sinh hoặc thay lọc gió máy cắt cỏ?",
+                "infoTitle": "Dấu hiệu lọc gió bẩn",
+                "info": [
+                    "Máy khó nổ hoặc hụt ga khi tăng tốc.",
+                    "Lọc gió bám bụi, cỏ vụn hoặc bị thấm nhiên liệu.",
+                    "Đã đến kỳ bảo dưỡng được nêu trong tài liệu máy."
+                ],
+                "steps": [
+                    {
+                        "title": "Tắt máy và để nguội",
+                        "text": "Đặt máy trên bề mặt ổn định, ngắt chụp bugi trước khi bảo dưỡng để hạn chế khởi động ngoài ý muốn."
+                    },
+                    {
+                        "title": "Vệ sinh đúng loại lọc",
+                        "text": "Cách vệ sinh khác nhau tùy lọc mút hay lọc giấy. Làm theo hướng dẫn của model; không dùng khí nén áp lực cao hoặc dung môi không được khuyến nghị."
+                    },
+                    {
+                        "title": "Thay khi cần",
+                        "text": "Thay lọc nếu rách, biến dạng, không thể làm sạch hoặc đã đến hạn. Lắp đúng vị trí và nắp lọc trước khi khởi động."
+                    }
+                ],
+                "stepsTitle": "Cách vệ sinh và thay lọc gió"
+            },
+            {
+                "id": "cau-hoi-7",
+                "topic": "dau-cat",
+                "question": "Đầu cắt cỏ không quay dù động cơ vẫn nổ, cần kiểm tra gì?",
+                "infoTitle": "Dấu hiệu thường gặp",
+                "info": [
+                    "Động cơ vẫn chạy nhưng dây cước hoặc lưỡi cắt đứng yên.",
+                    "Đầu cắt quay chập chờn hoặc có tiếng trượt.",
+                    "Máy vừa bị va đập hoặc đầu cắt mắc vật cứng."
+                ],
+                "steps": [
+                    {
+                        "title": "Tắt máy và đảm bảo an toàn",
+                        "text": "Tắt công tắc, ngắt chụp bugi và chờ mọi bộ phận dừng hoàn toàn trước khi chạm vào đầu cắt."
+                    },
+                    {
+                        "title": "Kiểm tra đầu cắt",
+                        "text": "Kiểm tra cỏ quấn, dây cước lắp sai hoặc đầu cắt bị kẹt. Chỉ tháo vật mắc khi máy đã được cô lập an toàn."
+                    },
+                    {
+                        "title": "Kiểm tra trục truyền động và ly hợp",
+                        "text": "Nếu đầu cắt không quay sau khi loại trừ vật kẹt, trục truyền động hoặc ly hợp có thể cần kiểm tra. Nên nhờ kỹ thuật viên xử lý."
+                    }
+                ]
+            },
+            {
+                "id": "cau-hoi-8",
+                "topic": "bao-duong",
+                "question": "Bảo quản máy cắt cỏ khi không sử dụng trong thời gian dài như thế nào?",
+                "infoTitle": "Trước khi cất máy",
+                "info": [
+                    "Máy sẽ không được sử dụng trong nhiều tuần hoặc nhiều tháng.",
+                    "Bình xăng và các bộ phận còn bám cỏ, bụi bẩn.",
+                    "Muốn tránh khó khởi động khi dùng lại."
+                ],
+                "steps": [
+                    {
+                        "title": "Làm sạch và kiểm tra",
+                        "text": "Tắt máy, để nguội và vệ sinh cỏ vụn khỏi thân máy, khe tản nhiệt và bộ phận cắt. Không xịt nước trực tiếp vào các bộ phận điện hoặc động cơ nếu nhà sản xuất không cho phép."
+                    },
+                    {
+                        "title": "Xử lý nhiên liệu",
+                        "text": "Thực hiện đúng hướng dẫn lưu trữ nhiên liệu của nhà sản xuất. Không để xăng trong bình quá lâu; dùng bình chứa nhiên liệu được phê duyệt và bảo quản nơi thông thoáng, xa nguồn nhiệt."
+                    },
+                    {
+                        "title": "Cất giữ an toàn",
+                        "text": "Cất máy ở nơi khô ráo, thoáng khí, ngoài tầm trẻ em. Bảo vệ lưỡi cắt và kiểm tra máy trước khi sử dụng lại."
+                    }
+                ],
+                "stepsTitle": "Các bước bảo quản máy"
+            },
+            {
+                "id": "cau-hoi-9",
+                "topic": "chon-may",
+                "question": "Làm thế nào để chọn máy cắt cỏ phù hợp với diện tích vườn?",
+                "infoTitle": "Thông tin nên xác định trước",
+                "info": [
+                    "Diện tích và địa hình khu vực cần cắt.",
+                    "Loại cỏ, độ dày cỏ và thời gian làm việc mỗi lần.",
+                    "Nhu cầu sử dụng gia đình hay thường xuyên chuyên nghiệp."
+                ],
+                "steps": [
+                    {
+                        "title": "Chọn theo điều kiện làm việc",
+                        "text": "Vườn nhỏ, cỏ mềm và công việc không thường xuyên có thể ưu tiên máy gọn nhẹ. Khu vực rộng hoặc cỏ dày thường cần công suất và phụ kiện phù hợp hơn."
+                    },
+                    {
+                        "title": "So sánh thông số của model",
+                        "text": "Đối chiếu dung tích động cơ, trọng lượng, loại tay cầm, bộ phận cắt và yêu cầu bảo dưỡng từ catalog chính thức. Không chỉ chọn dựa trên dung tích xi-lanh."
+                    },
+                    {
+                        "title": "Hỏi tư vấn khi chưa chắc",
+                        "text": "Cung cấp diện tích, loại cỏ và tần suất sử dụng cho nhà phân phối KEWAQI để được gợi ý model phù hợp."
+                    }
+                ],
+                "stepsTitle": "Cách chọn máy phù hợp",
+                "safety": false
+            },
+            {
+                "id": "cau-hoi-10",
+                "topic": "bao-hanh",
+                "question": "Chính sách bảo hành và mua phụ tùng KEWAQI như thế nào?",
+                "infoTitle": "Thông tin nên chuẩn bị",
+                "info": [
+                    "Bạn cần kiểm tra thời hạn hoặc điều kiện bảo hành.",
+                    "Cần mua lọc gió, bugi, đầu cắt hoặc phụ tùng thay thế.",
+                    "Không chắc phụ tùng nào tương thích với model đang sử dụng."
+                ],
+                "steps": [
+                    {
+                        "title": "Xác định model máy",
+                        "text": "Chuẩn bị mã model, hình ảnh tem máy và thông tin mua hàng nếu có để đơn vị hỗ trợ xác định sản phẩm chính xác."
+                    },
+                    {
+                        "title": "Liên hệ kênh phân phối",
+                        "text": "Hỏi nhà phân phối hoặc bộ phận hỗ trợ KEWAQI về điều kiện bảo hành, quy trình tiếp nhận và phụ tùng tương thích. Điều kiện cụ thể phụ thuộc chính sách áp dụng cho sản phẩm."
+                    },
+                    {
+                        "title": "Không dùng phụ tùng không phù hợp",
+                        "text": "Chọn linh kiện đúng thông số và hướng dẫn của nhà sản xuất. Nếu phụ tùng ảnh hưởng đến bộ phận cắt hoặc hệ thống nhiên liệu, nên nhờ kỹ thuật viên lắp đặt."
+                    }
+                ],
+                "stepsTitle": "Các bước cần làm",
+                "safety": false
+            }
+        ]
+    }
+}

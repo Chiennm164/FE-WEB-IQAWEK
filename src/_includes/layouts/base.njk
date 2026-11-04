@@ -1,36 +1,56 @@
-{#- Khung chung của mọi trang: <head>, header, menu mobile, footer, script. Markup giữ nguyên từ template "netskin" của site cũ. -#}
+{#- Khung chung của mọi trang: <head>, header, menu mobile, footer, script. Markup giữ nguyên từ template của site cũ. -#}
 {%- set t = site[lang] -%}
-{%- set otherLang = "en" if lang == "vi" else "vi" -%}
+{%- set isHome = layout == "home.njk" -%}
 {%- set currentCatId = categoryId or (listPage.cat.id if listPage else null) -%}
 {%- set currentSection = (currentCatId | catPath)[0] if currentCatId else null -%}
 {%- set currentCat = currentCatId | category if currentCatId else null -%}
-{#- Nút đổi ngôn ngữ: đang ở chính trang danh mục thì sang danh mục tương ứng, còn lại về trang chủ ngôn ngữ kia -#}
-{%- if currentCat and currentCat.translationId and page.url == currentCat.url -%}
-  {%- set altLangUrl = (currentCat.translationId | category).url -%}
-{%- else -%}
-  {%- set altLangUrl = "/" + otherLang + "/" -%}
+{#- Tiêu đề: trang chủ dùng meta.siteTitle; trang khác "<tên trang> | <brand>".
+    Sản phẩm chỉ có mã model (vd. "C558") hoặc trùng tên danh mục thì thêm nhóm sản phẩm;
+    trang danh sách từ trang 2 thêm số trang. -#}
+{%- set pageTitle = title -%}
+{%- if layout == "product.njk" and currentCatId and (not (" " in title) or (title | lower) == (currentCat.name | lower)) -%}
+  {%- set pageTitle = title + " – " + (currentCatId | catPath)[1].name -%}
 {%- endif -%}
+{%- if listPage and listPage.page > 1 -%}
+  {%- set pageTitle = pageTitle + " – " + t.meta.page + " " + listPage.page -%}
+{%- endif -%}
+{%- set fullTitle = t.meta.siteTitle if isHome else pageTitle + " | " + site.brand -%}
+{#- Meta description: front matter "description"; sản phẩm chưa có thì "<brand> <tên>. <mô tả chung>";
+    trang danh sách theo mẫu meta.listDescription -#}
+{%- if layout == "product.njk" and not description -%}
+  {%- set metaDesc = site.brand + " " + pageTitle + ". " + t.meta.description -%}
+{%- elif listPage -%}
+  {%- set metaDesc = t.meta.listDescription[listPage.cat.type] | replace("{name}", listPage.cat.name) -%}
+  {%- if listPage.page > 1 %}{% set metaDesc = t.meta.page + " " + listPage.page + " – " + metaDesc %}{% endif -%}
+{%- else -%}
+  {%- set metaDesc = description or t.meta.description -%}
+{%- endif -%}
+{%- set metaDesc = metaDesc | metaDescription -%}
+{#- Ảnh khi chia sẻ link (Facebook, Zalo…): ảnh sản phẩm, ảnh đầu bài tin, banner danh mục, mặc định site.ogImage -#}
+{%- if images and images.length -%}
+  {%- set shareImage = images[0] -%}
+{%- elif layout == "news.njk" -%}
+  {%- set shareImage = (content | firstImage) or thumb -%}
+{%- elif currentCatId -%}
+  {%- set shareImage = thumb or (currentCatId | catBanner).banner -%}
+{%- endif -%}
+{%- set shareImage = shareImage or site.ogImage -%}
 <!doctype html>
 <html lang="{{ t.meta.htmlLang }}">
 <head>
 <meta charset="utf-8">
-{#- renderer: buộc trình duyệt hai nhân (360, QQ…) dùng nhân webkit #}
-<meta name="renderer" content="webkit">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="{{ site.favicon }}"/>
-<title>{% block title %}{% if title %}{{ title }}-{% endif %}{% endblock %}{{ t.meta.siteTitle }}</title>
-<meta name="keywords" content="{{ t.meta.keywords }}" />
-<meta name="description" content="{{ (description or t.meta.description) | truncate(300, true, '') }}" />
-<link rel="alternate" hreflang="{{ site[otherLang].meta.htmlLang }}" href="{{ altLangUrl }}">
+<title>{{ fullTitle }}</title>
+<meta name="description" content="{{ metaDesc }}">
+{% include "partials/seo.njk" %}
 <link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-common.css">
-{#- Trang chủ dùng index.css thay main.css; trang liên hệ dùng iconfont-contact thay iconfont-pages -#}
-{%- set isHome = layout == "home.njk" -%}
-{%- set hasPageIconfont = "iconfont-contact" in ((css or []) | join(",")) -%}
-{%- if not isHome and not hasPageIconfont %}
+{#- Trang chủ dùng index.css thay main.css và không cần iconfont-pages -#}
+{%- if not isHome %}
 <link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-pages.css">
 {%- endif %}
 <link href="/assets/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/swiper.min.css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/assets/css/swiper.min.css" media="screen">
 <link href="/assets/css/reset.css" rel="stylesheet">
 {%- if not isHome %}
 <link href="/assets/css/main.css" rel="stylesheet">
@@ -38,9 +58,6 @@
 {%- for href in css %}
 <link href="{{ href }}" rel="stylesheet">
 {%- endfor %}
-<script type="text/javascript" src="/assets/js/wow.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/assets/js/swiper.min.js"></script>
 </head>
 <body>
 <header>
@@ -50,7 +67,7 @@
 <span></span>
 <span></span>
 </a>
-<a href="/{{ lang }}/" class="logo"><img src="/assets/images/logo.png"></a>
+<a href="/{{ lang }}/" class="logo"><img src="/assets/images/logo.png" alt="{{ site.brand }}"></a>
 <div class="header-right white">
 <div class="header-menu">
 <ul>
@@ -75,7 +92,6 @@
 </ul>
 </div>
 <div class="header-tools">
-<div class="header-lan"><a href="{{ altLangUrl }}"><span class="lang-switch">{{ t.header.langSwitch }}</span></a></div>
 <div class="header-search">
 <a href="javascript:;"><i class="icon iconfont icon-sousuo_o"></i></a>
 </div>
@@ -86,7 +102,7 @@
 <section class="clear"></section>
 <section class="search-box">
 <a href="javascript:;" class="close"><i class="icon iconfont icon-guanbi"></i></a>
-<form name="infosearch" method="get" action="/{{ lang }}/search/">
+<form method="get" action="/{{ lang }}/search/">
 <input name="q" type="text" placeholder="{{ t.header.searchPlaceholder }}" autocomplete="off" />
 <button type="submit"><i class="icon iconfont icon-sousuo_o"></i></button>
 </form>
@@ -118,31 +134,19 @@
 </div>
 <h2><i class="icon iconfont icon-sousuo_o"></i> {{ t.header.search }}</h2>
 <div class="zoom-box">
-<form name="infosearch" method="get" action="/{{ lang }}/search/">
+<form method="get" action="/{{ lang }}/search/">
 <input name="q" type="text" placeholder="{{ t.header.searchShort }}" autocomplete="off" />
 <button type="submit"><i class="icon iconfont icon-sousuo_o"></i></button>
 </form>
-</div>
-<div class="lan-box">
-<h2><i class="icon iconfont icon-wangluo"></i> {{ t.header.language }} <i class="icon iconfont icon-xiajiantou"></i></h2>
-<ul>
-<li><a href="/vi/"><i class="icon iconfont icon-dian"></i> Tiếng Việt</a></li>
-<li><a href="/en/"><i class="icon iconfont icon-dian"></i> English</a></li>
-</ul>
 </div>
 </section>
 <section class="clear"></section>
 {% block main %}{{ content | safe }}{% endblock %}
 <section class="clear"></section>
 <footer class="wow fadeInUp" data-wow-delay="0.15s">
-<div class="mapBg"><img src="/assets/images/footer-map.png"></div>
-<div class="qrcodeBox">
-<div class="div1"><img src="/assets/images/logo.png"></div>
-<div class="div2">{{ t.meta.company }}</div>
-<div class="div3"><img src="/assets/images/qrcode.jpg"></div>
-</div>
+<div class="mapBg"><img src="/assets/images/footer-map.png" alt="" loading="lazy"></div>
 <div class="menuBox">
-<div class="l"><img src="/assets/images/footer-left.png"></div>
+<div class="l"><img src="/assets/images/footer-left.png" alt="" loading="lazy"></div>
 <div class="c wrap">
 <div class="navBox">
 <div class="linkBox">
@@ -157,9 +161,7 @@
 </div>
 <div class="contactBox">
 <h2>{{ t.footer.contact }}</h2>
-<ul>
 <ul>{{ t.footer.contactHtml | safe }}</ul>
-</ul>
 </div>
 <div class="shareBox">
 <h2>{{ t.footer.share }}</h2>
@@ -179,17 +181,20 @@
 {%- endif %}
 </div>
 </div>
-<div class="r"><img src="/assets/images/footer-right.png"></div>
+<div class="r"><img src="/assets/images/footer-right.png" alt="" loading="lazy"></div>
 </div>
 </footer>
+{% include "partials/zalo-chat.njk" %}
+{#- Script đặt cuối trang để không chặn việc hiển thị nội dung; mọi script inline đều nằm sau các dòng này -#}
+<script type="text/javascript" src="/assets/js/wow.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/swiper.min.js"></script>
 <script type="text/javascript" src="/assets/js/main.js"></script>
 {%- for src in js %}
 <script type="text/javascript" src="{{ src }}"></script>
 {%- endfor %}
 <script>
-if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
 new WOW().init();
-};
 </script>
 {%- if inlineScript %}
 <script>

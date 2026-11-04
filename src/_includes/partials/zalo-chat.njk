@@ -1,0 +1,40 @@
+{#- Nút chat nổi góc phải dưới: bấm mở khung có lời chào và mã QR Zalo.
+    Ảnh QR / link Zalo: site.zalo trong _data/site.json; chữ hiển thị: site[lang].chat -#}
+{%- set chat = t.chat -%}
+<div class="zchat" id="zchat">
+<div class="zchat-panel" id="zchat-panel" role="dialog" aria-label="{{ chat.title }}" hidden>
+<div class="zchat-head">
+<span class="zchat-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></span>
+<span class="zchat-who"><strong>{{ chat.title }}</strong><small>{{ chat.status }}</small></span>
+<button type="button" class="zchat-close" id="zchat-close" aria-label="{{ chat.close }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div class="zchat-body">
+<div class="zchat-msg">👋 {{ chat.greeting }}</div>
+<div class="zchat-qr">
+<img src="{{ site.zalo.qr }}" alt="{{ chat.qrAlt }}" width="240" height="240" loading="lazy">
+<p>{{ chat.qrHint }}</p>
+{%- if site.zalo.link %}
+<a class="zchat-open" href="{{ site.zalo.link }}" target="_blank" rel="noopener">{{ chat.openZalo }}</a>
+{%- endif %}
+</div>
+</div>
+</div>
+<button type="button" class="zchat-btn" id="zchat-btn" aria-controls="zchat-panel" aria-expanded="false">
+<span class="zchat-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></span>
+<span class="zchat-label">{{ chat.button }}</span>
+</button>
+</div>
+<script>
+(function(){
+  var btn = document.getElementById('zchat-btn'), panel = document.getElementById('zchat-panel'), close = document.getElementById('zchat-close');
+  function toggle(open){
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', open);
+    btn.classList.toggle('on', open);
+    if (open) close.focus();
+  }
+  btn.addEventListener('click', function(){ toggle(panel.hidden); });
+  close.addEventListener('click', function(){ toggle(false); btn.focus(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { toggle(false); btn.focus(); } });
+})();
+</script>

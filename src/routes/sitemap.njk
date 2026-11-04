@@ -1,0 +1,11 @@
+---
+# Sơ đồ site cho Google / Bing: mọi trang HTML trừ trang noindex (tìm kiếm, tin chưa có nội dung, danh mục rỗng)
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all | sitemapPages %}
+<url><loc>{{ item.url | absUrl }}</loc>{% if item.data.published %}<lastmod>{{ item.data.published | string | truncate(10, true, '') }}</lastmod>{% endif %}</url>
+{%- endfor %}
+</urlset>

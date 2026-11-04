@@ -7,9 +7,11 @@
     "start": "eleventy --serve",
     "build": "eleventy",
     "check": "node tools/check-links.mjs",
-    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "images": "node tools/optimize-images.mjs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.6"
+    "@11ty/eleventy": "^3.1.6",
+    "sharp": "^0.35.5"
   }
 }
