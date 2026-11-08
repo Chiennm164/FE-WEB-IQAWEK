@@ -454,9 +454,23 @@
 .sp-op-main{
 	min-width: 0;
 }
-.sp-op-side .sp-card{
+/* Cả cột phải (card các bước + card hotline) dính chung một khối ngay dưới header cố định (60px) + thanh tab (~71px):
+   dính riêng card các bước thì card hotline trượt lên đè, và top nhỏ hơn 131px thì thanh tab che đầu card */
+.sp-op-side{
 	position: sticky;
-	top: 80px;
+	top: 148px;
+	align-self: start;
+}
+/* Màn hình thấp (laptop nhỏ): không đủ chỗ cho cả 2 card đang dính, card hotline chuyển xuống cuối tab */
+@media (min-width: 993px) and (max-height: 859px){
+	.sp-op-side-contact{
+		display: none;
+	}
+	.sp-op-end-contact{
+		display: block;
+		grid-column: 1;
+		max-width: 420px;
+	}
 }
 .sp-op-steps li{
 	border-top: 1px solid var(--c-line);
@@ -680,8 +694,6 @@
 	}
 	.sp-op-side{
 		order: -1;
-	}
-	.sp-op-side .sp-card{
 		position: static;
 	}
 	.sp-op-steps{

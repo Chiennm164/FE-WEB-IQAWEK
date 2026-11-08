@@ -1105,12 +1105,13 @@ html.hsearch-on header{
 .subnav.active {
     left: 0;
 }
-.subnav h2{
+/* Nhãn "Danh mục" / "Tìm kiếm" của menu ☰: div.h2 (không dùng thẻ h2 để H1 của trang là tiêu đề đầu tiên) */
+.subnav .h2{
 	font-size: 16px;
     text-transform: uppercase;
     padding: 10px 10px 10px;
 }
-.subnav h2 .icon {
+.subnav .h2 .icon {
     margin-right: 5px;
 }
 .subnav a{

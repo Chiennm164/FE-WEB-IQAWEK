@@ -479,6 +479,17 @@ Cũng có thể đưa **toàn bộ thư mục `dist/`** lên host tĩnh khác (V
 - Host tự build: lệnh build `npm run build`, thư mục xuất bản `dist`, Node ≥ 18.
 - `dist/_redirects` dùng cú pháp Cloudflare (Netlify cũng đọc được); host khác phải cấu hình lại (mục 5.10).
 - Tên miền phải khớp `site.url` (`https://www.kewaqi.com.vn`); bản không `www` và `http://` nên chuyển 301 về đúng địa chỉ này (cấu hình ở host).
+- File xác minh Google Search Console (`google….html`) nằm trong `src/static/`, được chép ra gốc site ở mỗi lần build — không xoá trên host.
+
+**Kiểm tra site đang chạy bản nào:** mở `https://www.kewaqi.com.vn/version.json` (hoặc Ctrl+U, tìm `<meta name="build">`):
+
+```json
+{ "version": "1.0.0", "commit": "3e99b4b", "time": "2026-11-08 19:00:03 (GMT+7)" }
+```
+
+- `version`: trường `version` trong `package.json` — tăng khi bàn giao một đợt thay đổi (1.0.0 → 1.1.0…).
+- `commit`: mã commit git lúc build; có đuôi `-dirty` nghĩa là build khi còn file sửa chưa commit (nên commit trước rồi mới build để deploy).
+- `time`: giờ build (giờ Việt Nam). So với `dist/version.json` trên máy để biết đã upload đúng bản vừa build chưa.
 
 Sau khi site chạy trên tên miền thật:
 

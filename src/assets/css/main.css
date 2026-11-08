@@ -1201,10 +1201,22 @@
 .n-news .news-detail .content > * + *{
 	margin-top: 1em;
 }
-/* Đoạn chỉ gồm một dòng in đậm = tiêu đề mục ("1. Khảo sát…"): cách xa đoạn trên, sát đoạn nội dung của nó */
+/* Tiêu đề mục ("1. Khảo sát…"): thẻ <h2> (cấp tiêu đề cho Google), trông như một dòng in đậm cùng cỡ chữ bài;
+   cách xa đoạn trên, sát đoạn nội dung của nó. Bài cũ còn dạng <p><strong>…</strong></p> cũng hiện như vậy */
+.n-news .news-detail .content > h2,
+.n-news .news-detail .content > h3{
+	font-size: inherit;
+	line-height: inherit;
+	font-weight: 700;
+	color: var(--c-ink);
+}
+.n-news .news-detail .content > h2,
+.n-news .news-detail .content > h3,
 .n-news .news-detail .content > p:has(> strong:only-child){
 	margin-top: 1.6em;
 }
+.n-news .news-detail .content > h2 + *,
+.n-news .news-detail .content > h3 + *,
 .n-news .news-detail .content > p:has(> strong:only-child) + *{
 	margin-top: .4em;
 }

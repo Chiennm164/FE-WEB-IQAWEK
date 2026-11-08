@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { execSync } from "node:child_process";
 
 // Phiên bản file CSS / JS (8 ký tự hash nội dung), gắn vào link trong base.njk: "/assets/css/reset.css?v=…".
 // Nội dung file đổi thì số đổi → trình duyệt (và .htaccess cho giữ CSS / JS 1 tháng) buộc tải bản mới, không dùng bản cũ đã lưu
@@ -12,6 +13,19 @@ function assetVersion() {
     }
   }
   return hash.digest("hex").slice(0, 8);
+}
+
+// Thông tin bản build để kiểm tra site đang chạy bản nào: /version.json và thẻ <meta name="build"> trong <head>.
+// version: package.json; commit: mã git rút gọn (kèm "-dirty" nếu còn file sửa chưa commit); time: giờ Việt Nam lúc build
+function buildInfo() {
+  const git = (args) => {
+    try { return execSync(`git ${args}`, { stdio: ["ignore", "pipe", "ignore"] }).toString().trim(); } catch { return ""; }
+  };
+  const commit = git("rev-parse --short HEAD") || "unknown";
+  const dirty = git("status --porcelain") ? "-dirty" : "";
+  const time = new Date().toLocaleString("sv-SE", { timeZone: "Asia/Ho_Chi_Minh" }) + " (GMT+7)";
+  const { version = "0.0.0" } = JSON.parse(fs.readFileSync("package.json", "utf8"));
+  return { version, commit: commit + dirty, time };
 }
 
 // Chỉ đọc một lần khi nạp cấu hình: đang chạy `npm start` mà sửa categories.json
@@ -185,6 +199,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("langHome", langHome);
   // Hàm: Eleventy tính lại mỗi lần build (kể cả khi npm start tự build lại sau khi sửa CSS / JS)
   eleventyConfig.addGlobalData("assetVersion", assetVersion);
+  eleventyConfig.addGlobalData("build", buildInfo);
 
   // ---- Danh mục ----
   eleventyConfig.addFilter("category", (id) => catById.get(Number(id)));
