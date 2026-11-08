@@ -25,17 +25,117 @@
 	--section-bottom: 100px;
 	/* Khoảng cách giữa các khối trang chủ (.in-type, .in-about, .in-advantage, .in-workshop, .in-news) */
 	--home-gap: 100px;
-	/* Bo góc: sm cho nút / ô nhập / ô nhỏ, mặc định cho thẻ / khung; tròn hẳn dùng 50% hoặc --radius-pill */
-	--radius-sm: 6px;
-	--radius: 16px;
+	/* Bo góc: site theo kiểu phẳng, vuông góc → thẻ, khung, nút, ô nhập đều 0.
+	   Icon tròn dùng 50%. Riêng widget chat Zalo (.zchat) tự đặt lại hai biến này để giữ dáng bo tròn của khung chat. */
+	--radius-sm: 0;
+	--radius: 0;
 	--radius-pill: 999px;
+	/* Thang cỡ chữ tiêu đề (tự thu nhỏ theo các mốc @media bên dưới):
+	   hero = tiêu đề H1 trên banner trang con; h2 = tiêu đề khối lớn (trang chủ, khối nền ảnh);
+	   h3 = tiêu đề mục trong trang con (Dịch vụ, Hỏi đáp, tiêu đề bài viết); h4 = tên sản phẩm, tiêu đề cột;
+	   label = chữ trên thanh tiêu đề nền cam (danh mục, chi tiết sản phẩm, sản phẩm liên quan) */
+	--fs-hero: 80px;
+	--fs-h2: 60px;
+	--fs-h3: 32px;
+	--fs-h4: 24px;
+	--fs-label: 20px;
+	/* Nút chung (xem "Nút chung" bên dưới): cùng chiều cao, lề, cỡ chữ ở mọi trang */
+	--btn-h: 42px;
+	--btn-px: 24px;
+	--btn-fs: 15px;
+	/* Font: 3 vai trò dùng chung bộ file Montserrat (@font-face bên dưới). Luôn kèm font dự phòng:
+	   thiếu dự phòng thì lúc font chưa tải xong trình duyệt hiện Times New Roman (chữ có chân) */
+	--font-body: 'Fontstyle1', Arial, sans-serif;     /* chữ thường */
+	--font-heading: 'Fontstyle2', Arial, sans-serif;  /* tiêu đề đậm */
+	--font-sub: 'Fontstyle3', Arial, sans-serif;      /* tiêu đề phụ */
 }
 @media (max-width: 1280px) {
 	:root{
 		--section-top: 6%;
 		--section-bottom: 8%;
 		--home-gap: 8%;
+		--fs-hero: 60px;
+		--fs-h2: 48px;
+		--fs-h3: 28px;
+		--fs-h4: 20px;
+		--fs-label: 16px;
+		--btn-h: 38px;
+		--btn-px: 20px;
+		--btn-fs: 14px;
 	}
+}
+@media (max-width: 992px) {
+	:root{
+		--fs-hero: 40px;
+		--fs-h2: 36px;
+	}
+}
+@media (max-width: 767px) {
+	:root{
+		/* 8% bề ngang chỉ còn ~30px ở điện thoại: giữ tối thiểu 40px giữa các khối trang chủ */
+		--home-gap: 40px;
+		--fs-hero: 24px;
+		--fs-h2: 24px;
+		--fs-h3: 22px;
+		--fs-h4: 18px;
+		--btn-h: 40px;
+		--btn-fs: 14px;
+	}
+}
+/* Nút chung: nền cam, chữ trắng, vuông góc; hover cam đậm. Dùng cho mọi nút hành động của site
+   (trang chủ "Xem thêm sản phẩm", "Xem chi tiết" ở danh sách sản phẩm / tin / sản phẩm liên quan, nút ở chi tiết sản phẩm, trang Hỗ trợ).
+   Nút phụ (viền cam, nền trắng): "Quay lại danh sách" ở chi tiết sản phẩm.
+   reset.css nạp trước main / index / support.css: các file đó chỉ giữ phần riêng (vị trí, bề rộng), không đặt lại màu / cỡ / lề của nút. */
+.in-products .more a,
+.n-products .products-list .word .more,
+.n-news .news-list .word .more,
+.n-products .products-detail .box1 .right .button a,
+.n-products .products-detail .box2 .content .more span,
+.n-support .sp-btn,
+.n-support .sp-search button,
+.hsearch .hsearch-submit,
+.search-form button{
+	min-height: var(--btn-h);
+	padding: 0 var(--btn-px);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	border: 1px solid var(--c-primary);
+	border-radius: 0;
+	background: var(--c-primary);
+	color: #fff;
+	font-size: var(--btn-fs);
+	font-weight: 600;
+	line-height: 1.2;
+	text-transform: none;
+	letter-spacing: 0;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background-color 200ms, border-color 200ms, color 200ms;
+}
+.in-products .more a:hover,
+.n-products .products-list a:hover .word .more,
+.n-news .news-list a:hover .word .more,
+.n-products .products-detail .box1 .right .button a:hover,
+.n-products .products-detail .box2 .content a:hover .more span,
+.n-support .sp-btn:hover,
+.n-support .sp-search button:hover,
+.hsearch .hsearch-submit:hover,
+.search-form button:hover{
+	border-color: var(--c-primary-dark);
+	background: var(--c-primary-dark);
+	color: #fff;
+}
+/* Nút phụ: viền cam, nền trắng */
+.n-products .products-detail .box1 .right .button li:last-child a{
+	background: #fff;
+	color: var(--c-primary);
+}
+.n-products .products-detail .box1 .right .button li:last-child a:hover{
+	border-color: var(--c-primary);
+	background: var(--c-primary);
+	color: #fff;
 }
 /* Font giao diện: Montserrat (Google Fonts, giấy phép SIL OFL), bản variable có subset tiếng Việt.
  * Ba tên dùng chung một bộ file; font-weight của @font-face cố định độ đậm cho từng tên:
@@ -146,6 +246,10 @@
 [hidden]{
 	display: none !important;
 }
+/* Link neo (#…): chừa chỗ cho header cố định (60px; điện thoại 48px) để tiêu đề nơi đến không bị che */
+[id]{
+	scroll-margin-top: 80px;
+}
 html, body{
 	width:100%;
 	height: 100%;
@@ -155,7 +259,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	padding: 0;
 }
 body {
-	font-family: 'Fontstyle1', Arial, sans-serif;
+	font-family: var(--font-body);
 	font-weight: 300;
 	-webkit-text-size-adjust: none; /* iOS: không tự phóng to chữ khi xoay ngang */
 	margin: 0px;
@@ -167,7 +271,7 @@ body, td, th {
 }
 /* .h1–.h4: kiểu chữ của h1–h4 cũ gắn vào class, để chọn thẻ theo đúng cấp tiêu đề (SEO) mà giao diện không đổi */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
-	font-family: 'Fontstyle1', Arial, sans-serif;
+	font-family: var(--font-body);
 	font-weight: 300;
 	font-size: 100%;
 }
@@ -185,7 +289,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 address, caption, cite, code, dfn, em, th, var {
 	font-style: normal;
-	font-family: 'Fontstyle1', Arial, sans-serif;
+	font-family: var(--font-body);
 	font-weight: 300;
 }
 img {
@@ -195,7 +299,7 @@ ol, ul, li {
 	list-style: none;
 }
 input, textarea, select, button {
-	font-family: 'Fontstyle1', Arial, sans-serif;
+	font-family: var(--font-body);
 	font-size: 16px;
 }
 table {
@@ -427,10 +531,24 @@ header .header-tools i{
 	font-size: 24px;
 	display: block;
 }
+/* Nút mở ô tìm kiếm: vùng bấm 44×44px, lề phải âm để icon vẫn sát mép phải khung như cũ */
 header .header-tools .header-search{
-    margin-left: 30px;
-    transition: transform .3s cubic-bezier(1, 0, 0, 1);
-    -webkit-backface-visibility: hidden;
+	width: 44px;
+	height: 44px;
+	margin: 0 -10px 0 30px;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--c-ink);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: color .2s;
+}
+header .header-tools .header-search:hover,
+header .header-tools .header-search[aria-expanded="true"]{
+	color: var(--c-primary);
 }
 header.fixed .header-tools .header-search, 
 header.on .header-tools .header-search{
@@ -543,10 +661,11 @@ header.on .header-tools .header-search{
 	header{
 		height: 48px;
 	}
+	/* Logo ở giữa: hai bên là nút ☰ (trái) và nút tìm kiếm (phải), mỗi nút chiếm 20px sau lề âm */
 	header .logo,
 	header.fixed .logo,
 	header.on .logo{
-		width: calc(100% - 20px);
+		width: calc(100% - 40px);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -557,61 +676,415 @@ header.on .header-tools .header-search{
 		width: auto;
 		height: 36px;
 	}
-	header .header-right{
+	/* Menu ngang ẩn (thay bằng menu ☰), chỉ giữ nút tìm kiếm */
+	header .header-right,
+	header.fixed .header-right,
+	header.on .header-right{
+		width: auto;
+	}
+	header .header-menu{
 		display: none;
 	}
+	header .header-tools,
+	header.fixed .header-tools,
+	header.on .header-tools{
+		width: auto;
+	}
+	header .header-tools .header-search,
+	header.fixed .header-tools .header-search,
+	header.on .header-tools .header-search{
+		width: 44px;
+		height: 48px;
+		margin: 0 -12px;
+	}
+	/* Vùng bấm 44×48px (3 vạch vẫn rộng 20px): lề âm hai bên để logo giữ nguyên vị trí */
 	header .menu-trigger{
 		display: block;
+		padding: 16px 12px;
+		margin: 0 -12px;
 	}
 	header .menu-trigger.active{
 		left: 0;
 	}
 }
 
-/* Search */
-.search-box{
-	width: 100%;
-	height: 100%;
+/* Tìm kiếm ở header (base.njk #hsearch, assets/js/search.js).
+   Desktop / máy tính bảng: bảng thả xuống ngay dưới header, phần trang bên dưới phủ mờ; điện thoại: toàn màn hình.
+   Chưa gõ: chip danh mục + gợi ý cách gõ. Đang gõ: cột sản phẩm (ảnh + tên) và cột danh mục / bài viết / hỏi đáp. */
+html.hsearch-on header{
+	z-index: 1600; /* nổi trên nút chat Zalo (1500) */
+}
+.hsearch-backdrop{
 	position: fixed;
-	top:0;
+	inset: 0;
+	z-index: 1550; /* trên nút chat Zalo (1500), dưới header khi đang mở tìm kiếm (1600) */
+	background: rgba(0, 0, 0, .45);
+}
+.hsearch{
+	position: absolute;
+	top: 100%;
 	left: 0;
+	width: 100%;
 	background: #fff;
-	z-index: 1001;
-	display: none;
+	border-top: 1px solid var(--c-line);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, .16);
+	color: var(--c-ink);
+	text-align: left;
 }
-.search-box .close{
-	position: absolute;
-	right:3%;
-	top:3%;
-	display: block;
+.hsearch > .wrap{
+	padding: 24px 0 28px;
 }
-.search-box .close i{
-	font-size: 28px;
+.hsearch-form{
+	display: flex;
+	gap: 12px;
 }
-.search-box form{
-	width: 60%;
-	height: 60px;
-	position: absolute;
-	top:50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+.hsearch-field{
+	flex: 1;
+	min-width: 0;
+	height: 52px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	border-bottom: 1px var(--c-line-strong) solid;
+	border: 1px solid var(--c-line-strong);
+	background: #fff;
+	transition: border-color .2s;
 }
-.search-box form input{
-	width: calc(100% - 40px);
-    border:none;
+.hsearch-field:focus-within{
+	border-color: var(--c-primary);
 }
-.search-box form button{
-	width: 24px;
-	border:none;
+.hsearch-field > .iconfont{
+	margin-left: 16px;
+	font-size: 20px;
+	color: var(--c-muted);
+}
+.hsearch-input{
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+	padding: 0 12px;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	color: var(--c-ink);
+	font-size: 16px; /* ≥ 16px: iPhone không tự phóng to trang khi chạm vào ô */
+	-webkit-appearance: none;
+	appearance: none;
+}
+/* Bỏ nút xoá có sẵn của ô type="search" (đã có nút xoá riêng) */
+.hsearch-input::-webkit-search-cancel-button,
+.hsearch-input::-webkit-search-decoration{
+	-webkit-appearance: none;
+	appearance: none;
+}
+.hsearch-input::placeholder{
+	color: var(--c-muted);
+}
+.hsearch-clear{
+	width: 40px;
+	height: 100%;
+	padding: 0;
+	border: 0;
 	background: none;
+	color: var(--c-muted);
 	cursor: pointer;
 }
-.search-box form button i{
-	font-size: 24px;
+.hsearch-clear:hover{
+	color: var(--c-ink);
+}
+.hsearch-clear .iconfont{
+	font-size: 14px;
+}
+/* Kiểu nút: "Nút chung" ở đầu file; cao bằng ô nhập */
+.hsearch .hsearch-submit{
+	align-self: stretch;
+	min-height: 0;
+}
+.hsearch-close{
+	flex: 0 0 52px;
+	padding: 0;
+	border: 1px solid var(--c-line-strong);
+	background: #fff;
+	color: var(--c-ink);
+	cursor: pointer;
+	transition: border-color .2s, color .2s;
+}
+.hsearch-close:hover{
+	border-color: var(--c-primary);
+	color: var(--c-primary);
+}
+.hsearch-close .iconfont{
+	font-size: 18px;
+}
+.hsearch-body{
+	margin-top: 20px;
+	max-height: calc(100vh - 230px);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+.hsearch-label{
+	margin-bottom: 12px;
+	color: var(--c-muted);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+.hsearch-label span{
+	color: var(--c-primary);
+}
+.hsearch-hint{
+	margin-top: 14px;
+	color: var(--c-muted);
+	font-size: 13px;
+	line-height: 1.6;
+}
+.hsearch-msg{
+	color: var(--c-text);
+	font-size: 14px;
+}
+.hsearch mark{
+	background: none;
+	color: var(--c-primary);
+	font-weight: 700;
+}
+/* Kết quả: cột sản phẩm (2 phần) + cột danh mục / bài viết / hỏi đáp (1 phần) */
+.hsearch-results.has-side{
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+	gap: 0 40px;
+}
+.hsearch-products{
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 6px 20px;
+}
+.hsearch-product{
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 8px;
+	border: 1px solid transparent;
+	transition: border-color .2s, background-color .2s;
+}
+.hsearch-product:hover,
+.hsearch-product:focus{
+	border-color: var(--c-line);
+	background: var(--c-soft);
+	outline: 0;
+}
+.hsearch-product:focus-visible{
+	border-color: var(--c-primary);
+}
+.hsearch-thumb{
+	flex: 0 0 56px;
+	height: 56px;
+	border: 1px solid var(--c-line);
+	background: #fff;
+	overflow: hidden;
+}
+.hsearch-thumb img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: block;
+}
+.hsearch-text{
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.hsearch-title{
+	color: var(--c-ink);
+	font-size: 15px;
+	line-height: 1.4;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.hsearch-meta{
+	display: block;
+	color: var(--c-muted);
+	font-size: 12px;
+	line-height: 1.5;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.hsearch-all{
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 14px;
+	color: var(--c-primary);
+	font-weight: 600;
+}
+.hsearch-all:hover{
+	color: var(--c-primary-dark);
+}
+.hsearch-all .iconfont{
+	font-size: 12px;
+}
+.hsearch-group + .hsearch-group{
+	margin-top: 22px;
+}
+.hsearch-links li + li{
+	border-top: 1px solid var(--c-line);
+}
+.hsearch-links a{
+	display: block;
+	padding: 9px 0;
+	color: var(--c-ink);
+	font-size: 14px;
+	line-height: 1.45;
+}
+.hsearch-links a:hover,
+.hsearch-links a:focus{
+	color: var(--c-primary);
+	outline: 0;
+}
+.hsearch-links a:focus-visible{
+	box-shadow: inset 3px 0 0 var(--c-primary);
+	padding-left: 10px;
+}
+.hsearch-count{
+	margin-left: 2px;
+	color: var(--c-muted);
+	font-size: 12px;
+}
+.hsearch-empty-title{
+	color: var(--c-ink);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+.hsearch-empty p + p{
+	margin-top: 6px;
+	color: var(--c-text);
+	font-size: 14px;
+	line-height: 1.6;
+}
+/* Không có sản phẩm: chip danh mục ngay dưới lời nhắn */
+.hsearch-empty .search-chips{
+	margin-top: 14px;
+}
+/* Chip danh mục: dùng chung ô tìm kiếm ở header và trang kết quả */
+.search-chips{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.search-chips a{
+	min-height: 36px;
+	padding: 0 14px;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border: 1px solid var(--c-line-strong);
+	background: #fff;
+	color: var(--c-ink);
+	font-size: 14px;
+	transition: border-color .2s, color .2s;
+}
+.search-chips a:hover,
+.search-chips a:focus-visible{
+	border-color: var(--c-primary);
+	color: var(--c-primary);
+	outline: 0;
+}
+.search-chips a span{
+	color: var(--c-muted);
+	font-size: 12px;
+}
+.search-chips mark{
+	background: none;
+	color: inherit;
+	font-weight: 700;
+}
+/* Gợi ý gọi hotline khi không tìm thấy sản phẩm (ô tìm kiếm và trang kết quả) */
+.search-call{
+	margin-top: 14px;
+	color: var(--c-text);
+	font-size: 14px;
+}
+.search-call a{
+	color: var(--c-primary);
+	font-weight: 700;
+	white-space: nowrap;
+}
+@media (max-width: 992px) {
+	.hsearch-results.has-side{
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.hsearch-side{
+		margin-top: 24px;
+	}
+}
+/* Điện thoại: toàn màn hình, cuộn bên trong; bàn phím có sẵn nút "Tìm" nên ẩn nút Tìm kiếm */
+@media (max-width: 767px) {
+	html.hsearch-on,
+	html.hsearch-on body{
+		overflow: hidden;
+	}
+	.hsearch{
+		position: fixed;
+		inset: 0;
+		border-top: 0;
+		box-shadow: none;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+	.hsearch > .wrap{
+		padding: 8px 0 32px;
+	}
+	.hsearch-form{
+		gap: 4px;
+	}
+	.hsearch-field{
+		height: 44px;
+	}
+	.hsearch-field > .iconfont{
+		margin-left: 12px;
+		font-size: 18px;
+	}
+	.hsearch-input{
+		padding: 0 8px;
+	}
+	.hsearch .hsearch-submit{
+		display: none;
+	}
+	.hsearch-close{
+		flex-basis: 44px;
+		border: 0;
+	}
+	.hsearch-body{
+		max-height: none;
+		margin-top: 16px;
+		overflow: visible;
+	}
+	.hsearch-products{
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2px;
+	}
+	.hsearch-product{
+		padding: 6px 0;
+	}
+	.hsearch-product:hover,
+	.hsearch-product:focus{
+		background: none;
+		border-color: transparent;
+	}
+	.hsearch-thumb{
+		flex-basis: 52px;
+		height: 52px;
+	}
+	.hsearch-backdrop{
+		display: none;
+	}
+	.search-chips a{
+		min-height: 40px;
+	}
 }
 
 /* Subnav */
@@ -862,24 +1335,37 @@ footer .menuBox .copyBox{
 	}
 }
 @media (max-width: 767px) {
+	/* Điện thoại: hai mục ngắn Liên kết | Mạng xã hội đứng cạnh nhau, Liên hệ (dòng dài) rộng hết hàng bên dưới */
 	footer .menuBox .navBox{
-		grid-template-columns: minmax(0, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-areas: "links share" "contact contact";
+		column-gap: 16px;
+	}
+	footer .menuBox .navBox .linkBox{
+		grid-area: links;
+	}
+	footer .menuBox .navBox .shareBox{
+		grid-area: share;
+	}
+	footer .menuBox .navBox .contactBox{
+		grid-area: contact;
 	}
     footer .menuBox .navBox h2{
 		font-size: 18px;
 	}
-    footer .menuBox .navBox .shareBox ul{
-    	display: flex;
-    }
-    footer .menuBox .navBox .shareBox li{
-    	margin-top: 0;
-    }
-    footer .menuBox .navBox .shareBox span{
-    	display: none;
-    }
+	/* Link footer cao ~37px cho dễ bấm; bỏ khoảng cách giữa mục để nhịp dòng giữ như cũ */
+	footer .menuBox .navBox .linkBox a{
+		padding: 5px 0;
+	}
+	footer .menuBox .navBox .linkBox li + li{
+		margin-top: 0;
+	}
 }
 /* Nút chat Zalo nổi góc phải dưới (partials/zalo-chat.njk) */
 .zchat{
+	/* Ngoại lệ của kiểu vuông góc: khung chat giữ dáng bo tròn như ứng dụng chat */
+	--radius-sm: 6px;
+	--radius: 16px;
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
@@ -887,7 +1373,7 @@ footer .menuBox .copyBox{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	font-family: 'Fontstyle1', Arial, sans-serif;
+	font-family: var(--font-body);
 }
 .zchat button{
 	font-family: inherit;
@@ -1012,6 +1498,14 @@ footer .menuBox .copyBox{
 	font-size: 15px;
 	line-height: 1.6;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+}
+.zchat-msg + .zchat-msg{
+	margin-top: 8px;
+}
+.zchat-msg a{
+	color: var(--c-primary);
+	font-weight: 700;
+	white-space: nowrap;
 }
 .zchat-qr{
 	margin-top: 14px;

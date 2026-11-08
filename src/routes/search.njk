@@ -1,10 +1,11 @@
 ---
-# Tìm kiếm sản phẩm phía trình duyệt (thay chức năng tìm kiếm PHP của CMS cũ)
+# Trang kết quả tìm kiếm /<lang>/search/?q=… (thay chức năng tìm kiếm PHP của CMS cũ).
+# Kết quả tính ở trình duyệt bằng assets/js/search.js (cùng cách so khớp với ô tìm kiếm ở header), dữ liệu từ /<lang>/search/index.json.
 pagination:
   data: site.langs
   size: 1
   alias: lang
-permalink: "/{{ lang }}/search/"
+permalink: "{{ lang | langHome }}search/"
 # Trang kết quả tìm kiếm không có nội dung riêng: không cho Google index, không đưa vào sitemap
 noindex: true
 eleventyExcludeFromCollections: true
@@ -27,27 +28,32 @@ eleventyComputed:
 </div>
 </div>
 <section class="n-path">
-<div class="wrap"><a href="/{{ lang }}/"><i class="icon iconfont icon-fangzi"></i></a>
-<i class="icon iconfont icon-xiangyoujiantou"></i> <a href="/{{ lang }}/search/" title="{{ t.search.title }}">{{ t.search.title }}</a>
+<div class="wrap"><a href="{{ lang | langHome }}"><i class="icon iconfont icon-fangzi"></i></a>
+<i class="icon iconfont icon-xiangyoujiantou"></i> <a href="{{ lang | langHome }}search/" title="{{ t.search.title }}">{{ t.search.title }}</a>
 </div>
 </section>
-<section class="wrap n-products">
+<section class="wrap n-products" id="search-page">
 {{ ui.productsSidebar(lang, rootCat.id, t, langProducts | pickByIds(hot[lang])) }}
 <div class="products-right">
-<ul class="products-list" id="search-list">
-{%- for product in langProducts | latest(1000) %}
-<li data-q="{{ (product.data.title + ' ' + (product.data.model or '')) | lower }}">
-<a title="{{ product.data.title }}" href="{{ product.url }}">
-<div class="image"><img src="{{ product.data.thumb }}" alt="{{ product.data.title }}" loading="lazy"></div>
-<div class="word">
-<div class="title">{{ product.data.title }}</div>
-<div class="more">{{ t.product.listMore }}</div>
+<form class="search-form" method="get" action="{{ lang | langHome }}search/" role="search">
+<input type="search" name="q" placeholder="{{ t.search.placeholder }}" aria-label="{{ t.search.placeholder }}" autocomplete="off" enterkeyhint="search">
+<button type="submit">{{ t.search.submit }}</button>
+</form>
+<p class="search-summary" id="search-summary" role="status">{{ t.search.loading }}</p>
+<div class="search-cats" id="search-cats" hidden></div>
+<ul class="products-list" id="search-list"></ul>
+<div class="search-empty" id="search-empty" hidden>
+<p class="search-empty-title" id="search-empty-title"></p>
+<p>{{ t.search.tips }}</p>
+{{ ui.searchChips(lang, collections.product) }}
+<p class="search-call">{{ t.search.hotline }} <a href="tel:{{ site.telephone | replace(' ', '') }}">{{ site.hotline }}</a></p>
 </div>
-</a>
-</li>
-{%- endfor %}
-</ul>
-<div class="n-page" id="search-empty" hidden>{{ t.search.noResults }}</div>
+<div class="search-related" id="search-related" hidden>
+<h2 class="search-related-title">{{ t.search.related }}</h2>
+<ul></ul>
+</div>
+{#- Mẫu thẻ sản phẩm, cùng markup với danh sách sản phẩm (routes/lists.njk); search.js nhân bản cho từng kết quả -#}
+<template id="search-card"><li><a href="" title=""><div class="image"><img src="" alt="" loading="lazy"></div><div class="word"><div class="title"></div><div class="more">{{ t.product.listMore }}</div></div></a></li></template>
 </div>
 </section>
 {% endblock %}
@@ -55,16 +61,6 @@ eleventyComputed:
 <script>
 $(function(){
 {{ ui.hotSwiperScript() }}
-var q = (new URLSearchParams(location.search).get('q') || '').trim().toLowerCase();
-$('#search-term').text(q);
-$('input[name="q"]').val(q);
-var shown = 0;
-$('#search-list li').each(function(){
-var ok = !q || $(this).data('q').indexOf(q) !== -1;
-$(this).toggle(ok);
-if (ok) shown++;
-});
-$('#search-empty').prop('hidden', shown !== 0);
 })
 </script>
 {% endblock %}

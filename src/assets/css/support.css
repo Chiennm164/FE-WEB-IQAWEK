@@ -20,17 +20,8 @@
 	color: inherit;
 }
 
-/* ---- Banner: kiểu banner chung (main.css .n-banner) + dòng giới thiệu, đoạn mô tả, 3 điểm nổi bật ----
-   Màn > 992px dựng y như banner chung (ảnh trong luồng, chữ phủ lên) nên cao đúng như các trang khác;
-   màn hẹp hơn xem @media (max-width: 992px) ở cuối file */
-.sp-banner .sp-eyebrow{
-	margin-bottom: 18px;
-	font-size: 13px;
-	font-weight: 700;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	color: rgba(255, 255, 255, .75);
-}
+/* ---- Banner: banner chung (main.css .n-banner) + đoạn giới thiệu và 3 điểm nổi bật chỉ hiện trên desktop ----
+   Màn ≤ 992px ẩn hai phần này (xem @media cuối file) để banner cao và có cấu trúc chữ y như các trang khác */
 .sp-banner .sp-intro{
 	max-width: 760px;
 	margin: 14px 0 0;
@@ -74,6 +65,10 @@
 .sp-heading{
 	margin-bottom: 24px;
 }
+/* Link menu "Câu hỏi thường gặp" (/support/#cau-hoi): chừa chỗ cho header cố định khi nhảy tới */
+.sp-main{
+	scroll-margin-top: 80px;
+}
 .sp-kicker{
 	font-size: 12px;
 	font-weight: 800;
@@ -82,20 +77,22 @@
 	color: var(--c-primary);
 }
 .sp-heading h2{
-	margin: 6px 0 9px;
-	font-size: 30px;
-	line-height: 1.2;
+	margin: 8px 0 12px;
+	font-family: var(--font-heading);
+	font-size: var(--fs-h3);
+	line-height: 1.25;
 }
 .sp-heading p{
 	margin: 0;
 	font-size: 15px;
+	line-height: 1.6;
 	color: var(--c-text);
 }
 
 /* ---- Tìm kiếm ---- */
 .sp-search{
 	display: flex;
-	margin: 25px 0 12px;
+	margin: 0 0 12px;
 	border: 1px solid var(--c-line-strong);
 	border-radius: var(--radius-sm);
 	overflow: hidden;
@@ -115,22 +112,14 @@
 	background: #fff;
 	font-size: 15px;
 }
-.sp-search button{
-	padding: 0 22px;
-	border: 0;
-	background: var(--c-primary);
-	color: #fff;
-	font-weight: 700;
-	white-space: nowrap;
-	cursor: pointer;
-	transition: background 200ms;
-}
-.sp-search button:hover{
-	background: var(--c-primary-dark);
+/* Kiểu nút: "Nút chung" trong reset.css; nút cao bằng ô nhập */
+.n-support .sp-search button{
+	min-height: 0;
 }
 .sp-hint{
-	margin: 0 0 20px;
-	font-size: 12px;
+	margin: 0 0 24px;
+	font-size: 13px;
+	line-height: 1.5;
 	color: var(--c-muted);
 }
 
@@ -152,26 +141,6 @@
 	text-align: left;
 	cursor: pointer;
 }
-.sp-plus{
-	flex: 0 0 30px;
-	width: 30px;
-	height: 30px;
-	border: 1px solid var(--c-line);
-	border-radius: 50%;
-	background: var(--c-soft);
-	color: var(--c-ink);
-	font-size: 22px;
-	line-height: 1;
-	display: grid;
-	place-items: center;
-	transition: background .2s, color .2s, transform .2s;
-}
-.sp-q[aria-expanded="true"] .sp-plus{
-	border-color: var(--c-primary);
-	background: var(--c-primary);
-	color: #fff;
-	transform: rotate(180deg);
-}
 .sp-q-text{
 	flex: 1;
 	font-size: 16px;
@@ -183,16 +152,23 @@
 .sp-q[aria-expanded="true"] .sp-q-text{
 	color: var(--c-primary);
 }
+/* Mũi tên vẽ bằng viền (không dùng ký tự ⌄: mỗi font đặt ký tự ở độ cao khác nhau nên bị lệch dòng) */
 .sp-chevron{
-	font-size: 20px;
+	flex: 0 0 auto;
+	width: 8px;
+	height: 8px;
+	margin-right: 6px;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
 	color: var(--c-muted);
+	transform: translateY(-2px) rotate(45deg);
 	transition: transform .2s;
 }
 .sp-q[aria-expanded="true"] .sp-chevron{
-	transform: rotate(180deg);
+	transform: translateY(2px) rotate(225deg);
 }
 .sp-answer{
-	padding: 0 8px 24px 52px;
+	padding: 0 8px 24px;
 	animation: sp-answer-in .24s ease-out;
 }
 @keyframes sp-answer-in{
@@ -235,8 +211,20 @@
 	font-size: 14px;
 	font-weight: 700;
 }
+/* Mũi tên vẽ bằng viền, cùng kiểu .sp-chevron: mở = hướng lên, thu gọn = hướng xuống */
 .sp-info-chevron{
+	flex: 0 0 auto;
+	width: 7px;
+	height: 7px;
+	margin-right: 4px;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
 	color: var(--c-muted);
+	transform: translateY(2px) rotate(225deg);
+	transition: transform .2s;
+}
+.sp-info-toggle[aria-expanded="false"] .sp-info-chevron{
+	transform: translateY(-2px) rotate(45deg);
 }
 .sp-info-list{
 	margin: 10px 0 0;
@@ -250,7 +238,8 @@
 }
 
 /* Các bước */
-.sp-steps-title{
+/* .n-support h4 { margin: 0 } mạnh hơn .sp-steps-title nên phải ghi rõ .n-support để khoảng cách có tác dụng */
+.n-support .sp-steps-title{
 	margin: 0 0 14px;
 	font-size: 17px;
 	line-height: 1.3;
@@ -324,12 +313,14 @@
 	background: #fff;
 }
 .sp-card h3{
-	margin: 0 0 12px;
+	margin: 0 0 8px;
 	font-size: 17px;
+	line-height: 1.35;
 }
 .sp-card p{
-	margin: 0 0 15px;
+	margin: 0 0 16px;
 	font-size: 14px;
+	line-height: 1.6;
 	color: var(--c-text);
 }
 .sp-topics li{
@@ -367,35 +358,10 @@
 	border-color: #f6ddd2;
 	background: #fff7f3;
 }
+/* Kiểu nút: "Nút chung" trong reset.css; ở cột phải nút rộng hết khung */
 .n-support .sp-btn{
 	width: 100%;
-	display: block;
-	padding: 11px 12px;
-	border: 1px solid var(--c-primary);
-	border-radius: var(--radius-sm);
-	background: var(--c-primary);
-	color: #fff;
-	font-size: 14px;
-	font-weight: 700;
-	text-align: center;
-	cursor: pointer;
-	transition: background .2s, border-color .2s, color .2s;
-}
-.n-support .sp-btn + .sp-btn{
-	margin-top: 10px;
-}
-.n-support .sp-btn:hover{
-	border-color: var(--c-primary-dark);
-	background: var(--c-primary-dark);
-	color: #fff;
-}
-.n-support .sp-btn-line{
-	background: #fff;
-	color: var(--c-primary);
-}
-.n-support .sp-btn-line:hover{
-	border-color: var(--c-primary);
-	background: var(--c-primary);
+	display: flex;
 }
 .n-support .sp-mail{
 	display: block;
@@ -409,21 +375,346 @@
 	color: var(--c-primary);
 }
 
+/* ---- Hướng dẫn vận hành: khối riêng dưới phần câu hỏi (support.njk #van-hanh, dữ liệu support.json → operation) ----
+   Độc lập với cột "Chủ đề hỗ trợ" và ô tìm câu hỏi. Card các bước ① → ⑥ bên phải (tab), mỗi bước hiện các bài mở sẵn: các bước có số
+   (sheet đánh 1, 2, 3) hoặc các ý có dấu chấm, ý con thụt vào; cuối bài 2 khối Nên làm (xanh) / Tuyệt đối không làm (đỏ).
+   Xanh / đỏ là màu riêng của 2 khối này, không có trong bộ biến. */
+/* ---- Thanh tab của trang: Câu hỏi thường gặp / Hướng dẫn vận hành (support.njk .sp-tabbar, support.js) ----
+   Dính ngay dưới header cố định khi cuộn; tab đang chọn chữ đỏ cam + gạch chân đỏ cam */
+.sp-tabbar{
+	position: sticky;
+	top: 60px;
+	z-index: 20;
+	background: #fff;
+	border-bottom: 1px solid var(--c-line);
+}
+.sp-tabs{
+	display: flex;
+	gap: 8px;
+}
+.sp-tab{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px 22px 13px;
+	border: 0;
+	border-bottom: 3px solid transparent;
+	background: none;
+	color: var(--c-text);
+	text-align: left;
+	cursor: pointer;
+	transition: color .2s, border-color .2s;
+}
+.sp-tab:hover{
+	color: var(--c-primary);
+}
+.sp-tab[aria-selected="true"]{
+	border-bottom-color: var(--c-primary);
+	color: var(--c-primary);
+}
+.sp-tab-ico{
+	flex: 0 0 26px;
+	width: 26px;
+	height: 26px;
+}
+.sp-tab-text{
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.n-support .sp-tab strong{
+	color: inherit;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+.sp-tab small{
+	color: var(--c-muted);
+	font-size: 12px;
+	line-height: 1.3;
+}
+/* Link neo trong trang (câu hỏi, bước, bài): chừa chỗ cho header cố định + thanh tab dính */
+.n-support [id]{
+	scroll-margin-top: 140px;
+}
+.sp-op{
+	padding: var(--section-top) 0 var(--section-bottom);
+}
+/* Card hotline trong tab Hướng dẫn: máy tính ở cột phải dưới card các bước; máy tính bảng / điện thoại ở cuối tab */
+.sp-op-end-contact{
+	display: none;
+}
+.sp-op .sp-heading{
+	max-width: 820px;
+}
+/* Bố cục 2 cột như phần câu hỏi: nội dung bên trái, card các bước bên phải (dính theo khi cuộn) */
+.sp-op-layout{
+	padding: 0;
+}
+.sp-op-main{
+	min-width: 0;
+}
+.sp-op-side .sp-card{
+	position: sticky;
+	top: 80px;
+}
+.sp-op-steps li{
+	border-top: 1px solid var(--c-line);
+}
+.sp-op-tab{
+	width: 100%;
+	padding: 10px 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border: 0;
+	background: none;
+	color: var(--c-text);
+	font-size: 14px;
+	line-height: 1.35;
+	text-align: left;
+	cursor: pointer;
+	transition: color .2s;
+}
+.sp-op-tab:hover{
+	color: var(--c-primary);
+}
+.sp-op-no{
+	flex: 0 0 26px;
+	height: 26px;
+	display: grid;
+	place-items: center;
+	background: var(--c-primary-pale);
+	color: var(--c-primary);
+	font-size: 12px;
+	font-weight: 800;
+}
+.sp-op-tab[aria-selected="true"]{
+	color: var(--c-primary);
+	font-weight: 700;
+}
+.sp-op-tab[aria-selected="true"] .sp-op-no{
+	background: var(--c-primary);
+	color: #fff;
+}
+.sp-op-panel{
+	padding: 28px;
+	border: 1px solid var(--c-line);
+	background: #fff;
+}
+.n-support .sp-op-panel-title{
+	margin: 0 0 22px;
+	font-size: var(--fs-h4);
+	line-height: 1.3;
+}
+.sp-op-panel-title span{
+	display: block;
+	margin-bottom: 4px;
+	color: var(--c-primary);
+	font-size: 12px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+.sp-op-article{
+	scroll-margin-top: 80px;
+}
+.sp-op-article + .sp-op-article{
+	margin-top: 26px;
+	padding-top: 26px;
+	border-top: 1px solid var(--c-line);
+}
+.n-support .sp-op-article h4{
+	margin: 0 0 14px;
+	font-size: 17px;
+	line-height: 1.4;
+}
+.sp-op-list{
+	margin: 0 0 18px;
+	padding: 0;
+	color: var(--c-text);
+	font-size: 14px;
+	line-height: 1.75;
+}
+.sp-op-list > li{
+	position: relative;
+	padding: 0 0 12px 28px;
+	list-style: none;
+}
+.sp-op-list > li > strong{
+	color: var(--c-ink);
+	font-weight: 700;
+}
+/* Ý có dấu chấm: ô vuông cam nhỏ */
+.sp-op-list > li::before{
+	content: "";
+	position: absolute;
+	left: 8px;
+	top: .7em;
+	width: 7px;
+	height: 7px;
+	background: var(--c-primary);
+}
+/* Bước có số: ô số như các bước của câu hỏi (.sp-step-no) */
+.sp-op-list.is-numbered{
+	counter-reset: sp-step;
+}
+.sp-op-list.is-numbered > li{
+	padding-left: 40px;
+	counter-increment: sp-step;
+}
+.sp-op-list.is-numbered > li::before{
+	content: counter(sp-step, decimal-leading-zero);
+	left: 0;
+	top: 0;
+	width: 28px;
+	height: 28px;
+	background: var(--c-primary-pale);
+	color: var(--c-primary);
+	font-size: 12px;
+	font-weight: 800;
+	line-height: 28px;
+	text-align: center;
+}
+.sp-sub{
+	margin: 6px 0 0;
+	padding: 0;
+}
+.sp-sub > li{
+	position: relative;
+	padding-left: 16px;
+	list-style: none;
+}
+.sp-sub > li::before{
+	content: "–";
+	position: absolute;
+	left: 0;
+	color: var(--c-muted);
+}
+/* Ý con đánh số (sheet ghi 1. 2. 3.): giữ đúng số như sheet */
+.sp-sub.is-numbered{
+	counter-reset: sp-sub;
+}
+.sp-sub.is-numbered > li{
+	padding-left: 22px;
+	counter-increment: sp-sub;
+}
+.sp-sub.is-numbered > li::before{
+	content: counter(sp-sub) ".";
+	color: var(--c-ink);
+	font-weight: 600;
+}
+.sp-dodont{
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+.sp-do,
+.sp-dont{
+	padding: 13px 15px;
+	border: 1px solid;
+	border-left-width: 4px;
+}
+.sp-do{
+	border-color: #cfe8d6;
+	border-left-color: #2f8f4e;
+	background: #f2faf4;
+}
+.sp-dont{
+	border-color: #f3d2cc;
+	border-left-color: #c8321f;
+	background: #fdf3f1;
+}
+.sp-do strong,
+.sp-dont strong{
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+}
+.sp-do strong{
+	color: #237a40;
+}
+.sp-dont strong{
+	color: #b3291a;
+}
+.sp-do p,
+.sp-dont p{
+	margin: 5px 0 0;
+	color: var(--c-text);
+	font-size: 14px;
+	line-height: 1.7;
+}
+/* Nút chuyển bước cuối mỗi bước */
+.sp-op-nav{
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	margin-top: 26px;
+	padding-top: 20px;
+	border-top: 1px solid var(--c-line);
+}
+.sp-op-nav button{
+	padding: 10px 16px;
+	border: 1px solid var(--c-line-strong);
+	background: #fff;
+	color: var(--c-ink);
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: border-color .2s, color .2s;
+}
+.sp-op-nav button:hover{
+	border-color: var(--c-primary);
+	color: var(--c-primary);
+}
+.sp-op-next{
+	margin-left: auto;
+}
+/* Máy tính bảng / điện thoại: card các bước lên trên nội dung, không dính; các bước xếp 2 cột */
+@media (max-width: 992px){
+	.sp-op-side-contact{
+		display: none;
+	}
+	.sp-op-end-contact{
+		display: block;
+	}
+	.sp-op-side{
+		order: -1;
+	}
+	.sp-op-side .sp-card{
+		position: static;
+	}
+	.sp-op-steps{
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: 16px;
+	}
+}
+@media (max-width: 767px){
+	/* Điện thoại: các bước 1 cột, khung nội dung bớt lề */
+	.sp-op-steps{
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.sp-op-panel{
+		padding: 18px 14px;
+	}
+	.sp-dodont{
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.sp-op-nav{
+		flex-direction: column;
+	}
+	.sp-op-nav button{
+		width: 100%;
+	}
+}
+
 /* ---- Màn hình nhỏ: mốc chuẩn 1280 / 992 / 767 (xem đầu reset.css) ---- */
 @media (max-width: 992px){
-	/* Chữ nhiều hơn khung ảnh: ảnh thành nền phủ kín, banner cao theo chữ (tối thiểu bằng tỉ lệ ảnh 1920×700) */
-	.n-banner.sp-banner > img{
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		object-fit: cover;
-	}
-	.n-banner.sp-banner .word{
-		position: relative;
-		height: auto;
-		min-height: calc(100vw * 700 / 1920);
-		padding: 32px 0;
+	/* Banner: chỉ còn tiêu đề + mô tả như các trang khác */
+	.sp-banner .sp-intro,
+	.sp-banner .sp-points{
+		display: none;
 	}
 	/* Bố cục: sidebar chuyển xuống dưới, 2 cột */
 	.sp-layout{
@@ -441,41 +732,25 @@
 	}
 }
 @media (max-width: 767px){
-	/* Banner chung ẩn dòng mô tả trên điện thoại; trang Hỗ trợ vẫn hiện đủ chữ, cỡ nhỏ lại */
-	.n-banner.sp-banner .word{
-		padding: 28px 0;
+	/* Thanh tab điện thoại: 2 tab chia đôi bề ngang */
+	.sp-tabs{
+		gap: 0;
 	}
-	.sp-banner .sp-eyebrow{
-		margin-bottom: 10px;
-		font-size: 11px;
-		letter-spacing: 1.5px;
+	.sp-tab{
+		flex: 1 1 50%;
+		min-width: 0;
+		gap: 8px;
+		padding: 12px 6px 10px;
 	}
-	.n-banner.sp-banner .word .h2{
-		display: block;
-		margin-top: 8px;
-		font-size: 15px;
-		line-height: 22px;
+	.sp-tab-ico{
+		flex-basis: 22px;
+		width: 22px;
+		height: 22px;
 	}
-	.sp-banner .sp-intro{
-		margin-top: 8px;
-		font-size: 13px;
-		line-height: 1.6;
-	}
-	.sp-banner .sp-points{
-		gap: 8px 16px;
-		margin-top: 14px;
-		font-size: 12px;
-	}
-	.sp-banner .sp-points li::before{
-		width: 18px;
-		height: 18px;
-		margin-right: 6px;
-		font-size: 11px;
+	.n-support .sp-tab strong{
+		font-size: 14px;
 	}
 	/* Bố cục điện thoại: sidebar 1 cột, chữ và khoảng cách nhỏ lại */
-	.sp-heading h2{
-		font-size: 26px;
-	}
 	.sp-heading p{
 		font-size: 14px;
 	}
@@ -483,9 +758,8 @@
 		padding: 12px;
 		font-size: 14px;
 	}
-	.sp-search button{
+	.n-support .sp-search button{
 		padding: 0 14px;
-		font-size: 13px;
 	}
 	.sp-q{
 		gap: 10px;
@@ -493,11 +767,6 @@
 	}
 	.sp-q-text{
 		font-size: 15px;
-	}
-	.sp-plus{
-		flex-basis: 28px;
-		width: 28px;
-		height: 28px;
 	}
 	.sp-answer{
 		padding-left: 0;

@@ -8,10 +8,12 @@
     "build": "eleventy",
     "check": "node tools/check-links.mjs",
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
-    "images": "node tools/optimize-images.mjs"
+    "images": "node tools/optimize-images.mjs",
+    "import": "node tools/import-products.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
+    "exceljs": "^4.4.0",
     "sharp": "^0.35.5"
   }
 }

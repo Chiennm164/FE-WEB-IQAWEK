@@ -1,8 +1,20 @@
-// Header cố định khi cuộn, menu ☰ trên điện thoại, hộp tìm kiếm; scrollToTarget() dùng cho link neo (#a23…) ở trang Giới thiệu
-var scrollTop = 0;
+// Header cố định khi cuộn, menu ☰ trên điện thoại; scrollToTarget() cuộn mượt tới phần tử (link neo trong trang).
+// Ô tìm kiếm ở header nằm riêng trong search.js
 
+// Mọi slider Swiper của site (banner, danh mục, sản phẩm liên quan / nổi bật, ảnh sản phẩm…), đặt một lần trước khi các trang
+// khởi tạo slider: mặc định Swiper (threshold 0) coi chuột nhích dù 1px giữa lúc nhấn và nhả là kéo slider và chặn luôn cú bấm,
+// nên bấm vào link trong slider lúc được lúc không. Chỉ coi là kéo khi chuột / ngón tay đi quá 8px.
+if (window.Swiper && Swiper.extendDefaults) {
+    Swiper.extendDefaults({ threshold: 8 });
+}
+
+var scrollTop = 0;
+var scrollLocked = false;
+
+// Khoá cuộn trang khi mở menu ☰, nhớ vị trí để trả lại khi đóng
 function stopScroll(){
     scrollTop = document.scrollingElement.scrollTop;
+    scrollLocked = true;
     document.documentElement.style.overflow='hidden';
     document.body.style.position='fixed';
     document.body.style.top='0px';
@@ -10,6 +22,9 @@ function stopScroll(){
 }
 
 function openScroll(){
+    // Chỉ trả lại vị trí khi trang đang bị khoá, nếu không sẽ kéo trang về vị trí cũ (mặc định là đầu trang)
+    if(!scrollLocked) return;
+    scrollLocked = false;
     document.documentElement.style.overflowY='scroll';
     document.body.style.position='static';
     document.scrollingElement.scrollTop = scrollTop;
@@ -18,7 +33,12 @@ function openScroll(){
 $(function(){
     HF();
 
+    // Trên điện thoại, thanh địa chỉ ẩn / hiện khi cuộn (nhất là ở cuối trang) cũng gây resize nhưng chỉ đổi chiều cao:
+    // bỏ qua, chỉ đóng menu khi chiều rộng đổi (xoay màn hình, đổi cửa sổ)
+    var lastWidth = window.innerWidth;
     $(window).resize(function(){
+        if(window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
         openScroll();
         $('header').removeClass('on');
         $('header .menu-trigger').removeClass('active');
@@ -37,15 +57,17 @@ $(function(){
         }
     });
 
-    $('.header-search').click(function(){
-        $('.search-box').fadeIn(200);
-        stopScroll();
-    });
+    // Mở trang bằng link neo (vd. /support/#cau-hoi): trình duyệt cuộn tới nơi đến khi header còn nằm trong trang (cao 88px),
+    // rồi header chuyển sang cố định (khi đã cuộn quá 50px) và rút khỏi luồng trang → nội dung bị kéo lên, header che tiêu đề.
+    // Cuộn lại một lần sau khi header đã cố định (scroll-margin-top ở reset.css chừa chỗ cho header).
+    if (location.hash.length > 1) {
+        $(window).on('load', function(){
+            var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+            if (target) setTimeout(function(){ target.scrollIntoView({ block: 'start' }); }, 60);
+        });
+    }
 
-    $('.search-box .close').click(function(){
-        $('.search-box').hide();
-        openScroll();
-    });
+    // Ô tìm kiếm ở header: assets/js/search.js
 });
 
 function HF(){

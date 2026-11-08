@@ -8,13 +8,13 @@
 {% block main %}
 {%- set sp = support[lang] -%}
 {%- set count = sp.items | length -%}
+{%- set op = sp.operation -%}
 {%- set cat = categoryId | category -%}
 {%- set bannerCat = categoryId | catBanner -%}
 <div class="n-banner sp-banner">
 <img src="{{ bannerCat.banner }}" alt="{{ cat.name }}" fetchpriority="high">
 <div class="word">
 <div class="wrap">
-<div class="sp-eyebrow">{{ sp.hero.eyebrow }}</div>
 <h1 class="h1">{{ cat.name }}</h1>
 <div class="h2">{{ cat.subtitle or bannerCat.subtitle }}</div>
 <p class="sp-intro">{{ sp.hero.text }}</p>
@@ -27,7 +27,27 @@
 </div>
 </div>
 {{ ui.path(categoryId, lang) }}
+{#- Card "Cần hỗ trợ thêm?" (hotline, email): dùng ở cả 2 tab -#}
+{%- set contactCard %}
+<div class="sp-card sp-contact">
+<h3>{{ sp.contact.title }}</h3>
+<p>{{ sp.contact.text }}</p>
+<a class="sp-btn" href="tel:{{ site.telephone | replace(' ', '') }}">{{ sp.contact.call }} {{ site.hotline }}</a>
+<a class="sp-mail" href="mailto:{{ site.contactEmail }}">{{ sp.contact.email }}: {{ site.contactEmail }}</a>
+</div>
+{%- endset %}
 <div class="n-support">
+{#- Thanh tab: mỗi lúc hiện một phần (Câu hỏi thường gặp mặc định / Hướng dẫn vận hành). Mở bằng #cau-hoi, #van-hanh
+    hoặc # của một câu hỏi / bước / bài thì hiện đúng tab (support.js). Chưa có JS thì cả 2 phần đều hiện. -#}
+{%- if op %}
+<div class="sp-tabbar">
+<div class="wrap sp-tabs" role="tablist" aria-label="{{ cat.name }}">
+<button type="button" class="sp-tab" role="tab" id="cau-hoi-tab" aria-controls="cau-hoi" aria-selected="true"><svg class="sp-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.3 9.2a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 4"/><path d="M12 17.4h.01"/></svg><span class="sp-tab-text"><strong>{{ sp.tabs.faq }}</strong><small>{{ sp.tabs.faqCount | replace("{n}", count) }}</small></span></button>
+<button type="button" class="sp-tab" role="tab" id="van-hanh-tab" aria-controls="van-hanh" aria-selected="false"><svg class="sp-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8.5 7.5h7M8.5 11h5"/></svg><span class="sp-tab-text"><strong>{{ sp.tabs.op }}</strong><small>{{ sp.tabs.opCount | replace("{n}", op.groups | length) }}</small></span></button>
+</div>
+</div>
+{%- endif %}
+<div class="sp-tabpanel" id="cau-hoi" role="tabpanel" aria-labelledby="cau-hoi-tab">
 <div class="wrap sp-layout">
 <section class="sp-main" aria-labelledby="sp-faq-title">
 <div class="sp-heading">
@@ -43,10 +63,10 @@
 <div class="sp-list">
 {%- for item in sp.items %}
 <article class="sp-item" id="{{ item.id }}" data-topic="{{ item.topic }}">
-<h3><button class="sp-q" id="{{ item.id }}-q" type="button" aria-expanded="false" aria-controls="{{ item.id }}-a"><span class="sp-plus" aria-hidden="true">+</span><span class="sp-q-text">{{ item.question }}</span><span class="sp-chevron" aria-hidden="true">⌄</span></button></h3>
+<h3><button class="sp-q" id="{{ item.id }}-q" type="button" aria-expanded="false" aria-controls="{{ item.id }}-a"><span class="sp-q-text">{{ item.question }}</span><span class="sp-chevron" aria-hidden="true"></span></button></h3>
 <div class="sp-answer" id="{{ item.id }}-a" role="region" aria-labelledby="{{ item.id }}-q" hidden>
 <div class="sp-info">
-<button class="sp-info-toggle" type="button" aria-expanded="true" aria-controls="{{ item.id }}-info"><span class="sp-info-icon" aria-hidden="true">i</span><strong>{{ item.infoTitle }}</strong><span class="sp-info-chevron" aria-hidden="true">⌃</span></button>
+<button class="sp-info-toggle" type="button" aria-expanded="true" aria-controls="{{ item.id }}-info"><span class="sp-info-icon" aria-hidden="true">i</span><strong>{{ item.infoTitle }}</strong><span class="sp-info-chevron" aria-hidden="true"></span></button>
 <ul class="sp-info-list" id="{{ item.id }}-info">
 {%- for line in item.info %}
 <li>{{ line }}</li>
@@ -77,14 +97,67 @@
 {%- endfor %}
 </ul>
 </div>
-<div class="sp-card sp-contact">
-<h3>{{ sp.contact.title }}</h3>
-<p>{{ sp.contact.text }}</p>
-<a class="sp-btn" href="tel:{{ site.telephone | replace(' ', '') }}">{{ sp.contact.call }} {{ site.hotline }}</a>
-<button type="button" class="sp-btn sp-btn-line" data-open-zalo>{{ sp.contact.zalo }}</button>
-<a class="sp-mail" href="mailto:{{ site.contactEmail }}">{{ sp.contact.email }}: {{ site.contactEmail }}</a>
-</div>
+{{ contactCard | safe }}
 </aside>
 </div>
+</div>
+{%- if op %}
+{#- Tab "Hướng dẫn vận hành": độc lập với chủ đề / ô tìm câu hỏi của tab kia. Card các bước ① → ⑥ bên phải;
+    mỗi bước một vùng nội dung, các bài trong bước mở sẵn. Chưa có JS thì mọi bước đều hiện.
+    Dữ liệu: support.json → operation.groups[].articles[] -#}
+<section class="sp-tabpanel sp-op" id="van-hanh" role="tabpanel" aria-labelledby="van-hanh-tab">
+<div class="wrap">
+<div class="sp-heading">
+<div class="sp-kicker">{{ op.kicker }}</div>
+<h2 id="sp-op-title">{{ op.title }}</h2>
+<p>{{ op.text }}</p>
+</div>
+</div>
+<div class="wrap sp-layout sp-op-layout">
+<div class="sp-op-main">
+{%- for group in op.groups %}
+<div class="sp-op-panel" role="tabpanel" id="{{ group.id }}" aria-labelledby="{{ group.id }}-tab">
+<h3 class="sp-op-panel-title"><span>{{ op.stepLabel }} {{ group.no }}</span>{{ group.name }}</h3>
+{%- for art in group.articles %}
+<article class="sp-op-article" id="{{ art.id }}">
+<h4>{{ art.title }}</h4>
+{%- set listTag = "ol" if art.numbered else "ul" %}
+<{{ listTag }} class="sp-op-list{{ ' is-numbered' if art.numbered }}">
+{%- for point in art.points %}
+<li>{% if point.title %}<strong>{{ point.title }}</strong>{% if point.text %}: {% endif %}{% endif %}{{ point.text }}
+{%- if point.sub %}{% set subTag = "ol" if point.subNumbered else "ul" %}<{{ subTag }} class="sp-sub{{ ' is-numbered' if point.subNumbered }}">{% for line in point.sub %}<li>{{ line }}</li>{% endfor %}</{{ subTag }}>{% endif %}</li>
+{%- endfor %}
+</{{ listTag }}>
+<div class="sp-dodont">
+{%- if art.do %}<div class="sp-do"><strong><span aria-hidden="true">✓</span> {{ op.doTitle }}</strong><p>{{ art.do }}</p></div>{% endif %}
+{%- if art.dont %}<div class="sp-dont"><strong><span aria-hidden="true">✕</span> {{ op.dontTitle }}</strong><p>{{ art.dont }}</p></div>{% endif %}
+</div>
+</article>
+{%- endfor %}
+<div class="sp-op-nav">
+{%- if not loop.first %}<button type="button" class="sp-op-prev" data-go="{{ op.groups[loop.index0 - 1].id }}">← {{ op.prev }}</button>{% endif %}
+{%- if not loop.last %}<button type="button" class="sp-op-next" data-go="{{ op.groups[loop.index0 + 1].id }}">{{ op.next }}: {{ op.groups[loop.index0 + 1].short }} →</button>{% endif %}
+</div>
+</div>
+{%- endfor %}
+</div>
+{#- Card các bước bên phải (cùng kiểu card "Chủ đề hỗ trợ"): chọn bước nào thì hiện bước đó; điện thoại / máy tính bảng: nằm trên nội dung -#}
+<aside class="sp-op-side">
+<div class="sp-card">
+<h3 id="sp-op-steps-title">{{ op.stepsTitle }}</h3>
+<p>{{ op.stepsText }}</p>
+<ul class="sp-op-steps" role="tablist" aria-orientation="vertical" aria-labelledby="sp-op-steps-title">
+{%- for group in op.groups %}
+<li><button type="button" class="sp-op-tab" role="tab" id="{{ group.id }}-tab" aria-controls="{{ group.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}"><span class="sp-op-no">{{ group.no }}</span><span>{{ group.short }}</span></button></li>
+{%- endfor %}
+</ul>
+</div>
+<div class="sp-op-side-contact">{{ contactCard | safe }}</div>
+</aside>
+{#- Máy tính bảng / điện thoại: card các bước nằm trên nội dung, nên card hotline đặt riêng ở cuối tab -#}
+<div class="sp-op-end-contact">{{ contactCard | safe }}</div>
+</div>
+</section>
+{%- endif %}
 </div>
 {% endblock %}

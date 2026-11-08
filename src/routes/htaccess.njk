@@ -1,0 +1,37 @@
+---
+# Sinh dist/.htaccess cho hosting cPanel (Apache / LiteSpeed): cùng các chuyển hướng 301 như _redirects
+permalink: /.htaccess
+eleventyExcludeFromCollections: true
+---
+DirectoryIndex index.html
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Bật khi chứng chỉ SSL (AutoSSL) của tên miền đã cấp xong: ép mọi truy cập sang https
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+{%- for old, target in redirects %}
+{%- set rule = old | htaccessRule(target) %}
+{%- if rule %}
+{{ rule | safe }}
+{%- endif %}
+{%- endfor %}
+{#- URL cũ có tiền tố ngôn ngữ mặc định (/vi/product/t650/): bỏ tiền tố, giữ phần còn lại (/product/t650/) #}
+RewriteRule ^{{ site.defaultLang }}(?:/(.*))?$ /$1 [R=301,L]
+{#- Bản tiếng Anh đã bỏ: URL /en/ nào chưa có quy tắc riêng ở trên thì về trang chủ #}
+RewriteRule ^en(/.*)?$ / [R=301,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+ExpiresByType image/jpeg "access plus 6 months"
+ExpiresByType image/png "access plus 6 months"
+ExpiresByType image/webp "access plus 6 months"
+ExpiresByType image/gif "access plus 6 months"
+ExpiresByType image/svg+xml "access plus 6 months"
+</IfModule>

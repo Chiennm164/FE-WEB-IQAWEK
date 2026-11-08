@@ -9,7 +9,8 @@
 <button type="button" class="zchat-close" id="zchat-close" aria-label="{{ chat.close }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 </div>
 <div class="zchat-body">
-<div class="zchat-msg">👋 {{ chat.greeting }}</div>
+<div class="zchat-msg">👋 {{ chat.hotline }} <a href="tel:{{ site.telephone | replace(' ', '') }}">{{ site.hotline }}</a></div>
+<div class="zchat-msg">📲 {{ chat.greeting }}</div>
 <div class="zchat-qr">
 <img src="{{ site.zalo.qr }}" alt="{{ chat.qrAlt }}" width="240" height="240" loading="lazy">
 <p>{{ chat.qrHint }}</p>

@@ -1,10 +1,11 @@
 {#- Khung chung của mọi trang: <head>, header, menu mobile, footer, script. Markup giữ nguyên từ template của site cũ. -#}
+{%- import "partials/ui.njk" as ui -%}
 {%- set t = site[lang] -%}
 {%- set isHome = layout == "home.njk" -%}
 {%- set currentCatId = categoryId or (listPage.cat.id if listPage else null) -%}
 {%- set currentSection = (currentCatId | catPath)[0] if currentCatId else null -%}
 {%- set currentCat = currentCatId | category if currentCatId else null -%}
-{#- Tiêu đề: trang chủ dùng meta.siteTitle; trang khác "<tên trang> | <brand>".
+{#- Tiêu đề: trang chủ dùng meta.siteTitle; trang khác "<tên trang> | Kewaqi Việt Nam" (meta.company: phân biệt với site nhà máy kewaqi.com).
     Sản phẩm chỉ có mã model (vd. "C558") hoặc trùng tên danh mục thì thêm nhóm sản phẩm;
     trang danh sách từ trang 2 thêm số trang. -#}
 {%- set pageTitle = title -%}
@@ -14,7 +15,7 @@
 {%- if listPage and listPage.page > 1 -%}
   {%- set pageTitle = pageTitle + " – " + t.meta.page + " " + listPage.page -%}
 {%- endif -%}
-{%- set fullTitle = t.meta.siteTitle if isHome else pageTitle + " | " + site.brand -%}
+{%- set fullTitle = t.meta.siteTitle if isHome else pageTitle + " | " + t.meta.company -%}
 {#- Meta description: front matter "description"; sản phẩm chưa có thì "<brand> <tên>. <mô tả chung>";
     trang danh sách theo mẫu meta.listDescription -#}
 {%- if layout == "product.njk" and not description -%}
@@ -40,23 +41,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="{{ site.favicon }}"/>
+<link rel="icon" type="image/png" href="{{ site.favicon }}?v=2"/>
 <title>{{ fullTitle }}</title>
 <meta name="description" content="{{ metaDesc }}">
+{#- Mã xác minh Google Search Console (cách "Thẻ HTML"): điền site.googleVerification; để trống thì không in -#}
+{%- if site.googleVerification %}
+<meta name="google-site-verification" content="{{ site.googleVerification }}">
+{%- endif %}
 {% include "partials/seo.njk" %}
-<link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-common.css">
+{#- Tải sớm 3 file font Montserrat (trang tiếng Việt dùng cả 3 subset) để giảm thời gian chữ hiện bằng font dự phòng -#}
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-common.css?v={{ assetVersion }}">
 {#- Trang chủ dùng index.css thay main.css và không cần iconfont-pages -#}
 {%- if not isHome %}
-<link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-pages.css">
+<link rel="stylesheet" type="text/css" href="/assets/iconfont/iconfont-pages.css?v={{ assetVersion }}">
 {%- endif %}
-<link href="/assets/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/swiper.min.css" media="screen">
-<link href="/assets/css/reset.css" rel="stylesheet">
+<link href="/assets/css/animate.css?v={{ assetVersion }}" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/swiper.min.css?v={{ assetVersion }}" media="screen">
+<link href="/assets/css/reset.css?v={{ assetVersion }}" rel="stylesheet">
 {%- if not isHome %}
-<link href="/assets/css/main.css" rel="stylesheet">
+<link href="/assets/css/main.css?v={{ assetVersion }}" rel="stylesheet">
 {%- endif %}
 {%- for href in css %}
-<link href="{{ href }}" rel="stylesheet">
+<link href="{{ href }}?v={{ assetVersion }}" rel="stylesheet">
 {%- endfor %}
 </head>
 <body>
@@ -67,12 +76,12 @@
 <span></span>
 <span></span>
 </a>
-<a href="/{{ lang }}/" class="logo"><img src="/assets/images/logo.png" alt="{{ site.brand }}"></a>
+<a href="{{ lang | langHome }}" class="logo"><img src="/assets/images/logo.png" alt="{{ site.brand }}"></a>
 <div class="header-right white">
 <div class="header-menu">
 <ul>
 <li class="">
-<a href="/{{ lang }}/" title="{{ t.header.home }}">{{ t.header.home }}</a>
+<a href="{{ lang | langHome }}" title="{{ t.header.home }}">{{ t.header.home }}</a>
 </li>
 {%- for top in lang | topCats %}
 <li class="{{ 'current' if currentSection and currentSection.id == top.id }}">
@@ -92,21 +101,36 @@
 </ul>
 </div>
 <div class="header-tools">
-<div class="header-search">
-<a href="javascript:;"><i class="icon iconfont icon-sousuo_o"></i></a>
+<button type="button" class="header-search" id="hsearch-open" aria-label="{{ t.search.open }}" aria-expanded="false" aria-controls="hsearch"><i class="icon iconfont icon-sousuo_o" aria-hidden="true"></i></button>
 </div>
 </div>
+</div>
+{#- Ô tìm kiếm thả xuống ngay dưới header (điện thoại: toàn màn hình), gợi ý kết quả khi gõ: assets/js/search.js.
+    Chưa có JS thì form vẫn gửi tới trang kết quả. Chữ hiển thị: site[lang].search -#}
+<div class="hsearch" id="hsearch" hidden data-index="{{ lang | langHome }}search/index.json" data-tel="tel:{{ site.telephone | replace(' ', '') }}" data-hotline="{{ site.hotline }}" data-i18n="{{ t.search | dump }}">
+<div class="wrap">
+<form class="hsearch-form" method="get" action="{{ lang | langHome }}search/" role="search">
+<div class="hsearch-field">
+<i class="icon iconfont icon-sousuo_o" aria-hidden="true"></i>
+<input class="hsearch-input" type="search" name="q" placeholder="{{ t.search.placeholder }}" aria-label="{{ t.search.placeholder }}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+<button type="button" class="hsearch-clear" aria-label="{{ t.search.clear }}" hidden><i class="icon iconfont icon-guanbi" aria-hidden="true"></i></button>
+<button type="submit" class="hsearch-submit">{{ t.search.submit }}</button>
+</div>
+<button type="button" class="hsearch-close" aria-label="{{ t.search.close }}"><i class="icon iconfont icon-guanbi" aria-hidden="true"></i></button>
+</form>
+<div class="hsearch-body">
+<div class="hsearch-results" hidden></div>
+<div class="hsearch-idle">
+<div class="hsearch-label">{{ t.search.popular }}</div>
+{{ ui.searchChips(lang, collections.product) }}
+<p class="hsearch-hint">{{ t.search.hint }}</p>
+</div>
+</div>
+<p class="hsearch-status visually-hidden" role="status" aria-live="polite"></p>
 </div>
 </div>
 </header>
-<section class="clear"></section>
-<section class="search-box">
-<a href="javascript:;" class="close"><i class="icon iconfont icon-guanbi"></i></a>
-<form method="get" action="/{{ lang }}/search/">
-<input name="q" type="text" placeholder="{{ t.header.searchPlaceholder }}" autocomplete="off" />
-<button type="submit"><i class="icon iconfont icon-sousuo_o"></i></button>
-</form>
-</section>
+<div class="hsearch-backdrop" id="hsearch-backdrop" hidden></div>
 <section class="clear"></section>
 <section class="overlay"></section>
 <section class="subnav">
@@ -134,7 +158,7 @@
 </div>
 <h2><i class="icon iconfont icon-sousuo_o"></i> {{ t.header.search }}</h2>
 <div class="zoom-box">
-<form method="get" action="/{{ lang }}/search/">
+<form method="get" action="{{ lang | langHome }}search/">
 <input name="q" type="text" placeholder="{{ t.header.searchShort }}" autocomplete="off" />
 <button type="submit"><i class="icon iconfont icon-sousuo_o"></i></button>
 </form>
@@ -168,7 +192,7 @@
 <ul>
 {%- for link in t.footer.social %}
 <li>
-<a href="{{ link.url }}"><i class="icon iconfont {{ link.icon }}"></i><span>{{ link.label }}</span></a>
+<a href="{{ link.url }}"{% if link.url.startsWith('http') %} target="_blank" rel="noopener"{% endif %}><i class="icon iconfont {{ link.icon }}" aria-hidden="true"></i><span>{{ link.label }}</span></a>
 </li>
 {%- endfor %}
 </ul>
@@ -186,12 +210,13 @@
 </footer>
 {% include "partials/zalo-chat.njk" %}
 {#- Script đặt cuối trang để không chặn việc hiển thị nội dung; mọi script inline đều nằm sau các dòng này -#}
-<script type="text/javascript" src="/assets/js/wow.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/assets/js/swiper.min.js"></script>
-<script type="text/javascript" src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/wow.min.js?v={{ assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js?v={{ assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/swiper.min.js?v={{ assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/main.js?v={{ assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/search.js?v={{ assetVersion }}"></script>
 {%- for src in js %}
-<script type="text/javascript" src="{{ src }}"></script>
+<script type="text/javascript" src="{{ src }}?v={{ assetVersion }}"></script>
 {%- endfor %}
 <script>
 new WOW().init();
@@ -202,9 +227,5 @@ new WOW().init();
 </script>
 {%- endif %}
 {% block scripts %}{% endblock %}
-<script>
-window.SITE_FORM = {{ { endpoint: site.formEndpoint, mailto: site.contactEmail, thanks: t.form.thanks, mail: t.form.mailtoNotice, required: t.form.required } | dump | safe }};
-</script>
-<script type="text/javascript" src="/assets/js/forms.js"></script>
 </body>
 </html>

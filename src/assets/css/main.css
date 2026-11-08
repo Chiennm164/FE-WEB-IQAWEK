@@ -27,9 +27,9 @@
 	text-align: center;
 }
 .n-banner .word .h1{
-	font-family: 'Fontstyle2';
-	font-size: 80px;
-	line-height: 80px;
+	font-family: var(--font-heading);
+	font-size: var(--fs-hero);
+	line-height: 1.15;
 	text-transform: uppercase;
 	margin-bottom: 30px;
 	border-bottom: 1px rgba(255, 255, 255, .3) solid;
@@ -41,8 +41,6 @@
 }
 @media (max-width: 1280px) {
 	.n-banner .word .h1{
-		font-size: 60px;
-		line-height: 60px;
 		margin-bottom: 20px;
 		padding-bottom: 20px;
 	}
@@ -53,8 +51,6 @@
 }
 @media (max-width: 992px) {	
     .n-banner .word .h1{
-		font-size: 40px;
-		line-height: 40px;
 		margin-bottom: 10px;
 		padding-bottom: 10px;
 	}
@@ -65,13 +61,28 @@
 }
 @media (max-width: 767px) {
 	.n-banner .word .h1{
-		font-size: 20px;
-		line-height: 24px;
+		line-height: 1.25;
 		margin-bottom: 0;
 		padding-bottom: 6px;
 	}
+	/* Điện thoại: banner mọi trang cao cố định (ảnh cắt vừa khung), luôn có tiêu đề + mô tả tối đa 3 dòng
+	   → trang nào cũng cùng chiều cao và cùng cấu trúc chữ (kể cả trang Hỗ trợ) */
+	.n-banner{
+		height: 220px;
+		overflow: hidden;
+	}
+	.n-banner > img{
+		height: 100%;
+		object-fit: cover;
+	}
 	.n-banner .word .h2{
-		display: none;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+		margin-top: 8px;
+		font-size: 13px;
+		line-height: 19px;
 	}
 }
 
@@ -91,8 +102,13 @@
 }
 @media (max-width: 767px) {	
     .n-path{
-    	padding:10px 0;
+    	padding:6px 0;
     	font-size: 12px;
+    }
+    /* Link breadcrumb cao ~32px cho dễ bấm; khung breadcrumb giữ chiều cao như cũ */
+    .n-path a{
+    	display: inline-block;
+    	padding: 8px 0;
     }
 }
 
@@ -114,7 +130,7 @@
 }
 .n-page .prev,
 .n-page .next{
-	font-family: 'Fontstyle1', Arial, sans-serif;
+	font-family: var(--font-body);
 }
 .n-page .active{
 	background: var(--c-primary);
@@ -135,9 +151,15 @@
 	.n-page{
 		font-size: 14px;
 	}
+	/* Ô số trang tối thiểu 40×40px cho dễ bấm */
 	.n-page span,
 	.n-page a{
-		padding:2px 10px;
+		min-width: 40px;
+		min-height: 40px;
+		padding: 0 10px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 }
 
@@ -162,8 +184,8 @@
 	width: 70%;
 }
 .n-about .box1 .left dt{
-	font-size: 36px;
-	line-height: 36px;
+	font-size: var(--fs-h3);
+	line-height: 1.25;
 	border-bottom: 1px var(--c-ink) solid;
 	padding:10px 0;
 }
@@ -198,7 +220,7 @@
 .n-about .box2 .title{
 	border-top: 1px var(--c-ink) solid;
 	line-height: 60px;
-	font-size: 24px;
+	font-size: var(--fs-h4);
 	text-transform: uppercase;
 }
 .n-about .box2 .content img{
@@ -237,8 +259,6 @@
 		margin-top: 4%;
 	}
 	.n-about .box1 .left dt{
-		font-size: 24px;
-		line-height: 24px;
 		margin-top: 4%;
 	}
 	.n-about .box1 .left dd{
@@ -261,7 +281,6 @@
 	}
 	.n-about .box2 .title{
 		line-height: 50px;
-		font-size: 20px;
 	}
 	.n-about .box2 .content img{
 		width: 100%;
@@ -273,13 +292,9 @@
 	}
 }
 @media (max-width: 992px) {	
-    .n-about .box1 .left dt{
-		font-size: 20px;
-	}
 }
 @media (max-width: 767px) {	
 	.n-about .box1 .left dt{
-		font-size: 18px;
 		padding:6px 0;
 	}
 	.n-about .box2 .content .swiper-pagination{
@@ -311,7 +326,7 @@
 	background: var(--c-primary);
 	color: #fff;
 	line-height: 50px;
-	font-size: 20px;
+	font-size: var(--fs-label);
 	padding:0 15px;
 	text-transform: uppercase;
 }
@@ -364,7 +379,7 @@
 	background: var(--c-primary);
 	color: #fff;
 	line-height: 50px;
-	font-size: 20px;
+	font-size: var(--fs-label);
 	padding:0 15px;
 	text-transform: uppercase;
 }
@@ -374,10 +389,9 @@
 	border-top: none;
 	overflow: hidden;
 }
+/* ul là .swiper-wrapper: không đặt overflow: hidden (xem ghi chú ở .products-detail .box2 bên dưới) */
 .n-products .products-lastest .list ul{
-	width: 100%;
 	padding-top: 10px;
-	overflow: hidden;
 }
 .n-products .products-lastest .list li{
 	width: 100%;
@@ -448,8 +462,16 @@
 .n-products .products-list a{
 	display: block;
 }
+/* Ảnh thumbnail sản phẩm đều vuông (640×640): giữ sẵn khung vuông để thẻ đúng chiều cao ngay cả khi ảnh lazy chưa tải
+   (không thì ảnh cao 0, tên + nút của thẻ đó lệch lên và thẻ nhảy khi ảnh tải xong) */
+.n-products .products-list .image{
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+}
 .n-products .products-list .image img{
 	width: 100%;
+	height: 100%;
+	object-fit: contain;
 	display: block;
 }
 .n-products .products-list .word{
@@ -457,29 +479,21 @@
 	padding:15px;
 	text-align: center;
 }
+/* Tên sản phẩm tối đa 2 dòng (như tiêu đề thẻ tin tức); luôn chiếm đủ 2 dòng để nút "Xem chi tiết" các thẻ thẳng hàng */
 .n-products .products-list .word .title{
 	font-size: 18px;
-	 white-space: nowrap;
+	line-height: 1.4;
+	min-height: 2.8em;
+	overflow: hidden;
     text-overflow: ellipsis;
-    overflow: hidden;
-    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
+/* Kiểu nút: "Nút chung" trong reset.css */
 .n-products .products-list .word .more{
-	width: 120px;
-	height: 40px;
-	background: var(--c-primary);
-	margin:0 auto;
 	margin-top: 10px;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border:1px var(--c-primary) solid;
-    transition:all 200ms linear;
-}
-.n-products .products-list a:hover .word .more{
-	background: #fff;
-	color: var(--c-primary);
 }
 .n-products .products-detail{
 	width: 100%;
@@ -549,7 +563,8 @@
 	width: 54%;
 }
 .n-products .products-detail .box1 .right .title{
-	font-size: 24px;
+	font-size: var(--fs-h4);
+	line-height: 1.3;
 }
 .n-products .products-detail .box1 .right .typename{
 	margin-top: 6px;
@@ -591,7 +606,7 @@
 .n-products .products-detail .box1 .right .summary h4,
 .n-products .products-detail .box1 .right .summary h5,
 .n-products .products-detail .box1 .right .summary h6{
-	font-family: 'Fontstyle1', Arial, sans-serif !important;
+	font-family: var(--font-body) !important;
 }
 .n-products .products-detail .box1 .right .summary table{
     width: 100% !important;
@@ -631,22 +646,9 @@
 .n-products .products-detail .box1 .right .button li:last-child{
 	margin-right: 0;
 }
-.n-products .products-detail .box1 .right .button a{
-	display: flex;
-	background: var(--c-muted);
-	color: #fff;
-	padding:4px 20px;
-	text-transform: uppercase;
-	white-space: nowrap;
-	align-items: center;
-}
-.n-products .products-detail .box1 .right .button a:hover{
-	background: var(--c-primary);
-	color: #fff;
-}
+/* Kiểu nút: "Nút chung" trong reset.css (nút đầu nền cam, nút cuối viền cam) */
 .n-products .products-detail .box1 .right .button a i{
 	font-size: 12px;
-	margin-left: 10px;
 }
 .n-products .products-detail .box4{
 	width: 100%;
@@ -657,11 +659,30 @@
 	background: var(--c-primary);
 	padding:10px 15px;
 	color: #fff;
-	font-size: 20px;
+	font-size: var(--fs-label);
 	text-transform: uppercase;
 }
+/* Nội dung chép từ CMS cũ có bảng / khối rộng cố định (vd. C558: width 1041px): không để tràn ra ngoài màn hình;
+   phần quá rộng thì cuộn ngang trong khung thay vì bị cắt mất */
 .n-products .products-detail .box4 .content{
 	margin-top: 20px;
+	max-width: 100%;
+	overflow-x: auto;
+}
+.n-products .products-detail .box4 .content [style*="width"]{
+	max-width: 100% !important;
+}
+/* Đoạn chú thích CMS cũ đặt style="text-wrap-mode: nowrap": cho xuống dòng theo bề rộng khung */
+.n-products .products-detail .box4 .content [style*="nowrap"]{
+	text-wrap-mode: wrap !important;
+	white-space: normal !important;
+}
+/* Ô bảng của CMS cũ có style="word-break: break-all" làm chữ bị ngắt giữa từ ("khở i động"): chỉ ngắt ở khoảng trắng,
+   từ quá dài mới được bẻ */
+.n-products .products-detail .box4 .content td,
+.n-products .products-detail .box4 .content th{
+	word-break: normal !important;
+	overflow-wrap: break-word;
 }
 .n-products .products-detail .box4 .content img{
 	max-width: 100%;
@@ -687,7 +708,7 @@
 .n-products .products-detail .box4 .content h4,
 .n-products .products-detail .box4 .content h5,
 .n-products .products-detail .box4 .content h6{
-	font-family: 'Fontstyle1', Arial, sans-serif !important;
+	font-family: var(--font-body) !important;
 }
 .n-products .products-detail .box4 .content table{
     width: 100% !important;
@@ -730,7 +751,7 @@
 	background: var(--c-primary);
 	padding:10px 15px;
 	color: #fff;
-	font-size: 20px;
+	font-size: var(--fs-label);
 	text-transform: uppercase;
 }
 .n-products .products-detail .box2 .content{
@@ -740,11 +761,13 @@
 	padding:15px;
 	overflow: hidden;
 }
-.n-products .products-detail .box2 .content ul{
-	width: 100%;
-	overflow: hidden;
-}
+/* ul là .swiper-wrapper: không đặt overflow: hidden cho nó. Khi trượt sang nhóm sau, cả ul dịch sang trái nên vùng cắt
+   của ul dịch theo và cắt mất các thẻ của nhóm đó (bấm "next" thì slider trống). Phần thừa đã do .swiper-container cắt. */
+/* Thẻ sản phẩm liên quan luôn thẳng hàng dù tên dài ngắn khác nhau: mọi thẻ cao bằng thẻ cao nhất, tên tối đa 2 dòng
+   và luôn chiếm đủ chỗ 2 dòng, nút "Xem chi tiết" dính đáy thẻ (cùng cách với thẻ ở danh sách sản phẩm / tin tức) */
 .n-products .products-detail .box2 .content li{
+	height: auto; /* swiper.min.css đặt height: 100% (= cao theo nội dung); auto để thẻ giãn bằng thẻ cao nhất trong hàng */
+	display: flex;
 	border:1px var(--c-line) solid;
     transition:all 200ms linear;
 }
@@ -752,13 +775,22 @@
 	border-color: var(--c-primary);
 }
 .n-products .products-detail .box2 .content a{
+	flex: 1;
+	min-width: 0;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	justify-content: center;
+}
+/* Khung ảnh vuông giữ sẵn chỗ (xem .products-list .image) */
+.n-products .products-detail .box2 .content .image{
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
 }
 .n-products .products-detail .box2 .content img{
 	width: 100%;
+	height: 100%;
+	object-fit: contain;
 	display: block;
 }
 .n-products .products-detail .box2 .content .name{
@@ -766,26 +798,24 @@
 	text-align: center;
 	padding:0 15px;
 	margin-top: 10px;
+	line-height: 1.4;
+	min-height: 2.8em;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .n-products .products-detail .box2 .content .more{
 	width: 100%;
+	margin-top: auto;
     padding:10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.n-products .products-detail .box2 .content .more span{
-	background: var(--c-line);
-	padding:6px 18px;
-	display: block;
-	text-align: center;
-    transition:all 200ms linear;
-    color: var(--c-muted);
-}
-.n-products .products-detail .box2 .content a:hover .more span{
-	background: var(--c-primary);
-	color: #fff;
-}
+/* Kiểu nút: "Nút chung" trong reset.css */
 .n-products .products-detail .box2 .content .more span i{
 	font-size: 12px;
 }
@@ -799,58 +829,6 @@
 .n-products .products-detail .box2 .content .swiper-pagination .swiper-pagination-bullet{
 	background: var(--c-primary);
 }
-.n-products .products-detail .box3{
-	width: 100%;
-	overflow: hidden;
-	margin-top: 4%;
-}
-.n-products .products-detail .box3 .title{
-	background: var(--c-primary);
-	padding:10px 15px;
-	color: #fff;
-	font-size: 20px;
-	text-transform: uppercase;
-}
-.n-products .products-detail .box3 ul{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-.n-products .products-detail .box3 li{
-	width: 48%;
-	float: left;
-	margin-top: 20px;
-}
-.n-products .products-detail .box3 li.wid-100{
-	width: 100%;
-}
-.n-products .products-detail .box3 input,
-.n-products .products-detail .box3 textarea{
-	border:1px var(--c-line) solid;
-	background: #fff;
-	width: 100%;
-}
-.n-products .products-detail .box3 input{
-	height: 50px;
-	padding:0 14px;
-}
-.n-products .products-detail .box3 textarea{
-	height: 250px;
-	resize: none;
-	padding:14px;
-	display: block;
-}
-.n-products .products-detail .box3 li .btn{
-	width: 200px;
-	border:none;
-	background: var(--c-primary);
-	color: #fff;
-	margin:0 auto;
-	display: block;
-	cursor: pointer;
-	text-transform: uppercase;
-	font-size: 18px;
-}
 @media (max-width: 1280px) {	
 	.n-products .products-left{
 		width: 200px;
@@ -860,7 +838,6 @@
 	}
 	.n-products .products-type .title{
 		line-height: 40px;
-		font-size: 16px;
 		padding:0 10px;
 	}
 	.n-products .products-type > ul > li{
@@ -871,7 +848,6 @@
 	}
 	.n-products .products-lastest .title{
 		line-height: 40px;
-		font-size: 16px;
 		padding:0 10px;
 	}
 	.n-products .products-lastest .list li{
@@ -891,16 +867,9 @@
 	.n-products .products-list .word{
 		padding:10px;
 	}
-	.n-products .products-list .word .more{
-		width: 110px;
-		height: 30px;
-	}
 	.n-products .products-detail .box1 .left .smImg .swiper-button-prev:after,
 	.n-products .products-detail .box1 .left .smImg .swiper-button-next:after{
 		font-size: 16px;
-	}
-	.n-products .products-detail .box1 .right .title{
-		font-size: 18px;
 	}
 	.n-products .products-detail .box1 .right .typename{
 		margin-top: 4px;
@@ -908,24 +877,11 @@
 	.n-products .products-detail .box1 .right .typename a{
 		color: var(--c-muted);
 	}
-	.n-products .products-detail .box1 .right .button a{
-		padding:4px 10px;
-	}
-	.n-products .products-detail .box1 .right .button a:hover{
-		background: var(--c-primary);
-		color: #fff;
-	}
-	.n-products .products-detail .box1 .right .button a i{
-		font-size: 12px;
-		margin-left: 6px;
-	}
 	.n-products .products-detail .box4 .title{
 		padding:10px;
-		font-size: 16px;
 	}
 	.n-products .products-detail .box2 .title{
 		padding:10px;
-		font-size: 16px;
 	}
 	.n-products .products-detail .box2 .content{
 		padding:10px;
@@ -933,28 +889,9 @@
 	.n-products .products-detail .box2 .content .name{
 		padding:0 10px;
 	}
-	.n-products .products-detail .box2 .content .more span{
-		padding:4px 14px;
-	}
-	.n-products .products-detail .box3 .title{
-		padding:10px;
-		font-size: 16px;
-	}
-	.n-products .products-detail .box3 li{
-		margin-top: 10px;
-	}
-	.n-products .products-detail .box3 input{
-		height: 40px;
-		padding:0 10px;
-	}
-	.n-products .products-detail .box3 textarea{
-		padding:10px;
-	}
-	.n-products .products-detail .box3 li .btn{
-		width: 140px;
-		font-size: 16px;
-	}
 }
+/* ≤ 992px: một cột. Nội dung chính (lưới / chi tiết sản phẩm) lên trước, khung danh mục + sản phẩm nổi bật xuống dưới,
+   để người dùng thấy sản phẩm ngay mà không phải cuộn qua cả danh mục */
 @media (max-width: 992px) {	
 	.n-products{
     	flex-direction: column;
@@ -964,8 +901,14 @@
     	width: 100%;
     }
     .n-products .products-right{
-    	margin-top: 4%;
+    	order: -1;
     }
+    .n-products .products-left{
+    	margin-top: 6%;
+    }
+}
+/* Điện thoại: lưới sản phẩm 2 cột (máy tính bảng giữ 3 cột như desktop để thẻ không quá cao) */
+@media (max-width: 767px) {
     .n-products .products-list li{
     	width: 49%;
     }
@@ -978,12 +921,16 @@
 }
 @media (max-width: 767px) {	
 	.n-products .products-type > ul > li{
-		padding:6px 10px;
+		padding:2px 10px;
 	}
-    .n-products .products-list .word .more{
-    	width: 90px;
-    	font-size: 12px;
-    }
+	/* Link danh mục cao ≥ 32px cho dễ bấm */
+	.n-products .products-type > ul > li > a{
+		padding: 6px 0;
+	}
+	.n-products .products-type > ul > li > ul > li > a{
+		display: block;
+		padding: 6px 10px;
+	}
     .n-products .products-detail .box1{
     	flex-direction: column;
     }
@@ -994,9 +941,147 @@
     .n-products .products-detail .box1 .right{
     	margin-top: 4%;
     }
-    .n-products .products-detail .box3 li{
-    	width: 100%;
-    }
+}
+
+/* Trang kết quả tìm kiếm (routes/search.njk, assets/js/search.js): ô tìm lại, dòng tóm tắt, chip danh mục khớp,
+   lưới sản phẩm (dùng chung .products-list), khối không có kết quả, bài viết và hỏi đáp liên quan */
+.search-form{
+	height: 50px;
+	display: flex;
+	border: 1px solid var(--c-line-strong);
+	background: #fff;
+	transition: border-color .2s;
+}
+.search-form:focus-within{
+	border-color: var(--c-primary);
+}
+.search-form input{
+	flex: 1;
+	min-width: 0;
+	padding: 0 16px;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	font-size: 16px;
+}
+/* Kiểu nút: "Nút chung" trong reset.css; cao bằng ô nhập */
+.search-form button{
+	align-self: stretch;
+	min-height: 0;
+}
+.search-summary{
+	margin: 18px 0 20px;
+	color: var(--c-text);
+}
+.search-summary strong{
+	color: var(--c-ink);
+	font-weight: 700;
+}
+.search-cats{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+	margin-bottom: 24px;
+}
+.search-cats > span{
+	color: var(--c-muted);
+	font-size: 14px;
+}
+.n-products .products-list .word .title mark{
+	background: none;
+	color: var(--c-primary);
+	font-weight: 700;
+}
+.search-empty{
+	margin-top: 20px;
+	padding: 28px;
+	border: 1px solid var(--c-line);
+	background: var(--c-soft);
+}
+.search-empty-title{
+	color: var(--c-ink);
+	font-size: var(--fs-h4);
+	font-weight: 700;
+	line-height: 1.35;
+}
+.search-empty-title + p{
+	margin: 10px 0 16px;
+	color: var(--c-text);
+	line-height: 1.6;
+}
+.search-related{
+	margin-top: 40px;
+}
+/* Thanh tiêu đề nền cam: cùng kiểu "Sản phẩm liên quan" ở chi tiết sản phẩm */
+.search-related-title{
+	padding: 10px 15px;
+	background: var(--c-primary);
+	color: #fff;
+	font-size: var(--fs-label);
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.search-related ul{
+	border: 1px solid var(--c-line);
+	border-top: 0;
+}
+.search-related li + li{
+	border-top: 1px solid var(--c-line);
+}
+.search-related a{
+	display: flex;
+	align-items: baseline;
+	gap: 12px;
+	padding: 14px 15px;
+	transition: background-color .2s;
+}
+.search-related a:hover{
+	background: var(--c-soft);
+}
+.search-tag{
+	flex: 0 0 auto;
+	padding: 2px 8px;
+	border: 1px solid var(--c-primary);
+	color: var(--c-primary);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.search-rel-title{
+	flex: 1;
+	min-width: 0;
+	line-height: 1.5;
+}
+.search-rel-title mark{
+	background: none;
+	color: var(--c-primary);
+	font-weight: 700;
+}
+.search-rel-meta{
+	flex: 0 0 auto;
+	color: var(--c-muted);
+	font-size: 13px;
+}
+@media (max-width: 767px) {
+	.search-form{
+		height: 44px;
+	}
+	.search-form input{
+		padding: 0 12px;
+	}
+	.search-empty{
+		padding: 20px 16px;
+	}
+	.search-related a{
+		flex-wrap: wrap;
+		gap: 6px 10px;
+		padding: 12px;
+	}
+	.search-rel-title{
+		flex-basis: 100%;
+		order: 2;
+	}
 }
 
 /* news */
@@ -1051,7 +1136,7 @@
 	color: var(--c-muted);
 }
 .n-news .news-list .word .title{
-	font-size: 22px;
+	font-size: var(--fs-h4);
 	line-height: 1.4;
 	min-height: 2.8em;
 	margin-top: 10px;
@@ -1078,43 +1163,74 @@
     line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+/* Kiểu nút: "Nút chung" trong reset.css; nút luôn nằm đáy thẻ, rộng theo chữ */
 .n-news .news-list .word .more{
-	width: 160px;
-	height: 42px;
 	margin-top: auto;
-	background: var(--c-primary);
-	color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.n-news .news-list .word .more i{
-	margin-left: 10px;
+	align-self: flex-start;
 }
 /* Chi tiết tin: một cột, căn giữa */
 .n-news .news-detail{
-	max-width: 960px;
+	max-width: 880px;
 	margin: 0 auto;
 	border:1px var(--c-line) solid;
-	padding:30px 40px;
+	padding:48px 56px;
 }
 .n-news .news-detail .title{
 	text-align: center;
-	font-size: 28px;
-	line-height: 1.4;
+	font-size: var(--fs-h3);
+	font-weight: 700;
+	line-height: 1.35;
 }
 .n-news .news-detail .date{
 	text-align: center;
 	color: var(--c-muted);
-	margin-top: 10px;
+	font-size: 14px;
+	margin-top: 12px;
 }
+/* Nội dung: một đường kẻ ngăn với tiêu đề; cuối bài không kẻ (đã bỏ "Bài trước / Bài sau") */
 .n-news .news-detail .content{
-	padding:30px 0;
-	border-bottom: 1px var(--c-line) solid;
+	margin-top: 28px;
+	padding-top: 28px;
 	border-top:1px var(--c-line) solid;
-	margin: 20px 0;
+	color: var(--c-text);
+	font-size: 16px;
 	line-height: 1.8;
-	font-family: 'Fontstyle1', Arial, sans-serif !important;
+	font-family: var(--font-body) !important;
+}
+/* reset.css xoá margin của p, ul… và body dùng font-weight 300 nên <strong> không đậm lên: trả lại kiểu chữ bài viết */
+.n-news .news-detail .content > * + *{
+	margin-top: 1em;
+}
+/* Đoạn chỉ gồm một dòng in đậm = tiêu đề mục ("1. Khảo sát…"): cách xa đoạn trên, sát đoạn nội dung của nó */
+.n-news .news-detail .content > p:has(> strong:only-child){
+	margin-top: 1.6em;
+}
+.n-news .news-detail .content > p:has(> strong:only-child) + *{
+	margin-top: .4em;
+}
+.n-news .news-detail .content strong,
+.n-news .news-detail .content b{
+	font-weight: 700;
+	color: var(--c-ink);
+}
+.n-news .news-detail .content a{
+	color: var(--c-primary);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+.n-news .news-detail .content a:hover{
+	color: var(--c-primary-dark);
+}
+.n-news .news-detail .content ul{
+	padding-left: 1.5em;
+	list-style: disc;
+}
+.n-news .news-detail .content ol{
+	padding-left: 1.5em;
+	list-style: decimal;
+}
+.n-news .news-detail .content li{
+	list-style: inherit;
 }
 .n-news .news-detail .content th,
 .n-news .news-detail .content td,
@@ -1127,21 +1243,11 @@
 .n-news .news-detail .content h4,
 .n-news .news-detail .content h5,
 .n-news .news-detail .content h6{
-	font-family: 'Fontstyle1', Arial, sans-serif !important;
+	font-family: var(--font-body) !important;
 }
 .n-news .news-detail .content img{
 	max-width: 100%;
 	height: auto;
-}
-.n-news .news-detail .page,
-.n-news .news-detail .page a{
-	color: var(--c-muted);
-}
-.n-news .news-detail .page li + li{
-	margin-top: 8px;
-}
-.n-news .news-detail .page a:hover{
-	color: var(--c-primary);
 }
 @media (max-width: 1280px) {
 	.n-news .news-list{
@@ -1150,25 +1256,12 @@
 	.n-news .news-list .word{
 		padding:20px;
 	}
-	.n-news .news-list .word .title{
-		font-size: 18px;
-	}
 	.n-news .news-list .word .content{
 		font-size: 14px;
 		margin: 10px 0 16px 0;
 	}
-	.n-news .news-list .word .more{
-		width: 130px;
-		height: 36px;
-	}
 	.n-news .news-detail{
-		padding:20px 24px;
-	}
-	.n-news .news-detail .title{
-		font-size: 22px;
-	}
-	.n-news .news-detail .content{
-		padding:20px 0;
+		padding:36px 40px;
 	}
 }
 @media (max-width: 767px) {
@@ -1183,13 +1276,15 @@
 		min-height: 0;
 	}
 	.n-news .news-detail{
-		padding:15px;
-	}
-	.n-news .news-detail .title{
-		font-size: 18px;
+		padding:24px 16px;
 	}
 	.n-news .news-detail .date{
-		margin-top: 4px;
+		margin-top: 8px;
+	}
+	.n-news .news-detail .content{
+		margin-top: 20px;
+		padding-top: 20px;
+		font-size: 15px;
 	}
 }
 
@@ -1205,10 +1300,12 @@
 .n-service .box1 .title{
 	text-align: center;
 }
+/* Tiêu đề mục trang con: cùng kiểu tiêu đề "Câu hỏi thường gặp" (trang Hỗ trợ) */
 .n-service .box1 .title .h1{
-	font-size: 48px;
-	line-height: 48px;
-	color: var(--c-primary)
+	font-family: var(--font-heading);
+	font-size: var(--fs-h3);
+	line-height: 1.25;
+	color: var(--c-ink);
 }
 .n-service .box1 .title .h2{
 	color: var(--c-muted);
@@ -1241,7 +1338,7 @@
 	width: calc(94% - 80px);
 }
 .n-service .box1 .content .t{
-	font-size: 28px;
+	font-size: var(--fs-h4);
 	color: var(--c-primary);
 	text-transform: uppercase;
 }
@@ -1250,8 +1347,8 @@
 }
 .n-service .box2{
 	width: 100%;
-	background: url(../images/service-why-us-bg.jpg) no-repeat center top;
-	background-attachment: fixed;
+	/* Ảnh nền phủ theo khối, hiển thị một phần ảnh — không dùng fixed (ảnh bị phóng theo cả màn hình nên nhoè), xem .in-about */
+	background: #1c1c1c url(../images/service-why-us-bg.jpg) no-repeat center center;
 	background-size: cover;
 	overflow: hidden;
 	margin-top: 60px;
@@ -1260,23 +1357,27 @@
 }
 .n-service .box2 .title{
 	text-align: center;
-	font-size: 48px;
-	line-height: 48px;
+	font-family: var(--font-heading);
+	font-size: var(--fs-h2);
+	line-height: 1.2;
 	text-transform: uppercase;
 }
+/* 4 cột desktop → 2 cột máy tính bảng → 1 cột điện thoại (xem @media bên dưới) */
 .n-service .box2 .content ul{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0 40px;
 	text-align: center;
 }
 .n-service .box2 .content li{
-	width: 23%;
 	margin-top: 60px;
 }
-.n-service .box2 .content .image img{
+/* Icon SVG nét mảnh, cùng kiểu icon số liệu trang chủ (.in-about .ico); màu trắng theo chữ của .box2 */
+.n-service .box2 .content .ico{
 	display: block;
-	margin:0 auto;
+	width: 64px;
+	height: 64px;
+	margin: 0 auto;
 }
 .n-service .box2 .content .word{
 	margin-top: 20px;
@@ -1293,20 +1394,22 @@
 	margin-top: 20px;
 	line-height: 1.6;
 }
+/* Nút trên nền ảnh tối: cùng kích thước "Nút chung" (reset.css), viền trắng thay cho nền cam */
 .n-service .box2 .more a{
 	border:1px #fff solid;
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: #fff;
-	text-align: center;
 	width: fit-content;
 	max-width: 100%;
-	padding:0 40px;
-	line-height: 50px;
+	min-height: var(--btn-h);
+	padding:0 var(--btn-px);
+	font-size: var(--btn-fs);
+	font-weight: 600;
 	white-space: nowrap;
-	letter-spacing: 1px;
 	margin:0 auto;
 	margin-top: 60px;
-	text-transform: uppercase;
     transition:all 200ms linear;
 }
 .n-service .box2 .more a:hover{
@@ -1314,10 +1417,6 @@
 	color: var(--c-primary);
 }
 @media (max-width: 1280px) {
-	.n-service .box1 .title .h1{
-        font-size: 36px;
-        line-height: 36px;
-	}
 	.n-service .box1 .content{
 		padding:4% 0;
 		margin-top: 4%;
@@ -1328,10 +1427,6 @@
 	.n-service .box2{
 		margin-top: 6%;
 		padding:8% 0;
-	}
-	.n-service .box2 .title{
-		font-size: 36px;
-		line-height: 36px;
 	}
 	.n-service .box2 .content li{
 		margin-top: 6%;
@@ -1350,9 +1445,6 @@
 	}
 }
 @media (max-width: 992px) {	
-	.n-service .box1 .title .h1{
-        font-size: 24px;
-	}
 	.n-service .box1 .title .h2{
 		margin-top: 0;
 	}
@@ -1372,21 +1464,25 @@
 	.n-service .box1 .content .word{
 		width: calc(96% - 60px);
 	}
-	.n-service .box1 .content .word .t{
-		font-size: 18px;
-	}
-	.n-service .box2 .title{
-		font-size: 24px;
-	}
-	.n-service .box2 .content li{
-		width: 49%;
+	.n-service .box2 .content ul{
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0 32px;
 	}
 }
 @media (max-width: 767px) {
-	.n-service .box2 .more a{
-		padding:0 24px;
-		line-height: 42px;
-		font-size: 14px;
-		letter-spacing: 0;
+	.n-service .box2 .content ul{
+		grid-template-columns: minmax(0, 1fr);
+		max-width: 420px;
+		margin: 0 auto;
+	}
+	.n-service .box2 .content li{
+		margin-top: 40px;
+	}
+	.n-service .box2 .content .ico{
+		width: 52px;
+		height: 52px;
+	}
+	.n-service .box2 .content .word .t{
+		min-height: 0;
 	}
 }

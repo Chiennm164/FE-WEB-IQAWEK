@@ -1,10 +1,10 @@
 {
-    "url": "https://www.kewaqi.com",
+    "url": "https://www.kewaqi.com.vn",
+    "googleVerification": "",
     "defaultLang": "vi",
     "langs": [
         "vi"
     ],
-    "formEndpoint": "",
     "contactEmail": "vietnamkewaqi@gmail.com",
     "favicon": "/assets/media/brand/favicon.png",
     "brand": "Kewaqi",
@@ -14,7 +14,7 @@
     "hotline": "0983 039 686",
     "zalo": {
         "qr": "/assets/images/zalo-qr.png",
-        "link": ""
+        "link": "https://zalo.me/0983039686"
     },
     "vi": {
         "meta": {
@@ -39,7 +39,6 @@
             "home": "Trang chủ",
             "menu": "Danh mục",
             "search": "Tìm kiếm",
-            "searchPlaceholder": "Nhập từ khoá",
             "searchShort": "Từ khoá"
         },
         "product": {
@@ -47,36 +46,44 @@
             "categoryLabel": "Danh mục:",
             "summary": "Mô tả ngắn:",
             "interested": "Nếu bạn quan tâm đến sản phẩm của chúng tôi, bạn có thể:",
-            "inquiry": "Gửi yêu cầu",
-            "contact": "Liên hệ",
+            "hotline": "Gọi hotline",
             "backList": "Quay lại danh sách",
             "detail": "Chi tiết sản phẩm",
             "related": "Sản phẩm liên quan",
             "relatedMore": "Xem chi tiết",
             "listMore": "Xem chi tiết",
-            "inquiryTitle": "Yêu cầu báo giá sản phẩm",
             "empty": "Chưa có sản phẩm trong mục này."
         },
         "news": {
             "more": "Xem chi tiết",
             "latest": "Tin mới nhất",
             "dateLabel": "Ngày:",
-            "prev": "Bài trước:",
-            "next": "Bài sau:",
             "empty": "Chưa có bài viết trong mục này."
-        },
-        "form": {
-            "namePlaceholder": "Nhập họ tên của bạn (2–50 ký tự)",
-            "emailPlaceholder": "Nhập địa chỉ email",
-            "messagePlaceholder": "Nhập nội dung lời nhắn",
-            "submit": "Gửi",
-            "thanks": "Gửi thành công, chúng tôi sẽ liên hệ với bạn sớm nhất!",
-            "mailtoNotice": "Ứng dụng email của bạn sẽ được mở để gửi lời nhắn.",
-            "required": "Vui lòng điền đầy đủ các mục bắt buộc."
         },
         "search": {
             "title": "Kết quả tìm kiếm",
-            "noResults": "Không tìm thấy sản phẩm phù hợp"
+            "placeholder": "Tìm máy, mã model, bài viết…",
+            "submit": "Tìm kiếm",
+            "open": "Tìm kiếm",
+            "close": "Đóng tìm kiếm",
+            "clear": "Xoá từ khoá",
+            "popular": "Danh mục sản phẩm",
+            "hint": "Gõ có dấu hay không dấu đều được, ví dụ: may cat co, G43, khoan dat.",
+            "loading": "Đang tìm…",
+            "loadError": "Chưa tải được gợi ý. Nhấn Enter để xem kết quả tìm kiếm.",
+            "pageError": "Chưa tải được dữ liệu tìm kiếm. Vui lòng tải lại trang.",
+            "products": "Sản phẩm",
+            "categories": "Danh mục",
+            "articles": "Bài viết",
+            "faq": "Hỏi đáp & hướng dẫn",
+            "viewAll": "Xem tất cả {n} sản phẩm",
+            "found": "Tìm thấy {n} sản phẩm cho “{q}”",
+            "allProducts": "Tất cả sản phẩm ({n})",
+            "status": "{p} sản phẩm, {o} nội dung khác",
+            "related": "Bài viết và hỏi đáp liên quan",
+            "noProducts": "Không tìm thấy sản phẩm nào cho “{q}”",
+            "tips": "Thử gõ ngắn hơn (vd. “cắt cỏ”), tìm theo mã model (vd. G43, C558) hoặc xem theo danh mục:",
+            "hotline": "Cần tư vấn chọn máy? Gọi"
         },
         "footer": {
             "links": "Liên kết",
@@ -87,17 +94,22 @@
                 {
                     "icon": "icon-facebook",
                     "label": "Facebook",
-                    "url": "#"
+                    "url": "https://www.facebook.com/kewaqivietnam"
                 },
                 {
                     "icon": "icon-youtube",
-                    "label": "Youtube",
-                    "url": "#"
+                    "label": "YouTube",
+                    "url": "https://www.youtube.com/@Dienmaykewaqi"
                 },
                 {
-                    "icon": "icon-linkedin",
-                    "label": "LinkedIn",
-                    "url": "#"
+                    "icon": "icon-tiktok",
+                    "label": "TikTok",
+                    "url": "https://www.tiktok.com/@anhtandienmaynongnghiep"
+                },
+                {
+                    "icon": "icon-shopee",
+                    "label": "Shopee",
+                    "url": "https://s.shopee.vn/1Bmy3Fpu2"
                 }
             ],
             "copyrightLeft": "Bản quyền © 2026 Kewaqi Việt Nam. Bảo lưu mọi quyền.",
@@ -107,7 +119,8 @@
             "button": "Chat Zalo với Kewaqi",
             "title": "Kewaqi Việt Nam",
             "status": "Trực tuyến",
-            "greeting": "Anh chị cần hỗ trợ gì thì quét Zalo cho Kewaqi nha",
+            "hotline": "Liên hệ hotline:",
+            "greeting": "Quét QR để kết nối đến Zalo Kewaqi",
             "qrAlt": "Mã QR Zalo của Kewaqi Việt Nam",
             "qrHint": "Mở Zalo › Quét mã QR",
             "openZalo": "Mở Zalo",

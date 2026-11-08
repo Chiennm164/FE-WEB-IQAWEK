@@ -28,7 +28,7 @@
 </div>
 <div class="right">
 <h1 class="title">{{ title }}</h1>
-<div class="typename">{{ t.product.categoryLabel }}<a href="{{ cat.url }}">{{ cat.name }}</a></div>
+<div class="typename">{{ t.product.categoryLabel }} <a href="{{ cat.url }}">{{ cat.name }}</a></div>
 <div class="summary">
 <div class="t">{{ t.product.summary }}</div>
 <div class="c">{{ summary | safe }}</div>
@@ -37,8 +37,7 @@
 <div class="t">{{ t.product.interested }}</div>
 <div class="c">
 <ul>
-<li><a href="#inquiry">{{ t.product.inquiry }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
-<li><a href="{{ (lang | sectionRoot('contact')).url }}">{{ t.product.contact }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
+<li><a href="tel:{{ site.telephone | replace(' ', '') }}">{{ t.product.hotline }} {{ site.hotline }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
 <li><a href="{{ cat.url }}">{{ t.product.backList }} <i class="icon iconfont icon-xiangyoujiantou"></i></a></li>
 </ul>
 </div>
@@ -51,9 +50,12 @@
 </div>
 <div class="box2 wow fadeInUp" data-wow-delay="0.45s">
 <div class="title">{{ t.product.related }}</div>
-<div class="content swiper-container">
+{#- .content giữ viền + lề trong; khung Swiper nằm bên trong để vùng cắt sát mép thẻ (không lộ thẻ bên cạnh trong phần lề) -#}
+<div class="content">
+<div class="swiper-container">
 <ul class="swiper-wrapper">
-{%- for product in langProducts | latest(12) %}
+{#- 8 sản phẩm gần nhất với sản phẩm đang xem (không gồm chính nó): xem relatedProducts trong eleventy.config.js -#}
+{%- for product in collections.product | relatedProducts(id, lang, 8) %}
 <li class="swiper-slide">
 <a title="{{ product.data.title }}" href="{{ product.url }}">
 <div class="image"><img src="{{ product.data.thumb }}" alt="{{ product.data.title }}"></div>
@@ -67,27 +69,6 @@
 </ul>
 <div class="swiper-pagination"></div>
 </div>
-</div>
-<div class="box3 wow fadeInUp" data-wow-delay="0.6s" id="inquiry">
-<div class="title">{{ t.product.inquiryTitle }}</div>
-<div class="content">
-<form method="post" action="" data-form>
-<input type="hidden" name="product" value="{{ title }}"/>
-<ul>
-<li>
-<input type="text" name="name" value="" minlength="2" maxlength="60" required placeholder="{{ t.form.namePlaceholder }}" title="{{ t.form.namePlaceholder }}"/>
-</li>
-<li>
-<input type="email" name="email" value="" required placeholder="{{ t.form.emailPlaceholder }}" title="{{ t.form.emailPlaceholder }}" />
-</li>
-<li class="wid-100">
-<textarea name="message" minlength="10" maxlength="5000" required title="{{ t.form.messagePlaceholder }}" placeholder="{{ t.form.messagePlaceholder }}"></textarea>
-</li>
-<li class="wid-100">
-<input type="submit" class="btn" value="{{ t.form.submit }}"/>
-</li>
-</ul>
-</form>
 </div>
 </div>
 </div>

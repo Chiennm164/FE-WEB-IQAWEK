@@ -1,14 +1,17 @@
 ---
-# Sinh dist/_redirects (cú pháp Cloudflare Workers / Pages): chuyển hướng 301 từ URL cũ sang URL mới
+# Sinh dist/_redirects (cú pháp Cloudflare Workers / Pages): chuyển hướng 301 từ URL cũ sang URL mới.
+# Quy tắc được xét từ trên xuống, quy tắc đầu tiên khớp được dùng: URL cụ thể (redirects.json) trước, quy tắc chung sau.
 permalink: /_redirects
 eleventyExcludeFromCollections: true
 ---
-/  /{{ site.defaultLang }}/  301
 {%- for old, target in redirects %}
 {%- set line = old | redirectRule(target) %}
 {%- if line %}
 {{ line }}
 {%- endif %}
 {%- endfor %}
-{#- Bản tiếng Anh đã bỏ: URL /en/ nào chưa có quy tắc riêng ở trên thì về trang chủ tiếng Việt #}
-/en/*  /{{ site.defaultLang }}/  301
+{#- URL cũ có tiền tố ngôn ngữ mặc định (/vi/product/t650/): bỏ tiền tố, giữ phần còn lại (/product/t650/) #}
+/{{ site.defaultLang }}  /  301
+/{{ site.defaultLang }}/*  /:splat  301
+{#- Bản tiếng Anh đã bỏ: URL /en/ nào chưa có quy tắc riêng ở trên thì về trang chủ #}
+/en/*  /  301

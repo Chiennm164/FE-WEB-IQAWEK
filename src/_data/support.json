@@ -1,7 +1,6 @@
 {
     "vi": {
         "hero": {
-            "eyebrow": "KEWAQI · CUSTOMER SUPPORT",
             "text": "Tổng hợp hướng dẫn xử lý sự cố, bảo dưỡng và lựa chọn dụng cụ làm vườn KEWAQI. Tìm câu hỏi bạn đang quan tâm hoặc mở từng mục để xem hướng dẫn chi tiết.",
             "points": [
                 "Hướng dẫn dễ hiểu",
@@ -58,7 +57,6 @@
             "title": "Cần hỗ trợ thêm?",
             "text": "Chuẩn bị model máy và mô tả sự cố để được tư vấn chính xác hơn.",
             "call": "Gọi",
-            "zalo": "Chat Zalo với Kewaqi",
             "email": "Email"
         },
         "items": [
@@ -320,6 +318,373 @@
                 "stepsTitle": "Các bước cần làm",
                 "safety": false
             }
-        ]
+        ],
+        "operation": {
+            "kicker": "Hướng dẫn sử dụng",
+            "title": "Hướng dẫn vận hành máy cắt cỏ",
+            "text": "Các bước sử dụng máy cắt cỏ đúng kỹ thuật và an toàn — từ chuẩn bị, khởi động, thao tác cắt đến tắt máy và bảo dưỡng.",
+            "stepLabel": "Bước",
+            "prev": "Bước trước",
+            "next": "Bước tiếp theo",
+            "doTitle": "Nên làm",
+            "dontTitle": "Tuyệt đối không làm",
+            "groups": [
+                {
+                    "id": "van-hanh-buoc-1",
+                    "no": "1",
+                    "short": "Bảo hộ & kiểm tra",
+                    "name": "Trang bị bảo hộ & Kiểm tra trước khi vận hành",
+                    "articles": [
+                        {
+                            "id": "van-hanh-1",
+                            "title": "Trang bị bảo hộ cá nhân (Bắt buộc)",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Mắt và mặt",
+                                    "text": "Đeo kính bảo hộ chống văng bắn hoặc mặt nạ lưới che toàn bộ khuôn mặt."
+                                },
+                                {
+                                    "title": "Chân và bàn chân",
+                                    "text": "Mang ủng cao su dày hoặc giày bảo hộ cổ cao, mặc quần dài bằng vải dày (hoặc đeo thêm tấm chắn ống đồng)."
+                                },
+                                {
+                                    "title": "Tay và tai",
+                                    "text": "Đeo găng tay vải có độ bám tốt chống trơn trượt và giảm tê tay do rung động; dùng nút bịt tai nếu làm việc liên tục nhiều giờ với máy 2 thì tiếng nổ lớn."
+                                }
+                            ],
+                            "do": "Trang bị đầy đủ kính, ủng, quần dài trước khi nổ máy vì lưỡi cắt quay 7.000 – 10.000 vòng/phút.",
+                            "dont": "Đi dép lê, chân đất hoặc mặc quần đùi khi cắt cỏ."
+                        },
+                        {
+                            "id": "van-hanh-2",
+                            "title": "Kiểm tra máy và khu vực làm việc",
+                            "numbered": true,
+                            "points": [
+                                {
+                                    "title": "Dọn dẹp hiện trường",
+                                    "text": "Nhặt bỏ đá tảng, gạch vỡ, dây kẽm gai, chai thủy tinh, gốc cây mục hoặc mảnh sắt vụn ẩn trong cỏ."
+                                },
+                                {
+                                    "title": "Kiểm tra tấm chắn cỏ",
+                                    "text": "Đảm bảo tấm chắn nhựa cứng phía trên đầu bò lắp chắc chắn, không nứt vỡ."
+                                },
+                                {
+                                    "title": "Kiểm tra lưỡi cắt và ốc đầu bò",
+                                    "text": "",
+                                    "sub": [
+                                        "Lưỡi thép: Không bị nứt ngầm, mẻ lớn hay cong vênh. Siết chặt ốc bắt lưỡi bằng tuýp mở bugi (lưu ý ốc đầu bò là ren ngược – vặn ngược chiều kim đồng hồ là siết chặt).",
+                                        "Ổ cước: Độ dài dây cước hai bên phải đều nhau (12 – 15 cm mỗi bên) để tránh lệch tâm gây rung máy."
+                                    ]
+                                },
+                                {
+                                    "title": "Kiểm tra ốc liên kết",
+                                    "text": "Siết chặt ốc cùm tay cầm, ốc bắp chuối (cùm côn), kiểm tra dây ga và công tắc điện."
+                                }
+                            ],
+                            "do": "Kiểm tra độ chặt của ốc đầu bò (ren ngược) và sự cân bằng của lưỡi cắt trước mỗi ca làm việc.",
+                            "dont": "Vận hành máy khi tháo bỏ tấm chắn cỏ hoặc khi lưỡi thép có vết nứt."
+                        }
+                    ]
+                },
+                {
+                    "id": "van-hanh-buoc-2",
+                    "no": "2",
+                    "short": "Nhiên liệu",
+                    "name": "Chuẩn bị nhiên liệu & Dầu bôi trơn",
+                    "articles": [
+                        {
+                            "id": "van-hanh-3",
+                            "title": "Pha nhiên liệu cho máy cắt cỏ 2 thì (Xăng pha nhớt)",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Loại nhiên liệu",
+                                    "text": "Xăng A92/A95 pha chung với Nhớt 2 thì (2T) chuyên dụng."
+                                },
+                                {
+                                    "title": "Tỷ lệ pha tiêu chuẩn",
+                                    "text": "",
+                                    "sub": [
+                                        "Nhớt 2T thông thường: Tỷ lệ 25:1 (1 lít xăng pha với 40 ml nhớt 2T).",
+                                        "Nhớt 2T cao cấp (Husqvarna, Stihl, Echo chính hãng): Tỷ lệ 40:1 hoặc 50:1 (1 lít xăng pha với 20 – 25 ml nhớt).",
+                                        "Máy mới mua (Chạy Rô-đai 5 – 10 giờ đầu): Pha đậm nhớt hơn một chút (tỷ lệ 20:1, tức 50 ml nhớt cho 1 lít xăng)."
+                                    ]
+                                },
+                                {
+                                    "title": "Cách pha",
+                                    "text": "Đổ xăng và nhớt vào bình đong có vạch chia, lắc thật đều cho tan hoàn toàn trước khi đổ vào bình chứa của máy."
+                                }
+                            ],
+                            "do": "Dùng đúng nhớt 2T chuyên dụng, pha bằng bình đong đúng tỷ lệ. Tắt máy, đợi nguội bớt mới tiếp thêm xăng.",
+                            "dont": "Dùng nhớt 4T/nhớt thải pha xăng; quên pha nhớt chạy xăng trắng (gây lột dên, xước nòng ngay lập tức); đổ xăng riêng nhớt riêng trực tiếp vào bình máy."
+                        },
+                        {
+                            "id": "van-hanh-4",
+                            "title": "Đổ xăng và châm nhớt cho máy cắt cỏ 4 thì (Xăng riêng, Nhớt riêng)",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Bình xăng",
+                                    "text": "Đổ 100% xăng trắng nguyên chất (không pha nhớt)."
+                                },
+                                {
+                                    "title": "Bình nhớt động cơ",
+                                    "text": "",
+                                    "sub": [
+                                        "Dùng nhớt 4 thì (SAE 10W-30 hoặc 15W-40).",
+                                        "Đặt máy nằm ngang trên mặt phẳng, tháo que thăm nhớt lau sạch, cắm lại vào cổ đổ nhớt (không vặn ren) rồi rút ra xem mức nhớt.",
+                                        "Châm nhớt đạt đến vạch trên (ngấp nghé miệng lỗ ren), dung tích thường khoảng 70 – 100 ml (tương đương 1 chén uống trà nhỏ)."
+                                    ]
+                                }
+                            ],
+                            "do": "Thăm nhớt trước mỗi lần dùng và thay nhớt định kỳ sau mỗi 20 – 25 giờ chạy.",
+                            "dont": "Đổ quá đầy nhớt (gây nặng giật, phun khói trắng mù mịt và trào nhớt ra bầu lọc gió) hoặc đổ nhầm xăng pha nhớt vào máy 4 thì."
+                        }
+                    ]
+                },
+                {
+                    "id": "van-hanh-buoc-3",
+                    "no": "3",
+                    "short": "Khởi động",
+                    "name": "Quy trình khởi động máy (Giật nổ)",
+                    "articles": [
+                        {
+                            "id": "van-hanh-5",
+                            "title": "Khởi động khi máy nguội (Lần đầu trong ngày)",
+                            "numbered": true,
+                            "points": [
+                                {
+                                    "title": "Bật công tắc điện",
+                                    "text": "Gạt công tắc trên tay cầm về vị trí ON (hoặc I). Nhả hoàn toàn cò ga (để ở mức garanti)."
+                                },
+                                {
+                                    "title": "Bơm vú xăng (Primer bulb)",
+                                    "text": "Ấn núm cao su dưới bình xăng con 5 – 7 lần cho đến khi xăng lên đầy núm và chảy về ống hồi, hết bọt khí."
+                                },
+                                {
+                                    "title": "Đóng le gió (Choke)",
+                                    "text": "Gạt cần le gió bên hông bầu lọc gió lên vị trí ĐÓNG (CLOSE)."
+                                },
+                                {
+                                    "title": "Tư thế giật nổ",
+                                    "text": "Đặt máy trên đất phẳng, lưỡi không chạm vật cản. Một tay giữ thân máy, tay kia kéo nhẹ tay giật 5 – 10 cm lấy điểm tỳ (cá giật ngoạm cứng vào mâm lửa), sau đó giật mạnh, nhanh, dứt khoát theo phương thẳng đứng và thả dây thu hồi từ từ."
+                                },
+                                {
+                                    "title": "Mở le gió",
+                                    "text": "Sau 2 – 4 cái giật, máy nổ \"khực\" báo hiệu (hoặc nổ rồi tắt), lập tức gạt cần le gió về vị trí MỞ (OPEN)."
+                                },
+                                {
+                                    "title": "Giật nổ chính thức & Làm nóng",
+                                    "text": "Giật thêm 1 – 2 cái máy sẽ nổ giòn. Để máy nổ garanti 1 – 2 phút làm ấm động cơ trước khi vào tải."
+                                }
+                            ],
+                            "do": "Kéo nhẹ lấy điểm tỳ cá giật rồi mới giật dứt khoát; mở le gió ngay khi máy có tiếng nổ báo hiệu.",
+                            "dont": "Giật thốc tháo từ đầu làm vỡ cá giật; kéo hết sạch chiều dài dây làm đứt dây; buông tay giật đột ngột; hoặc đóng le gió giật liên tục gây \"ngộp xăng\" ướt bugi."
+                        },
+                        {
+                            "id": "van-hanh-6",
+                            "title": "Khởi động khi máy đang còn nóng (Vừa nghỉ giải lao)",
+                            "numbered": true,
+                            "points": [
+                                {
+                                    "title": "",
+                                    "text": "Bật công tắc điện trên tay cầm sang vị trí ON (I)."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Giữ nguyên cần le gió ở vị trí MỞ (OPEN) — không đóng le gió, không cần bơm lại vú xăng (trừ khi vừa cạn sạch bình xăng mới châm thêm)."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Kéo nhẹ dây giật lấy điểm tỳ cá giật rồi giật nhẹ 1 cái là máy nổ ngay."
+                                }
+                            ],
+                            "do": "Đặt máy dưới đất phẳng, kiểm tra lưỡi cắt không vướng cỏ hay đá trước khi giật nổ lại.",
+                            "dont": "Đóng le gió và bơm vú xăng liên tục khi máy đang nóng (sẽ làm máy bị ngộp xăng ngay lập tức)."
+                        }
+                    ]
+                },
+                {
+                    "id": "van-hanh-buoc-4",
+                    "no": "4",
+                    "short": "Thao tác cắt",
+                    "name": "Kỹ thuật đeo máy & Thao tác cắt cỏ",
+                    "articles": [
+                        {
+                            "id": "van-hanh-7",
+                            "title": "Căn chỉnh dây đeo và tay cầm cân bằng",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "",
+                                    "text": "Đeo dây vai (ưu tiên dây đeo 2 vai có đệm hông để phân tán đều trọng lượng lên hai vai, giảm tải cho cột sống)."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Móc khóa dây đeo vào vòng sắt trên ống cần."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Điều chỉnh độ dài dây đeo và vị trí vòng móc sao cho khi buông lỏng hai tay, máy tự cân bằng và lưỡi cắt nằm song song, cách mặt đất khoảng 5 – 10 cm."
+                                }
+                            ],
+                            "do": "Căn chỉnh điểm cân bằng chuẩn để hai tay chỉ làm nhiệm vụ điều hướng, không phải gồng sức nâng máy.",
+                            "dont": "Cắt cỏ mà không đeo dây vai hoặc để dây quá thấp/quá cao làm mỏi lưng và mất kiểm soát hướng lưỡi cắt."
+                        },
+                        {
+                            "id": "van-hanh-8",
+                            "title": "Kỹ thuật lia cần (Phải sang Trái) & Phòng tránh giật ngược (Kickback)",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Nguyên lý",
+                                    "text": "Đầu bò quay ngược chiều kim đồng hồ (nhìn từ trên xuống), vùng cắt an toàn và sắc bén nhất là góc phần tư phía bên trái (từ vị trí 8 giờ đến 12 giờ)."
+                                },
+                                {
+                                    "title": "Thao tác chuẩn",
+                                    "text": "Luôn lia cần từ Phải sang Trái theo hình vòng cung để cỏ cắt xong tự gạt ngả sang bên trái gọn gàng."
+                                },
+                                {
+                                    "title": "Nhịp hồi cần",
+                                    "text": "Khi đưa cần từ Trái về Phải thì nhả nhẹ ga, không cắt, đồng thời bước tiến lên một bước để bắt đầu nhát lia tiếp theo."
+                                }
+                            ],
+                            "do": "Luôn lia cần cắt từ Phải sang Trái (cắt bằng nửa bên trái của lưỡi). Giữ khoảng cách an toàn tối thiểu 15m với người xung quanh.",
+                            "dont": "Dùng góc phần tư bên phải của lưỡi thép (vị trí 12 giờ đến 4 giờ) phang vào gốc cây cứng hay bụi cỏ to — sẽ gây hiện tượng \"Giật ngược (Kickback)\" làm cần máy văng mạnh về phía người cầm hoặc vỡ nhông đầu bò."
+                        },
+                        {
+                            "id": "van-hanh-9",
+                            "title": "Kỹ thuật cắt theo từng loại địa hình và mật độ cỏ",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Cỏ thấp, cỏ thảm",
+                                    "text": "Bóp ga khoảng 70 – 80%, lia đều tay sát mặt đất."
+                                },
+                                {
+                                    "title": "Cỏ voi, cỏ lau sậy cao quá đầu gối",
+                                    "text": "Cắt làm 2 tầng — Nhát 1 lia từ Phải sang Trái ở ngang lưng chừng thân cỏ để phạt ngọn; Nhát 2 lia sát gốc để dọn sạch (tránh cỏ dài đổ ập xuống quấn kẹt cứng đầu bò)."
+                                },
+                                {
+                                    "title": "Đất nhiều đá sỏi, sát gốc cây ăn quả hoặc bờ tường",
+                                    "text": "Tháo lưỡi thép, lắp ổ cước nhựa để tránh mẻ lưỡi, văng đá và không cắt phạm vào vỏ cây."
+                                },
+                                {
+                                    "title": "Đất đồi dốc",
+                                    "text": "Cắt thành từng dải song song với đường đồng mức (đi ngang sườn dốc), di chuyển từ chân dốc lên đỉnh dốc."
+                                },
+                                {
+                                    "title": "Chế độ nghỉ",
+                                    "text": "Sau 40 – 50 phút chạy liên tục (khoặc hết 1 bình xăng), tắt máy nghỉ mát 10 – 15 phút."
+                                }
+                            ],
+                            "do": "Dùng ổ cước ở nơi nhiều đá sỏi/gốc cây; cắt 2 tầng với cỏ cao; cho máy nghỉ giải nhiệt sau mỗi bình xăng.",
+                            "dont": "Đi cắt từ trên đỉnh dốc chúc xuống dưới (dễ trượt ngã vào lưỡi cắt); hoặc dùng lưỡi thép phang vào nơi nhiều đá tảng."
+                        }
+                    ]
+                },
+                {
+                    "id": "van-hanh-buoc-5",
+                    "no": "5",
+                    "short": "Tắt máy & bảo quản",
+                    "name": "Quy trình tắt máy & Bảo quản sau sử dụng",
+                    "articles": [
+                        {
+                            "id": "van-hanh-10",
+                            "title": "Quy trình tắt máy đúng chuẩn kỹ thuật",
+                            "numbered": true,
+                            "points": [
+                                {
+                                    "title": "",
+                                    "text": "Nhả hoàn toàn cò ga để lưỡi cắt giảm tốc và ngừng quay."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Để động cơ nổ lình xình ở chế độ garanti khoảng 15 – 30 giây giúp quạt gió làm mát hạ nhiệt độ buồng đốt từ từ."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Gạt công tắc trên tay cầm về vị trí STOP (hoặc O)."
+                                },
+                                {
+                                    "title": "",
+                                    "text": "Đợi lưỡi cắt dừng quay hẳn 100% theo quán tính rồi mới tháo dây đeo và đặt máy xuống đất."
+                                }
+                            ],
+                            "do": "Hạ ga chờ 15 – 30 giây mới tắt công tắc; luôn tắt máy hoàn toàn (STOP) và đợi lưỡi dừng hẳn mới gỡ cỏ kẹt ở đầu bò.",
+                            "dont": "Tắt máy đột ngột ngay khi đang bóp ga lớn (dễ gây sốc nhiệt bó piston); hoặc để máy nổ garanti rồi thò tay/dùng chân đạp gỡ cỏ quấn đầu bò."
+                        },
+                        {
+                            "id": "van-hanh-11",
+                            "title": "Vệ sinh sau mỗi buổi cắt & Bảo quản cất kho lâu ngày (Trên 15 ngày)",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Vệ sinh hàng ngày",
+                                    "text": "Gỡ sạch cỏ quấn ở cổ trục đầu bò, quét sạch cỏ vụn và bùn đất bám ở tấm chắn, vỏ máy và các khe tản nhiệt xi-lanh."
+                                },
+                                {
+                                    "title": "Quy trình bảo quản lâu ngày (Trên 15 ngày không dùng)",
+                                    "text": "",
+                                    "sub": [
+                                        "Đổ hết toàn bộ xăng thừa trong bình chứa ra can riêng.",
+                                        "Giật nổ máy và để chạy garanti cho đến khi máy tự đốt cháy cạn sạch xăng trong ống dẫn và chế hòa khí rồi tự tắt.",
+                                        "Tháo lưỡi cắt thép, lau khô và bôi một lớp nhớt mỏng chống rỉ sét.",
+                                        "Treo máy hoặc đặt nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp và xa tầm tay trẻ em."
+                                    ],
+                                    "subNumbered": true
+                                }
+                            ],
+                            "do": "Đổ hết xăng trong bình và nổ máy cho cạn sạch xăng trong chế hòa khí trước khi cất kho lâu ngày.",
+                            "dont": "Để nguyên xăng (đặc biệt là xăng pha nhớt) đọng trong bình xăng con qua nhiều tuần/tháng — xăng bay hơi sẽ để lại keo nhớt làm tắc kim phun và thối rách màng bơm cao su."
+                        }
+                    ]
+                },
+                {
+                    "id": "van-hanh-buoc-6",
+                    "no": "6",
+                    "short": "Bảo dưỡng định kỳ",
+                    "name": "Lịch bảo dưỡng định kỳ tiêu chuẩn",
+                    "articles": [
+                        {
+                            "id": "van-hanh-12",
+                            "title": "Các mốc kiểm tra và bảo dưỡng máy (Theo giờ hoạt động)",
+                            "numbered": false,
+                            "points": [
+                                {
+                                    "title": "Trước mỗi lần dùng",
+                                    "text": "Kiểm tra mức nhớt (máy 4T), kiểm tra cỏ quấn trục đầu bò, độ chặt ốc lưỡi cắt, vết nứt lưỡi và quét sạch cỏ bám khe tản nhiệt."
+                                },
+                                {
+                                    "title": "Sau mỗi 15 – 20 giờ chạy",
+                                    "text": "",
+                                    "sub": [
+                                        "Bơm bổ sung mỡ bò chịu nhiệt vào đầu bò (hộp số bánh răng).",
+                                        "Giặt sạch mút lọc gió bằng xà phòng, phơi khô.",
+                                        "Thay nhớt động cơ mới (đối với máy 4 thì).",
+                                        "Tháo bugi cạo muội than, chỉnh khe hở 0.6 – 0.7 mm; mài cân bằng lại lưỡi cắt."
+                                    ]
+                                },
+                                {
+                                    "title": "Sau mỗi 50 – 100 giờ chạy",
+                                    "text": "Thay bugi mới, cạo muội than cửa xả pô máy, thay lọc xăng trong bình, kiểm tra độ mòn bố côn và cao su giảm chấn."
+                                }
+                            ],
+                            "do": "Bơm mỡ bò đầu bò và vệ sinh lọc gió đều đặn sau mỗi 15 – 20 giờ làm việc để máy luôn bốc và bền bỉ.",
+                            "dont": "Quên tra mỡ đầu bò làm cháy nhông bánh răng, hoặc để lọc gió rách nát khiến bụi cát hút thẳng vào làm xước nòng xi-lanh."
+                        }
+                    ]
+                }
+            ],
+            "stepsTitle": "Các bước vận hành",
+            "stepsText": "Chọn từng bước để xem hướng dẫn chi tiết."
+        },
+        "tabs": {
+            "faq": "Câu hỏi thường gặp",
+            "faqCount": "{n} câu hỏi",
+            "op": "Hướng dẫn vận hành",
+            "opCount": "{n} bước"
+        }
     }
 }

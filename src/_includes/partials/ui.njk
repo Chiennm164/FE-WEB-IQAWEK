@@ -23,7 +23,7 @@
 
 {% macro path(categoryId, lang) %}
 <section class="n-path">
-<div class="wrap"><a href="/{{ lang }}/"><i class="icon iconfont icon-fangzi"></i></a>
+<div class="wrap"><a href="{{ lang | langHome }}"><i class="icon iconfont icon-fangzi"></i></a>
 {%- for cat in categoryId | catPath %}
 <i class="icon iconfont icon-xiangyoujiantou"></i> <a href="{{ cat.url }}" title="{{ cat.name }}">{{ cat.name }}</a>
 {%- endfor %}
@@ -74,6 +74,16 @@
 </div>
 </div>
 </div>
+{% endmacro %}
+
+{#- Chip các nhóm máy chính (chỉ nhóm đã có sản phẩm) kèm số sản phẩm:
+    gợi ý trong ô tìm kiếm ở header và ở trang kết quả khi không tìm thấy sản phẩm -#}
+{% macro searchChips(lang, products) %}
+<ul class="search-chips">
+{%- for cat in lang | productCats(products) %}{% if cat.depth == 1 %}
+<li><a href="{{ cat.url }}">{{ cat.name }} <span>{{ cat.count }}</span></a></li>
+{%- endif %}{% endfor %}
+</ul>
 {% endmacro %}
 
 {% macro pager(listPage) %}

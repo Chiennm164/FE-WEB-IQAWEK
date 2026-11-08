@@ -2,8 +2,6 @@
 {% import "partials/ui.njk" as ui %}
 {% block main %}
 {%- set t = site[lang] -%}
-{%- set langNews = collections.news | byLang(lang) -%}
-{%- set adjacent = langNews | prevNext(id) -%}
 {#- H1 của trang là tiêu đề bài, nên tên danh mục trên banner không dùng thẻ heading -#}
 {{ ui.banner(categoryId, false) }}
 {{ ui.path(categoryId, lang) }}
@@ -11,19 +9,9 @@
 <div class="news-detail wow fadeInUp" data-wow-delay="0.15s">
 <h1 class="title">{{ title }}</h1>
 <div class="date">
-{{ t.news.dateLabel }} <time datetime="{{ published | isoDate }}">{{ published }}</time>
+{{ t.news.dateLabel }} <time datetime="{{ published | isoDate }}">{{ published | string | truncate(10, true, '') }}</time>
 </div>
 <div class="content">{{ content | lazyImages | safe }}</div>
-<div class="page">
-<ul>
-{%- if adjacent.prev %}
-<li class="previous"><a title="{{ adjacent.prev.data.title }}" href="{{ adjacent.prev.url }}">{{ t.news.prev }}{{ adjacent.prev.data.title }}</a></li>
-{%- endif %}
-{%- if adjacent.next %}
-<li class="next"><a title="{{ adjacent.next.data.title }}" href="{{ adjacent.next.url }}">{{ t.news.next }}{{ adjacent.next.data.title }}</a></li>
-{%- endif %}
-</ul>
-</div>
 </div>
 </section>
 {% endblock %}

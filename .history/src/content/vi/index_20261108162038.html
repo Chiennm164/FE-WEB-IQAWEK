@@ -1,0 +1,460 @@
+---
+layout: home.njk
+css:
+  - /assets/css/index.css
+inlineScript: |
+  $(function(){
+  var Bswiper = new Swiper('.in-banner .swiper-container', {
+  slidesPerView : 1,
+  autoplay: true,
+  nested: true,
+  resistanceRatio: 0,
+  navigation: {
+  nextEl: '.in-banner .swiper-button-next',
+  prevEl: '.in-banner .swiper-button-prev'
+  },
+  pagination: {
+  clickable: true,
+  el: '.in-banner .swiper-pagination'
+  },
+  on: {
+  resize: function(){
+  Bswiper.updateSize();
+  }
+  }
+  });
+  var TSwiper = new Swiper('.in-type .swiper-container',{
+  slidesPerView: 2,
+  spaceBetween: 48,
+  autoHeight: true,
+  pagination: {
+  clickable: true,
+  el: '.in-type .swiper-pagination'
+  },
+  breakpoints: {
+  1281: {
+  slidesPerView: 2,
+  spaceBetween: 48
+  },
+  993: {
+  slidesPerView: 2,
+  spaceBetween: 24
+  },
+  768: {
+  slidesPerView: 2,
+  spaceBetween: 12
+  },
+  0: {
+  slidesPerView: 1,
+  spaceBetween: 0
+  }
+  },
+  on: {
+  resize: function(){
+  TSwiper.updateSize();
+  }
+  }
+  });
+  var NSwiper = new Swiper('.in-testimonial .swiper-container',{
+  slidesPerView: 1,
+  spaceBetween: 16,
+  loop: true,
+  autoplay: {
+  delay: 3000,
+  disableOnInteraction: false
+  },
+  breakpoints: {
+  768: {
+  slidesPerView: 3,
+  spaceBetween: 20
+  },
+  993: {
+  slidesPerView: 4,
+  spaceBetween: 24
+  }
+  },
+  on: {
+  resize: function(){
+  NSwiper.updateSize();
+  }
+  }
+  });
+  })
+---
+<h1 class="visually-hidden">Kewaqi – Nhà sản xuất máy làm vườn: máy cắt cỏ, máy tỉa hàng rào, máy cưa xích, máy khoan đất</h1>
+<section class="in-banner">
+<div class="swiper-container">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a href="/products/" title="Máy cưa xích chuyên nghiệp Kewaqi C558">
+<img src="/assets/media/home/home-banner-vn-st1.jpg" alt="Máy cưa xích chuyên nghiệp Kewaqi C558" fetchpriority="high">
+</a>
+</li>
+<li class="swiper-slide">
+<a href="/products/" title="Máy công cụ đa dạng Kewaqi">
+<img src="/assets/media/home/home-banner-vn-st2.jpg" alt="Máy công cụ đa dạng Kewaqi: máy cắt cỏ, máy tỉa hàng rào, máy khoan đất">
+</a>
+</li>
+<li class="swiper-slide">
+<a href="/products/" title="Về sản phẩm Kewaqi">
+<img src="/assets/media/home/home-banner-vn-st3.jpg" alt="Máy cắt cỏ Kewaqi an toàn, thân thiện với người dùng và môi trường">
+</a>
+</li>
+
+</ul>
+<div class="swiper-button-prev swiper-button-white"></div>
+<div class="swiper-button-next swiper-button-white"></div>
+<div class="swiper-pagination"></div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-type">
+<div class="wrap">
+<div class="title wow fadeInDown" data-wow-delay="0.15s">
+<div class="line"></div>
+<h2 class="in-title">Danh mục sản phẩm</h2>
+<div class="line"></div>
+</div>
+<div class="list swiper-container wow fadeInUp" data-wow-delay="0.3s">
+<ul class="swiper-wrapper">
+<li class="swiper-slide">
+<a title="Máy cắt cỏ / Máy cắt bụi cây" href="/products/lawn-mower-brush-cutter/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg" alt=""></div>
+<span class="flag"><img src="/assets/images/logo.png" alt=""></span>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy cắt cỏ / Máy cắt bụi cây</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-1.png" alt="Máy cắt cỏ / Máy cắt bụi cây"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy tỉa hàng rào / Máy cắt cành" href="/products/hedge-machine-pruning-machine/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg" alt=""></div>
+<span class="flag"><img src="/assets/images/logo.png" alt=""></span>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy tỉa hàng rào / Máy cắt cành</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-2.png" alt="Máy tỉa hàng rào / Máy cắt cành"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy đào đất / Máy khoan đất" href="/products/earth-auger-ground-drill/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg" alt=""></div>
+<span class="flag"><img src="/assets/images/logo.png" alt=""></span>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy đào đất / Máy khoan đất</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-1.png" alt="Máy đào đất / Máy khoan đất"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy xới mini / Máy bơm nước" href="/products/mini-tiller-water-pump/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg" alt=""></div>
+<span class="flag"><img src="/assets/images/logo.png" alt=""></span>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy xới mini / Máy bơm nước</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-3.png" alt="Máy xới mini / Máy bơm nước"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy cưa xích" href="/products/chain-saw/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg" alt=""></div>
+<span class="flag"><img src="/assets/images/logo.png" alt=""></span>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy cưa xích</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-4.png" alt="Máy cưa xích"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+<li class="swiper-slide">
+<a title="Máy thổi lá" href="/products/blower/">
+<div class="bg"><img src="/assets/images/home-category-card.jpg" alt=""></div>
+<span class="flag"><img src="/assets/images/logo.png" alt=""></span>
+<div class="word">
+<div class="div1">Thêm sản phẩm <i class="icon iconfont icon-arrowRight"></i></div>
+<div class="div2">
+<div class="left">Máy thổi lá</div>
+<div class="right">
+<div class="box">
+<div class="imgbox"><img src="/assets/media/home/category-5.png" alt="Máy thổi lá"></div>
+</div>
+</div>
+</div>
+</div>
+</a>
+</li>
+
+</ul>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-products">
+<div class="title">
+<div class="wrap wow bounceIn" data-wow-delay="0.15s">
+<div class="line"></div>
+<h2 class="in-title white">Sản phẩm nổi bật</h2>
+<div class="line"></div>
+</div>
+</div>
+<div class="wrap list">
+<ul>
+<li class="wow fadeIn" data-wow-delay="0.15s">
+<a title="143R-II" href="/product/143r-ii/">
+<div class="image"><img loading="lazy" src="/assets/media/home/product-1.jpg" alt="143R-II"></div>
+<div class="word">
+143R-II Máy cắt cỏ 2 thì</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.3s">
+<a title="226K Máy cắt cỏ tay cầm đôi" href="/product/226k/">
+<div class="image"><img loading="lazy" src="/assets/media/home/product-2.jpg" alt="226K Máy cắt cỏ tay cầm đôi"></div>
+<div class="word">
+226K Máy cắt cỏ tay cầm đôi</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.45s">
+<a title="541RS" href="/product/541rs/">
+<div class="image"><img loading="lazy" src="/assets/media/home/product-3.jpg" alt="541RS"></div>
+<div class="word">
+541RS</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.6s">
+<a title="G26LS Máy cắt cỏ tay cầm đôi" href="/product/g26ls/">
+<div class="image"><img loading="lazy" src="/assets/media/home/product-4.jpg" alt="G26LS Máy cắt cỏ tay cầm đôi"></div>
+<div class="word">
+G26LS Máy cắt cỏ tay cầm đôi</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.75s">
+<a title="S500" href="/product/s500/">
+<div class="image"><img loading="lazy" src="/assets/media/home/product-5.jpg" alt="S500"></div>
+<div class="word">
+S500</div>
+</a>
+</li>
+<li class="wow fadeIn" data-wow-delay="0.9s">
+<a title="G45 Máy cắt cỏ đeo lưng (chế hòa khí phao)" href="/product/g45/">
+<div class="image"><img loading="lazy" src="/assets/media/home/product-6.jpg" alt="G45 Máy cắt cỏ đeo lưng (chế hòa khí phao)"></div>
+<div class="word">
+G45 Máy cắt cỏ đeo lưng (chế hòa khí phao)</div>
+</a>
+</li>
+
+</ul>
+</div>
+<div class="wrap more wow bounceIn" data-wow-delay="0.15s"><a href="/products/">Xem thêm sản phẩm</a></div>
+</section>
+<section class="clear"></section>
+<section class="in-about">
+<div class="wrap">
+<div class="div1 wow fadeInLeft" data-wow-delay="0.15s">Dòng sản phẩm đáp ứng mọi nhu cầu về dụng cụ làm vườn của bạn</div>
+<div class="div2 wow fadeInRight" data-wow-delay="0.3s">Kewaqi Việt Nam</div>
+<div class="div3 wow fadeInUp" data-wow-delay="0.45s">
+<ul>
+<li>
+<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+<div class="h1">Phân phối từ</div>
+<div class="h2">2017</div>
+<div class="h3">Tại thị trường Việt Nam</div>
+</li>
+<li>
+<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+<div class="h1 lg">Sản phẩm</div>
+<div class="stars">
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+<i class="icon iconfont icon-xingxing"></i>
+</div>
+<div class="h1 lg">Chất lượng</div>
+</li>
+<li>
+<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.2"/><path d="M6.5 20v-1.5a5.5 5.5 0 0 1 11 0V20z"/><circle cx="4.8" cy="9.3" r="2.3"/><path d="M1.2 19v-.8a3.6 3.6 0 0 1 4.3-3.5"/><circle cx="19.2" cy="9.3" r="2.3"/><path d="M22.8 19v-.8a3.6 3.6 0 0 0-4.3-3.5"/></svg>
+<div class="h2"><i class="icon iconfont icon-gouxuan"></i>95%</div>
+<div class="h1 lg">Khách hàng hài lòng</div>
+<div class="h4">Chúng tôi liên tục tìm kiếm đại lý phân phối</div>
+</li>
+</ul>
+</div>
+<div class="div4 wow fadeInDown" data-wow-delay="0.6s">
+<p>KEWAQI có mặt tại thị trường Việt Nam từ 2017. Đạt top 3 thương hiệu bán chạy nhất thị trường.<br>
+Sản phẩm Kewaqi Việt Nam được nhập khẩu và phân phối chính hãng bởi Công ty TNHH thương mại A2D.<br>
+Với đội ngũ chuyên nghiệp và dịch vụ hậu mãi, bảo hành hoàn hảo, chúng tôi sẽ mang đến<br>
+những sản phẩm tốt nhất cho người nông dân Việt Nam.</p>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="wrap in-advantage">
+<h2 class="in-title wow fadeIn" data-wow-delay="0.15s">Tại sao nên chọn Kewaqi</h2>
+<div class="list">
+<ul>
+<li class="wow fadeInUp" data-wow-delay="0.3s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-1.png" alt="" loading="lazy"></div>
+</div>
+</div>
+<div class="text">
+<h3 class="h1">Chúng tôi là đơn vị phân phối độc quyền toàn quốc của Kewaqi Việt Nam, chuyên sản xuất máy móc làm vườn và máy nông nghiệp.</h3>
+<p class="h2">Chúng tôi chuyên phân phối máy cắt cỏ, máy cưa lốc, phụ kiện, vật tư tiêu hao và các sản phẩm khác.</p>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.45s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-2.png" alt="" loading="lazy"></div>
+</div>
+</div>
+<div class="text">
+<h3 class="h1">Cung cấp máy móc làm vườn an toàn cho sản phẩm và thân thiện với môi trường.</h3>
+<p class="h2">Chúng tôi luôn lấy phương châm “Kewaqi Việt Nam cung cấp máy móc làm vườn an toàn, thân thiện môi trường, mang đến động lực xanh cho khách hàng, làm người dẫn đầu ngành” làm mục tiêu kinh doanh.</p>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.6s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-3.png" alt="" loading="lazy"></div>
+</div>
+</div>
+<div class="text">
+<h3 class="h1">Chúng tôi làm rất tốt với sản phẩm của mình.</h3>
+<p class="h2">Chúng tôi sẽ lấy uy tín tốt và sản phẩm chất lượng cao để trở thành đối tác lý tưởng của bạn.</p>
+</div>
+</li>
+<li class="wow fadeInUp" data-wow-delay="0.75s">
+<div class="image">
+<div class="yuan">
+<div class="box"><img src="/assets/images/home-advantage-4.png" alt="" loading="lazy"></div>
+</div>
+</div>
+<div class="text">
+<h3 class="h1">Nhà máy của chúng tôi hợp tác tốt với tất cả khách hàng hiện tại.</h3>
+<p class="h2">Chất lượng cuộc sống, đổi mới không ngừng và tinh thần doanh nghiệp của chúng tôi hướng tới mục tiêu cuối cùng: khách hàng hài lòng, cổ đông tin tưởng, nhân viên vui vẻ.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-workshop wow fadeIn" data-wow-delay="0.15s">
+<div class="list">
+<ul>
+<li><img loading="lazy" src="/assets/media/home/workshop-1.jpg" alt="Kho máy cắt cỏ Kewaqi Việt Nam"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-2.jpg" alt="Máy đo công suất động cơ"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-3.jpg" alt="Máy phát điện biến tần Kewaqi Việt Nam 7600i"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-4.jpg" alt="Đồ gá lắp ráp động cơ"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-5.jpg" alt="Bàn chạy rà nguội động cơ"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-6.jpg" alt="Máy kiểm tra thân xi-lanh"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-7.jpg" alt="Gian hàng Kewaqi tại hội chợ triển lãm"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-8.jpg" alt="Kệ trưng bày máy làm vườn Kewaqi"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-9.jpg" alt="Bộ giảm chấn ống nhôm"></li>
+<li><img loading="lazy" src="/assets/media/home/workshop-10.jpg" alt="Container hàng Kewaqi nhập khẩu"></li>
+
+</ul>
+</div>
+<div class="title">
+<div class="box wow bounceIn" data-wow-delay="0.3s">
+<div class="t">
+<div class="bg">K</div>
+<h2 class="in-title">Kewaqi của chúng tôi</h2>
+</div>
+<div class="c">Kewaqi Việt Nam chân thành mong muốn được cung cấp đến quý khách hàng và đối tác những sản phẩm tốt nhất. Chúng tôi lấy uy tín tốt và sản phẩm chất lượng cao để trở thành người đồng hành lý tưởng của bạn</div>
+</div>
+</div>
+</section>
+<section class="clear"></section>
+<section class="in-news in-testimonial">
+<div class="wrap">
+<h2 class="in-title white wow fadeInDown" data-wow-delay="0.15s">Cảm nhận khách hàng</h2>
+<div class="slider wow fadeInUp" data-wow-delay="0.15s">
+<div class="list swiper-container">
+<ul class="swiper-wrapper">
+<!-- Ảnh và nhận xét khách hàng thật (Kewaqi cung cấp 11/2026). Chưa có tên / địa phương: khi có, thêm tên vào .name và <div class="byline">vai trò<br>địa phương</div> -->
+<li class="swiper-slide">
+<div class="photo"><img src="/assets/media/home/testimonial-1.jpg" alt="Đại lý phân phối Kewaqi tại cửa hàng" loading="lazy" width="720" height="480"></div>
+<div class="body">
+<blockquote class="info">“Máy dễ tháo lắp, phụ tùng tương đối đa dạng, thuận tiện cho việc sửa chữa.”</blockquote>
+<div class="name">Đại lý phân phối</div>
+</div>
+</li>
+<li class="swiper-slide">
+<div class="photo"><img src="/assets/media/home/testimonial-2.jpg" alt="Khách hàng nhận lô máy cắt cỏ Kewaqi" loading="lazy" width="720" height="480"></div>
+<div class="body">
+<blockquote class="info">“Máy khởi động tương đối dễ, thao tác đơn giản, người không chuyên cũng có thể sử dụng.”</blockquote>
+<div class="name">Đại lý phân phối</div>
+</div>
+</li>
+<li class="swiper-slide">
+<div class="photo"><img src="/assets/media/home/testimonial-3.jpg" alt="Người cắt cỏ chuyên nghiệp đeo máy cắt cỏ" loading="lazy" width="720" height="480"></div>
+<div class="body">
+<blockquote class="info">“Máy đáp ứng tốt nhu cầu cắt cỏ thường xuyên, giúp tôi chủ động tiến độ công việc.”</blockquote>
+<div class="name">Người sử dụng chuyên nghiệp</div>
+</div>
+</li>
+<li class="swiper-slide">
+<div class="photo"><img src="/assets/media/home/testimonial-4.jpg" alt="Đại lý phân phối Kewaqi với máy cưa xích" loading="lazy" width="720" height="480"></div>
+<div class="body">
+<blockquote class="info">“KEWAQI có thể tiếp cận nhiều nhóm khách hàng, từ người chăm sóc vườn nhà đến đơn vị làm cảnh quan.”</blockquote>
+<div class="name">Thợ kỹ thuật</div>
+</div>
+</li>
+<li class="swiper-slide">
+<div class="photo"><img src="/assets/media/home/testimonial-5.jpg" alt="Thợ kỹ thuật tại trung tâm bảo hành Kewaqi" loading="lazy" width="720" height="480"></div>
+<div class="body">
+<blockquote class="info">“Các dòng máy có thiết kế thực dụng, dễ thao tác và không quá phức tạp khi bảo trì.”</blockquote>
+<div class="name">Người sử dụng thông thường</div>
+</div>
+</li>
+<li class="swiper-slide">
+<div class="photo"><img src="/assets/media/home/testimonial-6.jpg" alt="Khách hàng tự bảo dưỡng máy cắt cỏ Kewaqi" loading="lazy" width="720" height="480"></div>
+<div class="body">
+<blockquote class="info">“Tôi thích thiết kế máy gọn, cầm nắm thuận tiện, sử dụng trong vườn không quá vướng víu.”</blockquote>
+<div class="name">Người thợ kỹ thuật</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>

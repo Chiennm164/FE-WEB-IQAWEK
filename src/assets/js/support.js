@@ -22,7 +22,6 @@
   function setOpen(item, open) {
     var question = item.querySelector('.sp-q');
     question.setAttribute('aria-expanded', String(open));
-    question.querySelector('.sp-plus').textContent = open ? '−' : '+';
     item.querySelector('.sp-answer').hidden = !open;
   }
 
@@ -46,7 +45,6 @@
     toggle.addEventListener('click', function () {
       var open = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.querySelector('.sp-info-chevron').textContent = open ? '⌃' : '⌄';
       list.hidden = !open;
     });
   });
@@ -90,19 +88,82 @@
     });
   });
 
-  // Nút "Chat Zalo" mở khung chat nổi (partials/zalo-chat.njk); không có khung chat thì ẩn nút
-  var zalo = root.querySelector('[data-open-zalo]');
-  var chatButton = document.getElementById('zchat-btn');
-  var chatPanel = document.getElementById('zchat-panel');
-  if (zalo && chatButton && chatPanel) {
-    zalo.addEventListener('click', function () {
-      if (chatPanel.hidden) chatButton.click();
+  // ---- Hướng dẫn vận hành (#van-hanh): card các bước ① → ⑥ bên phải, mỗi lúc hiện một bước ----
+  var tabs = [].slice.call(root.querySelectorAll('.sp-op-tab'));
+  var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute('aria-controls')); });
+  function showStep(id, focus) {
+    tabs.forEach(function (tab, i) {
+      var on = panels[i].id === id;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+      if (on && focus) tab.focus();
     });
-  } else if (zalo) {
-    zalo.hidden = true;
+  }
+  if (tabs.length) {
+    showStep(panels[0].id);
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { showStep(panels[i].id); });
+      // ↑ / ↓ (hoặc ← / →) chuyển bước khi đang ở card các bước
+      tab.addEventListener('keydown', function (e) {
+        var step = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : (e.key === 'ArrowUp' || e.key === 'ArrowLeft') ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        showStep(panels[(i + step + panels.length) % panels.length].id, true);
+      });
+    });
+    // Nút "Bước trước / Bước tiếp theo" cuối mỗi bước: chuyển bước rồi cuộn về đầu khối hướng dẫn
+    [].forEach.call(root.querySelectorAll('.sp-op-nav button'), function (button) {
+      button.addEventListener('click', function () {
+        showStep(button.getAttribute('data-go'));
+        document.getElementById('van-hanh').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
   }
 
-  // Link thẳng tới một câu hỏi, vd. /vi/support/#cau-hoi-3: mở sẵn câu đó
-  var target = location.hash && document.getElementById(location.hash.slice(1));
-  if (target && items.indexOf(target) !== -1) setOpen(target, true);
+  // ---- Thanh tab của trang: Câu hỏi thường gặp (#cau-hoi, mặc định) / Hướng dẫn vận hành (#van-hanh) ----
+  var pageTabs = [].slice.call(root.querySelectorAll('.sp-tab'));
+  var pagePanels = pageTabs.map(function (tab) { return document.getElementById(tab.getAttribute('aria-controls')); });
+  function showTab(id, focus) {
+    pageTabs.forEach(function (tab, i) {
+      var on = pagePanels[i].id === id;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      pagePanels[i].hidden = !on;
+      if (on && focus) tab.focus();
+    });
+  }
+  // Đổi tab thì đổi luôn # trên thanh địa chỉ (copy link gửi người khác vẫn mở đúng tab), không cuộn trang
+  function selectTab(i, focus) {
+    showTab(pagePanels[i].id, focus);
+    if (window.history && history.replaceState) history.replaceState(null, '', '#' + pagePanels[i].id);
+  }
+  pageTabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { selectTab(i); });
+    tab.addEventListener('keydown', function (e) {
+      var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      selectTab((i + step + pageTabs.length) % pageTabs.length, true);
+    });
+  });
+
+  // Mở theo # trên địa chỉ: #cau-hoi / #van-hanh = tab; #cau-hoi-3 = câu hỏi (mở sẵn); #van-hanh-buoc-3 = bước; #van-hanh-5 = bài.
+  // Hiện đúng tab (và đúng bước), rồi cuộn tới. Chạy khi tải trang và khi # đổi (bấm menu / kết quả tìm kiếm ngay trên trang này)
+  function openFromHash(scroll) {
+    var target = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (!pageTabs.length) {
+      if (target && items.indexOf(target) !== -1) setOpen(target, true);
+      return;
+    }
+    var panel = target && target.closest && target.closest('.sp-tabpanel');
+    showTab(panel ? panel.id : pagePanels[0].id);
+    if (!target) return;
+    if (items.indexOf(target) !== -1) setOpen(target, true);
+    var step = target.closest('.sp-op-panel');
+    if (step) showStep(step.id);
+    if (scroll) setTimeout(function () { target.scrollIntoView({ block: 'start' }); }, 50);
+  }
+  openFromHash(true);
+  window.addEventListener('hashchange', function () { openFromHash(true); });
 })();

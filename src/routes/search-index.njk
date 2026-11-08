@@ -1,0 +1,12 @@
+---
+# Dữ liệu tìm kiếm cho assets/js/search.js: sản phẩm, danh mục, bài viết, câu hỏi thường gặp (trang Hỗ trợ).
+# Dùng chung cho ô tìm kiếm ở header và trang kết quả; trình duyệt chỉ tải khi người dùng mở ô tìm kiếm lần đầu
+# (không nhúng vào từng trang). Cấu trúc: hàm searchIndex trong eleventy.config.js.
+pagination:
+  data: site.langs
+  size: 1
+  alias: lang
+permalink: "{{ lang | langHome }}search/index.json"
+eleventyExcludeFromCollections: true
+---
+{{ lang | searchIndex(collections.product, collections.news, support[lang]) | dump | safe }}

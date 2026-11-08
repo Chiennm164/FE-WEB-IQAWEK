@@ -9,31 +9,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/about-kewaqi-banner.jpg",
         "slug": "about-kewaqi",
-        "url": "/vi/about-kewaqi/"
-    },
-    {
-        "id": 23,
-        "lang": "vi",
-        "type": "about",
-        "parentId": 22,
-        "order": 2,
-        "name": "Giới thiệu công ty",
-        "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
-        "banner": "/assets/media/categories/about-kewaqi-banner.jpg",
-        "slug": "company-profile",
-        "url": "/vi/about-kewaqi/#a23"
-    },
-    {
-        "id": 24,
-        "lang": "vi",
-        "type": "about",
-        "parentId": 22,
-        "order": 3,
-        "name": "Môi trường doanh nghiệp",
-        "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
-        "banner": "/assets/media/categories/about-kewaqi-banner.jpg",
-        "slug": "production-equipment",
-        "url": "/vi/about-kewaqi/#a24"
+        "url": "/about-kewaqi/"
     },
     {
         "id": 25,
@@ -45,7 +21,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "products",
-        "url": "/vi/products/"
+        "url": "/products/"
     },
     {
         "id": 26,
@@ -57,7 +33,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "lawn-mower-brush-cutter",
-        "url": "/vi/products/lawn-mower-brush-cutter/"
+        "url": "/products/lawn-mower-brush-cutter/"
     },
     {
         "id": 27,
@@ -69,7 +45,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "hedge-machine-pruning-machine",
-        "url": "/vi/products/hedge-machine-pruning-machine/"
+        "url": "/products/hedge-machine-pruning-machine/"
     },
     {
         "id": 28,
@@ -81,7 +57,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "earth-auger-ground-drill",
-        "url": "/vi/products/earth-auger-ground-drill/"
+        "url": "/products/earth-auger-ground-drill/"
     },
     {
         "id": 29,
@@ -93,7 +69,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "mini-tiller-water-pump",
-        "url": "/vi/products/mini-tiller-water-pump/"
+        "url": "/products/mini-tiller-water-pump/"
     },
     {
         "id": 30,
@@ -105,7 +81,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "chain-saw",
-        "url": "/vi/products/chain-saw/"
+        "url": "/products/chain-saw/"
     },
     {
         "id": 31,
@@ -117,7 +93,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "blower",
-        "url": "/vi/products/blower/"
+        "url": "/products/blower/"
     },
     {
         "id": 32,
@@ -129,43 +105,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/news-center-banner.jpg",
         "slug": "news-center",
-        "url": "/vi/news/"
-    },
-    {
-        "id": 33,
-        "lang": "vi",
-        "type": "news",
-        "parentId": 32,
-        "order": 12,
-        "name": "Tin công ty",
-        "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
-        "banner": "/assets/media/categories/news-center-banner.jpg",
-        "slug": "company-news",
-        "url": "/vi/news/company-news/"
-    },
-    {
-        "id": 34,
-        "lang": "vi",
-        "type": "news",
-        "parentId": 32,
-        "order": 13,
-        "name": "Tin ngành",
-        "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
-        "banner": "/assets/media/categories/news-center-banner.jpg",
-        "slug": "industry-news",
-        "url": "/vi/news/industry-news/"
-    },
-    {
-        "id": 35,
-        "lang": "vi",
-        "type": "news",
-        "parentId": 32,
-        "order": 14,
-        "name": "Triển lãm",
-        "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
-        "banner": "/assets/media/categories/news-center-banner.jpg",
-        "slug": "exhibition",
-        "url": "/vi/news/exhibition/"
+        "url": "/news/"
     },
     {
         "id": 36,
@@ -177,7 +117,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/service-banner.jpg",
         "slug": "service",
-        "url": "/vi/service/"
+        "url": "/service/"
     },
     {
         "id": 37,
@@ -189,7 +129,31 @@
         "subtitle": "Giải đáp nhanh, sử dụng máy hiệu quả hơn",
         "banner": "/assets/media/categories/support-banner.jpg",
         "slug": "support",
-        "url": "/vi/support/"
+        "url": "/support/"
+    },
+    {
+        "id": 48,
+        "lang": "vi",
+        "type": "contact",
+        "parentId": 37,
+        "subtitle": "Giải đáp nhanh, sử dụng máy hiệu quả hơn",
+        "banner": "/assets/media/categories/support-banner.jpg",
+        "order": 1,
+        "name": "Hướng dẫn vận hành",
+        "slug": "huong-dan-van-hanh",
+        "url": "/support/#van-hanh"
+    },
+    {
+        "id": 49,
+        "lang": "vi",
+        "type": "contact",
+        "parentId": 37,
+        "subtitle": "Giải đáp nhanh, sử dụng máy hiệu quả hơn",
+        "banner": "/assets/media/categories/support-banner.jpg",
+        "order": 2,
+        "name": "Câu hỏi thường gặp",
+        "slug": "cau-hoi-thuong-gap",
+        "url": "/support/#cau-hoi"
     },
     {
         "id": 38,
@@ -201,7 +165,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "side-mounted",
-        "url": "/vi/products/side-mounted/"
+        "url": "/products/side-mounted/"
     },
     {
         "id": 39,
@@ -213,7 +177,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "knapsack",
-        "url": "/vi/products/knapsack/"
+        "url": "/products/knapsack/"
     },
     {
         "id": 40,
@@ -225,7 +189,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "portable",
-        "url": "/vi/products/portable/"
+        "url": "/products/portable/"
     },
     {
         "id": 43,
@@ -237,7 +201,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "single-blade-hedge-machine",
-        "url": "/vi/products/single-blade-hedge-machine/"
+        "url": "/products/single-blade-hedge-machine/"
     },
     {
         "id": 44,
@@ -249,7 +213,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "double-edged-hedge-machine",
-        "url": "/vi/products/double-edged-hedge-machine/"
+        "url": "/products/double-edged-hedge-machine/"
     },
     {
         "id": 45,
@@ -261,7 +225,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "curved-hedge-machine",
-        "url": "/vi/products/curved-hedge-machine/"
+        "url": "/products/curved-hedge-machine/"
     },
     {
         "id": 46,
@@ -273,7 +237,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "broad-band-scissor-curved-broad-band-scissor",
-        "url": "/vi/products/broad-band-scissor-curved-broad-band-scissor/"
+        "url": "/products/broad-band-scissor-curved-broad-band-scissor/"
     },
     {
         "id": 47,
@@ -285,7 +249,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "high-branch-saw-long-arm-tree-pruner-telescopic-high-branch-saw",
-        "url": "/vi/products/high-branch-saw-long-arm-tree-pruner-telescopic-high-branch-saw/"
+        "url": "/products/high-branch-saw-long-arm-tree-pruner-telescopic-high-branch-saw/"
     },
     {
         "id": 41,
@@ -297,7 +261,7 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "mini-tiller",
-        "url": "/vi/products/mini-tiller/"
+        "url": "/products/mini-tiller/"
     },
     {
         "id": 42,
@@ -309,6 +273,6 @@
         "subtitle": "Sản xuất máy làm vườn an toàn, thân thiện môi trường, mang đến nguồn động lực xanh cho khách hàng và dẫn đầu ngành",
         "banner": "/assets/media/categories/products-banner.jpg",
         "slug": "water-pump",
-        "url": "/vi/products/water-pump/"
+        "url": "/products/water-pump/"
     }
 ]
